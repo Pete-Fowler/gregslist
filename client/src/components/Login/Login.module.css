@@ -3,17 +3,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 90%;
+  min-height: 600px;
 }
 
-.login {
+.login, .create {
   width: 400px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 2px;
-  margin: 32px 0;
+  margin: 32px 0 0 0;
 }
 
-.loginTitle {
+.create {
+  margin-top: 16px;
+}
+
+.loginTitle, .createTitle {
   font-size: 1rem;
   background-color: #eeeeee;
   text-align: center;
