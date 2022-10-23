@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+    before_action :authorize
+    skip_before_action :authorize, only: [:create]
+
+
+    # GET /me
+  def show
+    render json: @current_user
+  end
 
     # POST /users - SIGNUP
   def create
@@ -10,4 +18,12 @@ class UsersController < ApplicationController
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
   end
+
+
+  private
+
+  def user_params
+    params.permit(:id, :username, :bio, :password, :password_confirmation)
+  end
+
 end
