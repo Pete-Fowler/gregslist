@@ -1,0 +1,13 @@
+
+.loginBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login {
+  max-width: 400px;
+}
+
+.loginTitle {
+  background-color: #eeeeee;
+}

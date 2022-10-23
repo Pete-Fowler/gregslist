@@ -10,6 +10,7 @@
 .leftBar, .rightBar {
   background-color: #f4f4f4;
   display: flex;
+  gap: 5px;
   flex-direction: column;
   align-items: center;
   border-left: 1px solid lightgray;
@@ -27,16 +28,26 @@
   width: 112px;
 }
 
-.siteTitle {
-  font-size: 2rem;
+a {
+  color: #2c28ef;
   text-decoration: none;
 }
 
-.siteTitle:hover {
+a:hover {
+  color: #2c28ef;
   text-decoration: underline;
 }
 
+/* LEFT BAR */
+.siteTitle {
+  font-size: 2rem;
+  font-family: 'Times New Roman', Times, serif;
+}
 
+.posting {
+  font-size: 1.1rem;
+  background-color: #ffffcc;
+}
 
 .main {
   grid-area: main;
