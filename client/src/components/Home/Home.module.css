@@ -3,9 +3,8 @@
   grid: 
     'left-bar main right-bar' 1fr 
     'footer footer footer' 75px
-    / 200px   .8fr     100px;
-  min-height: 90vh;
-  margin: 10px 100px 0 100px;
+    / 20%   62%     11%;
+  margin: 16px 142px 0 142px;
 }
 
 .leftBar, .rightBar {
@@ -15,14 +14,17 @@
   align-items: center;
   border-left: 1px solid lightgray;
   border-right: 1px solid lightgray;
+  min-height: 810px;
 }
 
 .leftBar {
   grid-area: left-bar;
+  width: 196px;
 }
 
 .rightBar {
   grid-area: right-bar;
+  width: 112px;
 }
 
 .siteTitle {
