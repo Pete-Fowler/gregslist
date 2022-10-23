@@ -14,6 +14,7 @@ export default function Login() {
           <label>Password</label>
           <input type='text'></input>
         </div>
+        <button type='submit' className={styles.loginBtn}>Log in</button>
       </form>
       <p>or</p>
       <div className={styles.createAccount}>create an account</div>
