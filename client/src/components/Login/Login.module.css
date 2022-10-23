@@ -32,6 +32,8 @@ label {
 input {
   width: 97.5%;
   padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
 }
 
 .loginBtn {
@@ -41,6 +43,8 @@ input {
   float: right;
   font-size: 14px;
   padding: 5px 6px;
+  position: relative;
+  right: 8px;
 }
 
 .loginBtn:hover {
