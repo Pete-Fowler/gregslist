@@ -1,0 +1,22 @@
+.home {
+  display: grid;
+  grid: 
+    'left-bar main right-bar' 1fr 
+    'footer footer footer' 50px
+    / 100px   .6fr     75px;
+  min-height: 90vh;
+  margin: 10px 50px 0 50px;
+}
+
+.leftBar {
+  grid-area: left-bar;
+}
+
+.rightBar {
+  grid-area: right-bar;
+}
+
+.main {
+  grid-area: main;
+}
+
