@@ -1,5 +1,6 @@
 
-cities = [Aguilar, Akron, Alamosa, Alma, Antonito, Arriba, Arvada, Aspen, Ault, Aurora, Avon, Basalt, Bayfield, Bennett, Berthoud, Bethune, 
+cities = [
+  Aguilar, Akron, Alamosa, Alma, Antonito, Arriba, Arvada, Aspen, Ault, Aurora, Avon, Basalt, Bayfield, Bennett, Berthoud, Bethune, 
 Black Hawk, Blanca, Blue River, Bonanza, Boone, Boulder, Bow Mar, Branson, Breckenridge, Brighton, Brookside, Broomfield, Brush, Buena Vista, 
 Burlington, Calhan, Campo, Cañon City, Carbonate,Carbondale, Castle Pines, Castle Rock, Cedaredge, Centennial, Center, Central City, Cheraw, 
 Cherry Hills Village, Cheyenne Wells, Coal Creek, Cokedale, Collbran, Colorado Springs, Columbine Valley, Commerce City, Cortez, Craig, Crawford, 
@@ -18,7 +19,8 @@ Poncha Springs, Pritchett, Pueblo, Ramah, Rangely, Raymer, Red Cliff, Rico, Ridg
 San Luis, Sanford, Sawpit, Sedgwick, Seibert, Severance, Sheridan, Sheridan Lake, Silt, Silver Cliff, Silver Plume, Silverthorne, Silverton, Simla,
  Snowmass Village, South Fork, Springfield, Starkville, Steamboat Springs, Sterling, Stratton, Sugar City, Superior, Swink, Telluride, Thornton, 
  Timnath, Trinidad, Two Buttes, Vail, Victor, Vilas, Vona, Walden, Walsenburg, Walsh, Ward, Wellington, Westcliffe, Westminster, Wheat Ridge, 
- Wiggin, Wiley, Williamsburg, Windsor, Winter Park, Woodland Park, Wray, Yampa, Yuma]
+ Wiggin, Wiley, Williamsburg, Windsor, Winter Park, Woodland Park, Wray, Yampa, Yuma
+]
 
 
 cities.each do |city|
@@ -35,6 +37,11 @@ x.times do
   )
 end
 
+event_categories = [
+  art/film, career, charitable, competition, dance, fest/fair, fitness/health, food/drink, free, kid friendly, literary, music, outdoor, 
+  sale, singles, sustainability, tech
+]
+
 x.times do
   Event.create(
     user_id: User.all.pluck(:id).sample,
@@ -45,7 +52,7 @@ x.times do
     description:
     image:
     category:
-    subcategory:
+    subcategory: null
     area:
     postal_code:
     price:
@@ -53,22 +60,12 @@ x.times do
 end
 
 
-for_sale_subcategories = [antiques, appliances, arts+crafts, atv/utv/sno, auto parts, aviation, baby+kid, barter, beauty+hlth, bike parts,
+for_sale_subcategories = [
+  antiques, appliances, arts+crafts, atv/utv/sno, auto parts, aviation, baby+kid, barter, beauty+hlth, bike parts,
 bikes, boat parts, boats, books, business, cars+trucks, cds/dvd/vhs, cell phones, clothes+acc, collectibles, computer parts, computers, electronics, farm+garden,
-free, furniture, garage sale, general, heavy equip, household, jewelry, materials, motorcycle parts, motorcycles,
-music instr,
-photo+video,
-rvs+camp,
-sporting,
-tickets,
-tools,
-toys+games,
-trailers,
-video gaming,
-wanted,
-wheels+tires]
-
-
+free, furniture, garage sale, general, heavy equip, household, jewelry, materials, motorcycle parts, motorcycles, music instr, photo+video, rvs+camp, sporting,
+tickets, tools, toys+games, trailers, video gaming, wanted, wheels+tires
+]
 
 x.times do
 
@@ -86,7 +83,12 @@ x.times do
   )
 end
 
-
+jobs_subcategories = [
+accounting+finance, admin / office, arch / engineering, art / media / design, biotech / science, business / mgmt, customer service, education,
+etc / misc, food / bev / hosp, general labor, government, human resources, legal / paralegal, manufacturing, marketing / pr / ad, medical / health,
+nonprofit sector, real estate, retail / wholesale, sales / biz dev, salon / spa / fitness, security, skilled trade / craft, software / qa / dba,
+systems / network, technical support, transport, tv / film / video, web / info design, writing / editing
+]
 
 x.times do
   Post.create(
@@ -103,6 +105,11 @@ x.times do
   )
 end
 
+housing_subcategories = [
+apts / housing, housing swap, housing wanted, office / commercial, parking / storage, real estate for sale, rooms / shared, rooms wanted,
+sublets / temporary, vacation rentals
+]
+
 x.times do
   Post.create(
     user_id: User.all.pluck(:id).sample,
@@ -118,6 +125,11 @@ x.times do
   )
 end
 
+services_subcategories = [
+automotive, beauty, cell/mobile, computer, creative, cycle, event, farm+garden, financial, health/well, household, labor/move, legal, lessons,
+marine, pet, real estate, skilled trade, sm biz ads, travel/vac, write/ed/tran,
+]
+
 x.times do
   Post.create(
     user_id: User.all.pluck(:id).sample,
@@ -132,6 +144,11 @@ x.times do
     price:
   )
 end
+
+community_subcategories = [
+activities, artists, childcare, classes, events, general, groups, local news, lost+found, missed connections, musicians, pets, politics,
+rants & raves, rideshare, volunteers
+]
 
 x.times do
   Post.create(
