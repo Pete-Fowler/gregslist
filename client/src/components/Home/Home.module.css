@@ -2,10 +2,19 @@
   display: grid;
   grid: 
     'left-bar main right-bar' 1fr 
-    'footer footer footer' 50px
-    / 100px   .6fr     75px;
+    'footer footer footer' 75px
+    / 200px   .8fr     100px;
   min-height: 90vh;
-  margin: 10px 50px 0 50px;
+  margin: 10px 100px 0 100px;
+}
+
+.leftBar, .rightBar {
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
 }
 
 .leftBar {
@@ -15,6 +24,17 @@
 .rightBar {
   grid-area: right-bar;
 }
+
+.siteTitle {
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+.siteTitle:hover {
+  text-decoration: underline;
+}
+
+
 
 .main {
   grid-area: main;
