@@ -1,0 +1,58 @@
+
+.loginBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90%;
+  min-height: 600px;
+}
+
+.login, .create {
+  width: 400px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  margin: 32px 0 0 0;
+}
+
+.create {
+  margin-top: 16px;
+}
+
+.loginTitle, .createTitle {
+  font-size: 1rem;
+  background-color: #eeeeee;
+  text-align: center;
+  margin-top: 0;
+  padding: 8px 5px;
+}
+
+.field {
+  margin: 10px 8px;
+}
+
+label {
+  display: block;
+}
+
+input {
+  width: 97.5%;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+
+.loginBtn {
+  border-radius: 3px;
+  background: linear-gradient(#eee, #DCDCDC);
+  border: 1px solid #ccc;
+  float: right;
+  font-size: 14px;
+  padding: 5px 6px;
+  position: relative;
+  right: 8px;
+}
+
+.loginBtn:hover {
+  background: linear-gradient(#DCDCDC, #B7B7B7);
+}

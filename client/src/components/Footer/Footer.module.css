@@ -2,4 +2,6 @@
   grid-area: footer;
   background-color: #f4f4f4;
   height: 25px;
+  position: absolute;
+  bottom: 0px;
 }

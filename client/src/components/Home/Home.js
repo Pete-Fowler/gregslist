@@ -17,6 +17,10 @@ export function LeftBar() {
   return (
     <>
       <Link className={styles.siteTitle}>gregslist</Link>
+      <br></br>
+      <Link className={styles.posting}>create a posting</Link>
+      <Link to='/login'>my account</Link>
+
     </>
   )
 }
