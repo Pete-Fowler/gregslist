@@ -53,37 +53,37 @@
 /* containers */
 
 .form {
-  margin-top: 10rem;
+  margin-top: 5rem;
+  margin-left: 10rem;
   align-content: center;
 }
 
 .groupcontainer {
   display: flex;
   flex-direction: row;
-  align-content: center;
-  margin-left: auto;
-  width: auto;
+  flex-wrap: wrap;
   height: auto;
+  gap: 10px
 }
 
 .descriptioncontainer {
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin-top: 10px;
 }
 
 .contactcontainer {
   display: flex;
   border: black;
-  margin: 10px;
+  margin-top: 10px;
 }
 
 .checkboxcontainer {
   display: flex;
-
+  flex-direction: row;
 }
 
-/* text inputs and boxes */
+/* text inputs, boxes and elements */
 
 .categories {
   margin-bottom: 10px;
@@ -93,34 +93,24 @@
   display: flex;
   width: 239.407px;
   height: 21.6px;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .price {
   display: flex;
   width: 102.885px;
   height: 21.6px;
-  padding-left: 3.84px;
-  padding-right: 3.84px;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .city {
   display: flex;
   width: 295.807px;
   height: 21.6px;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .postalcode {
   display: flex;
   width: 100.320px;
   height: 21.6px;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .description {
@@ -140,3 +130,17 @@
   height: 21.6px;
 }
 
+.checkbox {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  margin-top: 15px;
+}
+
+.button {
+  width: 87px;
+  height: 30px;
+  margin-left: 60rem;
+  margin-bottom: 3rem;
+  font-size: large;
+}
