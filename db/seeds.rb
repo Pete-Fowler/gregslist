@@ -1,7 +1,4 @@
-require 'rest-client'
-require 'dotenv'
 require 'faker'
-require 'pry'
 
 puts "🌱 Seeding DB ..."
 
@@ -23,8 +20,8 @@ Mountain Village", "Naturita", "Nederland", "New Castle", "Northglenn", "Norwood
 Ordway", "Otis", "Ouray Ovid", "Pagosa Springs", "Palisade", "Palmer Lake", "Paoli", "Paonia", "Parachute", "Parker", "Peetz", "Pierce", "Pitkin", "Platteville", "
 Poncha Springs", "Pritchett", "Pueblo", "Ramah", "Rangely", "Raymer", "Red Cliff", "Rico", "Ridgway", "Rifle", "Rockvale", "Rocky Ford", "Romeo", "Rye", "Saguache", "Salida", "
 San Luis", "Sanford", "Sawpit", "Sedgwick", "Seibert", "Severance", "Sheridan", "Sheridan Lake", "Silt", "Silver Cliff", "Silver Plume", "Silverthorne", "Silverton", "Simla,
- Snowmass Village", "South Fork", "Springfield", "Starkville", "Steamboat Springs", "Sterling", "Stratton", "Sugar City", "Superior", "Swink", "Telluride", "Thornton", "
- Timnath", "Trinidad", "Two Buttes", "Vail", "Victor", "Vilas", "Vona", "Walden", "Walsenburg", "Walsh", "Ward", "Wellington", "Westcliffe", "Westminster", "Wheat Ridge", "
+ Snowmass Village", "South Fork", "Springfield", "Starkville", "Steamboat Springs", "Sterling", "Stratton", "Sugar City", "Superior", "Swink", "Telluride", "Thornton", 
+ "Timnath", "Trinidad", "Two Buttes", "Vail", "Victor", "Vilas", "Vona", "Walden", "Walsenburg", "Walsh", "Ward", "Wellington", "Westcliffe", "Westminster", "Wheat Ridge", "
  Wiggin", "Wiley", "Williamsburg", "Windsor", "Winter Park", "Woodland Park", "Wray", "Yampa", "Yuma"
 ]
 
@@ -35,11 +32,11 @@ cities.each do |city|
   )
 end
 
-20.times do
+200.times do
   User.create(
-    username: Faker::Internet.username,
+    username: Faker::Internet.email,
     password_digest: Faker::Internet.password(min_length: 10, max_length: 20),
-    city: City.all.pluck(:name).sample
+    default_city: City.all.pluck(:name).sample
   )
 end
 
@@ -53,20 +50,19 @@ event_categories.each do |cat|
     Event.create(
       user_id: User.all.pluck(:id).sample,
       city_id: City.all.pluck(:id).sample,
-      title: Faker::Hipster.words(number: 4),
-      date: Faker::Date.forward(days: 30)
-      duration:,
-      description: Faker::Hipster.words(number: 4),
+      title: Faker::Hipster.sentence(word_count: 3),
+      date: Faker::Date.in_date_period(month: 10),
+      duration: 1,
+      description: Faker::Hipster.sentence(word_count: 10),
       image: Faker::LoremPixel.image(size: "50x60", is_gray: true),
       category: cat,
-      subcategory: null,
+      subcategory: "null",
       area: City.all.pluck(:name).sample,
       postal_code: Faker::Address.zip,
-      price: 1
+      price: rand(50..250)
     )
   end
 end
-
 
 for_sale_subcategories = [
   "antiques", "appliances", "arts+crafts", "atv/utv/sno", "auto parts", "aviation", "baby+kid", "barter", "beauty+hlth", "bike parts",
@@ -80,14 +76,14 @@ for_sale_subcategories.each do |subcat|
     Post.create(
       user_id: User.all.pluck(:id).sample,
       city_id: City.all.pluck(:id).sample,
-      title: Faker::Hipster.words(number: 4),
-      description: Faker::Hipster.sentences(number: 10),
+      title: Faker::Hipster.sentence(word_count: 3),
+      description: Faker::Hipster.paragraph_by_chars(characters: 2000, supplemental: false),
       image: Faker::LoremPixel.image(size: "50x60", is_gray: true),
       category: "For Sale",
       subcategory: subcat,
       area: City.all.pluck(:name).sample,
       postal_code: Faker::Address.zip,
-      price: 1
+      price: rand(10..10000)
     )
   end
 end
@@ -104,14 +100,14 @@ jobs_subcategories.each do |subcat|
     Post.create(
       user_id: User.all.pluck(:id).sample,
       city_id: City.all.pluck(:id).sample,
-      title: Faker::Hipster.words(number: 4),
-      description: Faker::Hipster.sentences(number: 10),
+      title: Faker::Hipster.sentence(word_count: 3),
+      description: Faker::Hipster.paragraph_by_chars(characters: 2000, supplemental: false),
       image: Faker::LoremPixel.image(size: "50x60", is_gray: true),
       category: "Jobs",
       subcategory: subcat,
       area: City.all.pluck(:name).sample,
       postal_code: Faker::Address.zip,
-      price: 1
+      price: rand(10000..100000)
     )
   end
 end
@@ -126,14 +122,14 @@ housing_subcategories.each do |subcat|
     Post.create(
       user_id: User.all.pluck(:id).sample,
       city_id: City.all.pluck(:id).sample,
-      title: Faker::Hipster.words(number: 4),
-      description: Faker::Hipster.sentences(number: 10),
+      title: Faker::Hipster.sentence(word_count: 3),
+      description: Faker::Hipster.paragraph_by_chars(characters: 2000, supplemental: false),
       image: Faker::LoremPixel.image(size: "50x60", is_gray: true),
       category: "Housing",
       subcategory: subcat,
       area: City.all.pluck(:name).sample,
       postal_code: Faker::Address.zip,
-      price: 1
+      price: rand(500..100000)
     )
   end
 end
@@ -148,14 +144,14 @@ services_subcategories.each do |subcat|
     Post.create(
       user_id: User.all.pluck(:id).sample,
       city_id: City.all.pluck(:id).sample,
-      title: Faker::Hipster.words(number: 4),
-      description: Faker::Hipster.sentences(number: 10),
+      title: Faker::Hipster.sentence(word_count: 3),
+      description: Faker::Hipster.paragraph_by_chars(characters: 2000, supplemental: false),
       image: Faker::LoremPixel.image(size: "50x60", is_gray: true),
       category: "Services",
       subcategory: subcat,
       area: City.all.pluck(:name).sample,
       postal_code: Faker::Address.zip,
-      price: 1
+      price: rand(10..1000)
     )
   end
 end
@@ -170,14 +166,14 @@ community_subcategories.each do |subcat|
     Post.create(
       user_id: User.all.pluck(:id).sample,
       city_id: City.all.pluck(:id).sample,
-      title: Faker::Hipster.words(number: 4),
-      description: Faker::Hipster.sentences(number: 10),
+      title: Faker::Hipster.sentence(word_count: 3),
+      description: Faker::Hipster.paragraph_by_chars(characters: 2000, supplemental: false),
       image: Faker::LoremPixel.image(size: "50x60", is_gray: true),
       category: "Community",
       subcategory: subcat,
       area: City.all.pluck(:name).sample,
       postal_code: Faker::Address.zip,
-      price: 1
+      price: rand(1..500)
     )
   end
 end
