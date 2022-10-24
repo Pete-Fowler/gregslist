@@ -8,11 +8,11 @@ import { useState, useEffect } from 'react';
 function App() {
   const [ user, setUser ] = useState(null);
 
-  useEffect(() => {
-    fetch(`/me`)
-    .then(res => res.json())
-    .then(data => setUser(data));
-  }, [])
+  // useEffect(() => {
+  //   fetch(`/me`)
+  //   .then(res => res.json())
+  //   .then(data => setUser(data));
+  // }, [])
 
   function newUser(userData) {
     setUser(userData);
