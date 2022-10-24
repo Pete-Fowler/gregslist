@@ -4,6 +4,7 @@ import Home from '../Home/Home.js';
 import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import MyAccount from '../MyAccount/MyAccount';
+import Post from '../Post/Post';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login user={user} newUser={newUser}/>} />
         <Route path='/account' element={<MyAccount user={user} logout={logout}/>} />
+        <Route path='/post' element={<Post user={user} />} />
       </Routes>
       <Footer />
     </div>
