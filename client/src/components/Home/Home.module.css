@@ -1,0 +1,55 @@
+.home {
+  display: grid;
+  grid: 
+    'left-bar main right-bar' 1fr 
+    'footer footer footer' 75px
+    / 20%   62%     11%;
+  margin: 16px 142px 0 142px;
+}
+
+.leftBar, .rightBar {
+  background-color: #f4f4f4;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  min-height: 810px;
+}
+
+.leftBar {
+  grid-area: left-bar;
+  width: 196px;
+}
+
+.rightBar {
+  grid-area: right-bar;
+  width: 112px;
+}
+
+a {
+  color: #2c28ef;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #2c28ef;
+  text-decoration: underline;
+}
+
+/* LEFT BAR */
+.siteTitle {
+  font-size: 2rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.posting {
+  font-size: 1.1rem;
+  background-color: #ffffcc;
+}
+
+.main {
+  grid-area: main;
+}
+
