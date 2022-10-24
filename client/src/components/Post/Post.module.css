@@ -1,4 +1,5 @@
 
+
 /* labels */
 .postlabel {
   color: #008800;
@@ -60,16 +61,21 @@
   display: flex;
   flex-direction: row;
   align-content: center;
+  margin-left: auto;
+  width: auto;
+  height: auto;
 }
 
 .descriptioncontainer {
   display: flex;
   flex-direction: column;
+  margin: 10px;
 }
 
 .contactcontainer {
   display: flex;
   border: black;
+  margin: 10px;
 }
 
 .checkboxcontainer {
@@ -79,28 +85,42 @@
 
 /* text inputs and boxes */
 
+.categories {
+  margin-bottom: 10px;
+}
+
 .postingtitle {
   display: flex;
   width: 239.407px;
   height: 21.6px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .price {
   display: flex;
   width: 102.885px;
   height: 21.6px;
+  padding-left: 3.84px;
+  padding-right: 3.84px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .city {
   display: flex;
   width: 295.807px;
   height: 21.6px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .postalcode {
   display: flex;
   width: 100.320px;
   height: 21.6px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .description {
@@ -110,8 +130,8 @@
   max-height: 216px;
   min-width: 228px;
   min-height: 216px;
-  width: 952px;
-  height: 216px;
+  width: 100%;
+  height: auto;
 }
 
 .contactinfo {

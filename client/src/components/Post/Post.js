@@ -5,21 +5,22 @@ export default function Post() {
 
 
   return (
-    <div>
+    <div className={styles.post}>
       <form className={styles.form}>
-        <div className={styles.groupcontainer}>
-      <label for="postingtitle" className={styles.postlabel}>posting title
-      <input type='text' className={styles.postingtitle} />
-      </label>
-      <label for="cars" className={styles.categorylabel}>Choose a category:</label>
-      <select className="categories">
+      <label for="categories" className={styles.categorylabel}>Choose a category:</label>
+      <select className={styles.categories}>
         <option value="for sale">for sale</option>
         <option value="jobs">jobs</option>
         <option value="services">services</option>
         <option value="events">events</option>
       </select>
-      <label for="price" className={styles.pricelabel}>price</label>
+        <div className={styles.groupcontainer}>
+      <label for="postingtitle" className={styles.postlabel}>posting title
+      <input type='text' className={styles.postingtitle} />
+      </label>
+      <label for="price" className={styles.pricelabel}>price
       <input type="number" className={styles.price} title="Please enter a number" />
+      </label>
       <label for="cityorneighborhood" className={styles.citylabel}>city or neighborhood
       <input type='text' className={styles.city} />
       </label>
