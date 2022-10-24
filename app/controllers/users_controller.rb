@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :authorize
-    skip_before_action :authorize, only: [:create]
+    skip_before_action :authorize, only: [:create, :show]
 
 
     # GET /me
