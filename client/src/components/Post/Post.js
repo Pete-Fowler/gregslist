@@ -1,7 +1,10 @@
 import styles from './Post.module.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
-export default function Post() {
+export default function Post({ user }) {
+
+  const navigate = useNavigate()
 
   const [cat, setCat] = useState("")
   const [subcat, setSubcat] = useState("")
@@ -51,6 +54,9 @@ export default function Post() {
     event.preventDefault()
 
     const newPost = {
+
+        "city_id": 1,
+        "user_id": user.id,
         "title": title,
         "description": description,
         "category": cat,
@@ -60,7 +66,20 @@ export default function Post() {
         "price": price
     }
 
-    console.log(newPost)
+    fetch("/posts/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPost),
+    })
+    .then(r => r.json())
+    .then((data) => {
+      console.log(data)
+    })
+    .then(data => {
+      navigate(`/`)
+    })
 
 }
 
@@ -68,11 +87,13 @@ export default function Post() {
   return (
     <div className={styles.post}>
       <form className={styles.form} onSubmit={handleSubmit}>
-      <label for="categories" className={styles.categorylabel}>Choose a category:</label>
+      <label for="categories" className={styles.categorylabel}>choose a category:</label>
       <select className={styles.categories} onChange={selectCat}>
         <option value="for sale">for sale</option>
         <option value="jobs">jobs</option>
         <option value="services">services</option>
+        <option value="housing">housing</option>
+        <option value="community">community</option>
         <option value="events">events</option>
       </select>
         <div className={styles.groupcontainer}>
