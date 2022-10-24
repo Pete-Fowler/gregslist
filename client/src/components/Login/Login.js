@@ -22,7 +22,8 @@ export default function Login({ user, newUser }) {
 
   function handleCreate(e) {
     e.preventDefault();
-    fetch('/login', {
+    console.log(createData);
+    fetch('/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -41,7 +42,7 @@ export default function Login({ user, newUser }) {
         <h1 className={styles.loginTitle}>Log in</h1>
         <div className={styles.field}>
           <label>Email / Handle</label>
-          <input type='email' name='email' value={loginData.username} onChange={loginFormChange}></input>
+          <input type='email' name='username' value={loginData.username} onChange={loginFormChange}></input>
         </div>
         <div className={styles.field} >
           <label>Password</label>
@@ -50,11 +51,11 @@ export default function Login({ user, newUser }) {
         <button type='submit' className={styles.loginBtn}>Log in</button>
       </form>
       <p><i>or</i></p>
-      <form className={styles.create}>
+      <form className={styles.create} onSubmit={handleCreate}>
         <h1 className={styles.createTitle}>Create an account</h1>
         <div className={styles.field}>
           <label>Email</label>
-          <input type='email' name='email' onChange={createFormChange}></input>
+          <input type='email' name='username' onChange={createFormChange}></input>
         </div>
         <div className={styles.field}>
           <label>Password</label>
@@ -64,7 +65,7 @@ export default function Login({ user, newUser }) {
           <label>Password Confirmation</label>
           <input type='text' name='password_confirmation' onChange={createFormChange}></input>
         </div>
-        <button type='submit' className={styles.loginBtn} onSubmit={handleCreate}>Create account</button>
+        <button type='submit' className={styles.loginBtn}>Create account</button>
       </form>
     </div>
   )
