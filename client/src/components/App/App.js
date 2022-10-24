@@ -28,7 +28,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home user={user}/>} />
         <Route path='/login' element={<Login user={user} newUser={newUser}/>} />
-        <Route path='/account' element={<MyAccount user={user} logout={logout}/>} />
+        <Route path='/account' element={<MyAccount user={user}/>} />
         <Route path='/post' element={<Post user={user} />} />
       </Routes>
       <Footer />
