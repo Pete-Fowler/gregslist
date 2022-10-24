@@ -1,3 +1,18 @@
+/* header and header elements */
+
+.header {
+  display: flex;
+  height: 30.8px;
+  flex-direction: row;
+}
+
+.logincontainer {
+  display: flex;
+  float: right;
+  line-height: 30.8px;
+}
+
+/* labels */
 .postlabel {
   color: #008800;
   font-family: Arial, sans-serif;
@@ -26,7 +41,7 @@
   font-weight: 700;
 }
 
-.postallabel {
+.descriptionlabel {
   color: #008800;
   font-family: Arial, sans-serif;
   font-size: 13px;
@@ -39,3 +54,36 @@
   font-size: 13px;
   font-weight: 700;
 }
+
+/* text inputs and boxes */
+
+.postingtitle {
+  display: flex;
+  width: 90%;
+  height: auto;
+}
+
+.price {
+  display: flex;
+  width: 90%;
+  height: auto;
+}
+
+.city {
+  display: flex;
+  width: 90%;
+  height: auto;
+}
+
+.description {
+  display: flex;
+  width: 90%;
+  height: auto;
+}
+
+.contactinfo {
+  display: flex;
+  width: 90%;
+  height: auto;
+}
+
