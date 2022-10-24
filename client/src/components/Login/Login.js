@@ -26,7 +26,7 @@ export default function Login({ user, newUser }) {
 
   function handleCreate(e) {
     e.preventDefault();
-    console.log(createData);
+
     fetch('/signup', {
       method: 'POST',
       headers: {
@@ -36,19 +36,38 @@ export default function Login({ user, newUser }) {
     })
     .then(res => {
       if(res.ok) {
-      res.json().then(data => newUser(data));
-      navigate('/account');
-      }
-      else {
-        res.json().then(err => setErrors(err));
+        res.json().then(data => newUser(data));
+        navigate('/account');
+      } else {
+        res.json().then(err => {
+          setErrors(err.errors)});
       }
     });
   }
 
-  
+  function handleLogin(e) {
+    e.preventDefault();
+
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginData)
+    })
+    .then(r => {
+      if(r.ok) {
+        r.json().then(user => newUser(user));
+        navigate('/account');
+      } else {
+        r.json().then(err => setErrors([err.error]));
+      }
+    })
+  }
+
   return (
     <div className={styles.loginBox}>
-      <form className={styles.login}>
+      <form className={styles.login} onSubmit={handleLogin}>
         <h1 className={styles.loginTitle}>Log in</h1>
         <div className={styles.field}>
           <label>Email / Handle</label>
@@ -61,7 +80,9 @@ export default function Login({ user, newUser }) {
         <button type='submit' className={styles.loginBtn}>Log in</button>
       </form>
       <p><i>or</i></p>
-      {errors.join(', ')}
+      {errors.map((err) => (
+          <span key={err} className={styles.error}>{err}</span>
+        ))}
       <form className={styles.create} onSubmit={handleCreate}>
         <h1 className={styles.createTitle}>Create an account</h1>
         <div className={styles.field}>
