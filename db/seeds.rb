@@ -58,7 +58,7 @@ event_categories.each do |cat|
       category: cat,
       subcategory: "null",
       area: City.all.pluck(:name).sample,
-      postal_code: Faker::Address.zip,
+      postal_code: rand(80001..81658),
       price: rand(50..250)
     )
   end
@@ -82,7 +82,7 @@ for_sale_subcategories.each do |subcat|
       category: "For Sale",
       subcategory: subcat,
       area: City.all.pluck(:name).sample,
-      postal_code: Faker::Address.zip,
+      postal_code: rand(80001..81658),
       price: rand(10..10000)
     )
   end
@@ -106,7 +106,7 @@ jobs_subcategories.each do |subcat|
       category: "Jobs",
       subcategory: subcat,
       area: City.all.pluck(:name).sample,
-      postal_code: Faker::Address.zip,
+      postal_code: rand(80001..81658),
       price: rand(10000..100000)
     )
   end
@@ -128,7 +128,7 @@ housing_subcategories.each do |subcat|
       category: "Housing",
       subcategory: subcat,
       area: City.all.pluck(:name).sample,
-      postal_code: Faker::Address.zip,
+      postal_code: rand(80001..81658),
       price: rand(500..100000)
     )
   end
@@ -150,7 +150,7 @@ services_subcategories.each do |subcat|
       category: "Services",
       subcategory: subcat,
       area: City.all.pluck(:name).sample,
-      postal_code: Faker::Address.zip,
+      postal_code: rand(80001..81658),
       price: rand(10..1000)
     )
   end
@@ -172,7 +172,7 @@ community_subcategories.each do |subcat|
       category: "Community",
       subcategory: subcat,
       area: City.all.pluck(:name).sample,
-      postal_code: Faker::Address.zip,
+      postal_code: rand(80001..81658),
       price: rand(1..500)
     )
   end
