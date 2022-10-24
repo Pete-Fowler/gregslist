@@ -23,7 +23,7 @@ function App() {
 
   function logout() {
     setUser(null);
-    fetch('/logout', {
+    fetch('/destroy', {
       method: 'DELETE'
     })
     navigate('/login');
