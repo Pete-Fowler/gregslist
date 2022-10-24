@@ -56,3 +56,8 @@ input {
 .loginBtn:hover {
   background: linear-gradient(#DCDCDC, #B7B7B7);
 }
+
+.error {
+  color: red;
+  font-size: .8rem;
+}
