@@ -20,12 +20,12 @@
 
 .leftBar {
   grid-area: left-bar;
-  width: 196px;
+  width: 100%;
 }
 
 .rightBar {
   grid-area: right-bar;
-  width: 112px;
+  width: 100%;
 }
 
 a {
@@ -49,7 +49,10 @@ a:hover {
   background-color: #ffffcc;
 }
 
+/* MAIN */
 .main {
   grid-area: main;
+  width: 100%;
+  padding: 0 20px;
 }
 
