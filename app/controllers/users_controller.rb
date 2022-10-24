@@ -2,6 +2,9 @@ class UsersController < ApplicationController
     before_action :authorize
     skip_before_action :authorize, only: [:create, :show]
 
+  def index
+    render json: User.all
+  end
 
     # GET /me
   def show
