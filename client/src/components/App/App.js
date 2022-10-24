@@ -1,5 +1,5 @@
 import styles from './App.module.css';
-import { useNavigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from '../Home/Home.js';
 import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
@@ -8,8 +8,6 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const [ user, setUser ] = useState(null);
-
-  const navigate = useNavigate();
 
   // useEffect(() => {
   //   fetch(`/me`)
@@ -21,20 +19,12 @@ function App() {
     setUser(userData);
   }
 
-  function logout() {
-    setUser(null);
-    fetch('/destroy', {
-      method: 'DELETE'
-    })
-    navigate('/login');
-  }
-
   return (
     <div className={styles.app}>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home user={user}/>} />
         <Route path='/login' element={<Login user={user} newUser={newUser}/>} />
-        <Route path='/account' element={<MyAccount user={user} logout={logout}/>} />
+        <Route path='/account' element={<MyAccount user={user} newUser={newUser} />} />
       </Routes>
       <Footer />
     </div>

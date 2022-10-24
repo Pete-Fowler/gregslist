@@ -60,14 +60,10 @@ export default function Login({ user, newUser }) {
         r.json().then(user => newUser(user));
         navigate('/account');
       } else {
-        r.json().then(err => {
-          console.log(err);
-          setErrors([err.error])
-        });
+        r.json().then(err => setErrors([err.error]));
       }
     })
   }
-
 
   return (
     <div className={styles.loginBox}>

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
   def destroy
     user = User.find_by(username: params[:username]) 
-    user.destroy
+    session.delete :user_id
     render json: {}, status: :accepted
   end 
 end
