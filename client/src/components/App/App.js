@@ -11,14 +11,17 @@ function App() {
 
   useEffect(() => {
     fetch(`/me`)
-    .then(res => res.json())
-    .then(data => setUser(data));
+    .then(r => {
+      if(r.ok) {
+        r.json().then(userData => setUser(userData));
+      }
+    })
   }, [])
 
   function newUser(userData) {
     setUser(userData);
   }
-
+  
   return (
     <div className={styles.app}>
       <Routes>
