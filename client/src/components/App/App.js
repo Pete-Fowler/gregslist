@@ -3,7 +3,7 @@ import Home from '../Home/Home.js';
 import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import MyAccount from '../MyAccount/MyAccount';
-import Post from '../Post/Post';
+import CreatePost from '../CreatePost/CreatePost';
 import Header from '../Header/Header';
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -32,7 +32,8 @@ function App() {
         <Route element={<Header />}>
           <Route path='/login' element={<Login user={user} newUser={newUser}/>} />
           <Route path='/account' element={<MyAccount user={user} newUser={newUser} />} />
-          <Route path='/post' element={<Post user={user} />} />
+          <Route path='/post' element={<CreatePost user={user} />} />
+          <Route path='/posts/:id' element={<CreatePost user={user} />} />
         </Route>
       </Routes>
       <Footer />

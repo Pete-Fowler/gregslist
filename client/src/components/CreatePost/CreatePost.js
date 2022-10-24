@@ -1,4 +1,4 @@
-import styles from './Post.module.css';
+import styles from './CreatePost.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
@@ -17,37 +17,30 @@ export default function Post({ user }) {
 
   function selectCat(event) {
     setCat(event.target.value)
-    console.log(cat)
   }
 
   function handleTitle(event) {
     setTitle(event.target.value)
-    console.log(title)
   }
 
   function handlePrice(event) {
     setPrice(event.target.value)
-    console.log(price)
   }
 
   function handleCity(event) {
     setCity(event.target.value)
-    console.log(city)
   }
 
   function handlePostal(event) {
     setPostal(event.target.value)
-    console.log(postal)
   }
 
   function handleDescription(event) {
     setDescription(event.target.value)
-    console.log(description)
   }
 
   function handleEmail(event) {
     setEmail(event.target.value)
-    console.log(email)
   }
 
   function handleSubmit(event) {
@@ -75,10 +68,7 @@ export default function Post({ user }) {
     })
     .then(r => r.json())
     .then((data) => {
-      console.log(data)
-    })
-    .then(data => {
-      navigate(`/`)
+      navigate(`/posts/${data.id}`)
     })
 
 }
