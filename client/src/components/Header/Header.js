@@ -1,17 +1,14 @@
 import styles from './Header.module.css';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 
 export default function Header() {
-  const navigate = useNavigate();
-
-  function navHome() {
-    navigate('/');
-  }
 
   return (
     <>
     <div className={styles.header}>
-      <button className={styles.homeBtn} onClick={navHome}>GL</button>
+      <div className={styles.homeBtn}>
+        <Link to='/'>GL</Link>
+      </div>
     </div>
     <Outlet />
     </>
