@@ -1,5 +1,6 @@
 import styles from './Login.module.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login({ user, newUser }) {
   const [ createData, setCreateData] = useState({
@@ -11,6 +12,9 @@ export default function Login({ user, newUser }) {
     username: '',
     password: ''
   })
+  const [ errors, setErrors ] = useState([]);
+
+  const navigate = useNavigate();
 
   function loginFormChange(e) {
     setLoginData({...loginData, [e.target.name]: e.target.value});
@@ -30,14 +34,20 @@ export default function Login({ user, newUser }) {
       },
       body: JSON.stringify(createData)
     })
-    .then(res => res.json())
-    .then(data => newUser(data));
+    .then(res => {
+      if(res.ok) {
+      res.json().then(data => newUser(data));
+      navigate('/account');
+      }
+      else {
+        res.json().then(err => setErrors(err));
+      }
+    });
   }
 
   
   return (
-    user ? <h1>my account</h1> 
-    : <div className={styles.loginBox}>
+    <div className={styles.loginBox}>
       <form className={styles.login}>
         <h1 className={styles.loginTitle}>Log in</h1>
         <div className={styles.field}>
@@ -51,6 +61,7 @@ export default function Login({ user, newUser }) {
         <button type='submit' className={styles.loginBtn}>Log in</button>
       </form>
       <p><i>or</i></p>
+      {errors.join(', ')}
       <form className={styles.create} onSubmit={handleCreate}>
         <h1 className={styles.createTitle}>Create an account</h1>
         <div className={styles.field}>
