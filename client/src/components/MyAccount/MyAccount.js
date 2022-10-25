@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 
 export default function MyAccount({ user, newUser }) {
-  const [ errors, setErrors ] = useState(null);
+  const [ errors, setErrors ] = useState([]);
   const [ posts, setPosts ] = useState([]);
 
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function MyAccount({ user, newUser }) {
       if(r.ok) {
         r.json().then(data => setPosts(data));
       } else {
-        r.json().then(err => setErrors(err));
+        r.json().then(err => setErrors(err.error));
       }
     })
   }, [])
@@ -82,7 +82,7 @@ export default function MyAccount({ user, newUser }) {
         <div className={styles.date}>{format(new Date(post.created_at), 'dd MMM yyyy k:mm')}</div>
       </div>)}
     </div>
-      {errors ? errors.map(err => <span key={err}>{err}</span>) : null}
+      {errors.map(err => <span key={err}>{err}</span>)}
     </div>
   )
 }
