@@ -2,6 +2,9 @@ class PostsController < ApplicationController
 
   def index
     posts = Post.all
+    if(params[:my_id])
+      posts = User.find(params[:my_id]).posts
+    end
     render json: posts
   end
 
@@ -12,7 +15,6 @@ class PostsController < ApplicationController
 
   def create
     post = Post.create(post_params)
-
     if post.valid?
       render json: post, status: :created
     else
@@ -20,6 +22,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy 
+    post = Post.find(params[:id])
+    post.destroy
+    render json: {}, status: :accepted
+  end 
+  
   def update
     post = Post.find(params[:id])
     if post.update(post_params)
@@ -32,7 +40,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.permit(:id, :city_id, :user_id, :title, :description, :image, :category, :subcategory, :area, :postal_code, :price)
+    params.permit(:id, :my_id, :city_id, :user_id, :title, :description, :image, :category, :subcategory, :area, :postal_code, :price)
   end
 
 end
