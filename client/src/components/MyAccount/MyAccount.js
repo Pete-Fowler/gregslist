@@ -1,10 +1,16 @@
 import styles from './MyAccount.module.css';
 import { useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function MyAccount({ user, newUser }) {
   const [ errors, setErrors ] = useState([]);
+  const [ posts, setPosts ] = useState([]);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch()
+  }, [posts])
 
   function logout() {
     fetch('/destroy', {
@@ -30,11 +36,14 @@ export default function MyAccount({ user, newUser }) {
       <div className={styles.homeBtn}>
         <Link to='/'>GL</Link>
       </div>
-      <div>home of {user.username}</div>
+      <div>home of {user ? user.username : null}</div>
+      <button className={styles.logoutBtn} onClick={logout}>[ Log out ]</button>
     </div>
-      <h1>{user && user.username}</h1>
-      <button onClick={logout}>Log out</button>
-      {errors.map(err => <span key={err}>{err}</span>)}
+      
+    <div className={styles.posts}>
+
+    </div>
+      {/* {errors.map(err => <span key={err}>{err}</span>)} */}
     </div>
   )
 }
