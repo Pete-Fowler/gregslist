@@ -11,7 +11,7 @@ export default function Home({ user }) {
       <div className={styles.leftBar}>
         <Link className={styles.siteTitle}>gregslist</Link>
         <br></br>
-        <Link className={styles.posting}>create a posting</Link>
+        <Link to='/posts-create' className={styles.posting}>create a posting</Link>
         <Link to={path}>my account</Link>  
       </div>
       {/* ==========MAIN / CENTER============= */}
@@ -46,18 +46,5 @@ export default function Home({ user }) {
       {/* ============RIGHT BAR================ */}
       <div className={styles.rightBar}>Right bar</div>
     </div>
-  )
-}
-
-export function LeftBar() {
-
-  return (
-    <>
-      <Link className={styles.siteTitle}>gregslist</Link>
-      <br></br>
-      <Link to='/post' className={styles.posting}>create a posting</Link>
-      <Link to='/login'>my account</Link>
-
-    </>
   )
 }

@@ -12,7 +12,6 @@ export default function PostDetails({title,
   posterId,
   cityId}) {
 
-
   return (
     <div>
         <h1>{title}</h1>

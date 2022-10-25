@@ -2,7 +2,7 @@ import styles from './CreatePost.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
-export default function Post({ user }) {
+export default function CreatePost({ user }) {
 
   const navigate = useNavigate()
 
