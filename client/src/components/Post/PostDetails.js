@@ -1,15 +1,14 @@
-import styles from './PostListings.module.css';
+import styles from './PostDetails.module.css';
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 export default function PostDetails() {
 
   const [postObject, setPostObject] = useState({})
 
-  const navigate = useNavigate()
   const { id } = useParams();
 
-  const ref = useRef(history);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`/posts/${id}`)
@@ -18,8 +17,18 @@ export default function PostDetails() {
     })
   }, [id])
 
-  console.log()
+  
   return (
-    <div></div>
+    <div>
+      <h1>{postObject.title}</h1>
+        <img src={postObject.image} alt="item" width="500" height="600"/>
+        <p>{postObject.category}</p>
+        <p>{postObject.price}</p>
+        <p>{postObject.area}</p>
+        <p>{postObject.postal_code}</p>
+        <p>{postObject.user_id}</p>
+        <p>{postObject.city_id}</p>
+        <button onClick={()=>{navigate(`/posts`)}}>return to all posts</button>
+    </div>
   )
 }
