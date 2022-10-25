@@ -44,7 +44,11 @@ export default function Home({ user }) {
         </div>
       </div>
       {/* ============RIGHT BAR================ */}
-      <div className={styles.rightBar}>Right bar</div>
+      <div className={styles.rightBar}>Right bar
+      <br></br>
+      
+      </div>
     </div>
   )
 }
+
