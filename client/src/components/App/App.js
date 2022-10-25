@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PostDetails from '../Post/PostDetails';
 import PostIndex from '../Post/PostIndex';
+import EditPost from '../EditPost/EditPost';
 
 function App() {
   const [ user, setUser ] = useState(null);
@@ -37,6 +38,7 @@ function App() {
           <Route exact path='/posts' element={<PostIndex user={user} />} />
           <Route exact path='/posts/:id' element={<PostDetails user={user} />} />
           <Route path='posts-create' element={<CreatePost user={user} />} />
+          <Route path='posts-edit/:id' element={<EditPost user={user} />} />
         </Route>
       </Routes>
       <Footer />
