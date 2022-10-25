@@ -1,6 +1,5 @@
 import styles from './PostListings.module.css';
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function PostListings({id, title,
   description,
@@ -15,7 +14,7 @@ export default function PostListings({id, title,
     const navigate = useNavigate()
 
   return (
-    <div onClick={()=>{navigate(`posts/:id`)}}>
+    <div onClick={()=>{navigate(`${id}`)}}>
         <h1>{title}</h1>
         <img src={image} alt="item" width="500" height="600"/>
         <p>{category}</p>
