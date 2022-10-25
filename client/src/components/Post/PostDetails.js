@@ -26,6 +26,7 @@ export default function PostDetails() {
         <p>{postObject.price}</p>
         <p>{postObject.area}</p>
         <p>{postObject.postal_code}</p>
+        <p>{postObject.description}</p>
         <p>{postObject.user_id}</p>
         <p>{postObject.city_id}</p>
         <button onClick={()=>{navigate(`/posts`)}}>return to all posts</button>
