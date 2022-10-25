@@ -7,7 +7,7 @@ export default function MyAccount({ user, newUser }) {
   const [ posts, setPosts ] = useState([]);
 
   const navigate = useNavigate();
-console.log(user.id);
+
   useEffect(() => {
     fetch(`/posts?my_id=${user.id}`)
     .then(r => {
@@ -18,8 +18,6 @@ console.log(user.id);
       }
     })
   }, [])
-
-
 
   function logout() {
     fetch('/destroy', {
@@ -50,6 +48,12 @@ console.log(user.id);
     </div>
       
     <div className={styles.posts}>
+      <div className={styles.post}>
+        <div className={styles.manage}>manage</div>
+        <div className={styles.title}>post title</div>
+        <div className={styles.area}>area and category</div>
+        <div className={styles.date}>posted date</div>
+      </div>
       {posts.map(post => <div key={post.id} className={styles.post}>
         <div className={styles.manage}>
           <Link>display</Link>
@@ -57,6 +61,8 @@ console.log(user.id);
           <Link>edit</Link>
         </div>
         <div className={styles.title}>{post.title}</div>
+        <div className={styles.area}><b>{post.area}</b> {post.category}</div>
+        <div className={styles.date}>posted date</div>
       </div>)}
     </div>
       {errors.map(err => <span key={err}>{err}</span>)}

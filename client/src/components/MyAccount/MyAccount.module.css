@@ -28,6 +28,18 @@
   text-decoration: underline;
 }
 
+/* .posts {
+  display: grid;
+  grid-template-columns: 150px 386px 198px 180px;
+  grid-auto-rows: auto;
+} */
+
 .post {
   display: flex;
+  gap: 10px;
+}
+
+.manage {
+  display: flex;
+  gap: 10px;
 }
