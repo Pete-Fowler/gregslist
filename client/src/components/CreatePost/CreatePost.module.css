@@ -1,0 +1,146 @@
+
+
+/* labels */
+.postlabel {
+  color: #008800;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pricelabel {
+  color: #008800;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.citylabel {
+  color: black;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.postallabel {
+  color: #008800;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.descriptionlabel {
+  color: #008800;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.emaillabel {
+  color: #008800;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.categorylabel {
+  color: #008800;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* containers */
+
+.form {
+  margin-top: 5rem;
+  margin-left: 10rem;
+  align-content: center;
+}
+
+.groupcontainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: auto;
+  gap: 10px
+}
+
+.descriptioncontainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.contactcontainer {
+  display: flex;
+  border: black;
+  margin-top: 10px;
+}
+
+.checkboxcontainer {
+  display: flex;
+  flex-direction: row;
+}
+
+/* text inputs, boxes and elements */
+
+.categories {
+  margin-bottom: 10px;
+}
+
+.postingtitle {
+  display: flex;
+  width: 239.407px;
+  height: 21.6px;
+}
+
+.price {
+  display: flex;
+  width: 102.885px;
+  height: 21.6px;
+}
+
+.city {
+  display: flex;
+  width: 295.807px;
+  height: 21.6px;
+}
+
+.postalcode {
+  display: flex;
+  width: 100.320px;
+  height: 21.6px;
+}
+
+.description {
+  display: flex;
+  align-content: center;
+  max-width: 952px;
+  max-height: 216px;
+  min-width: 228px;
+  min-height: 216px;
+  width: 100%;
+  height: auto;
+}
+
+.contactinfo {
+  display: flex;
+  width: 295.807px;
+  height: 21.6px;
+}
+
+.checkbox {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  margin-top: 15px;
+}
+
+.button {
+  width: 87px;
+  height: 30px;
+  margin-left: 60rem;
+  margin-bottom: 3rem;
+  font-size: large;
+}

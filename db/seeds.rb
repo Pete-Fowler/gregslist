@@ -45,21 +45,19 @@ event_categories = [
   "sale", "singles", "sustainability", "tech"
 ]
 
-3.times do
-event_categories.each do |cat|
-    Event.create(
+5.times do
+event_categories.each do |subcat|
+    Post.create(
       user_id: User.all.pluck(:id).sample,
       city_id: City.all.pluck(:id).sample,
       title: Faker::Hipster.sentence(word_count: 3),
-      date: Faker::Date.in_date_period(month: 10),
-      duration: 1,
-      description: Faker::Hipster.sentence(word_count: 10),
+      description: Faker::Hipster.paragraph_by_chars(characters: 2000, supplemental: false),
       image: Faker::LoremPixel.image(size: "50x60", is_gray: true),
-      category: cat,
-      subcategory: "null",
+      category: "Event",
+      subcategory: subcat,
       area: City.all.pluck(:name).sample,
       postal_code: rand(80001..81658),
-      price: rand(50..250)
+      price: rand(10..10000)
     )
   end
 end
