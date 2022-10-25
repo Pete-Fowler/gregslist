@@ -19,39 +19,32 @@ export default function Home({ user }) {
         <div className={styles.header}>
           <Link>denver, CO</Link>
         </div>
-        <div className={styles.col1}>
-          <div className={styles.section}>
-            <div className={styles.subhead}><Link>community</Link></div>
-            {communityContent}
+        <div className={styles.mainContentBox}>
+          <div className={styles.col1}>
+            <div className={`${styles.section} ${styles.community}`}>
+              <Link>community</Link>
+            </div>
+            <div className={`${styles.section} ${styles.services}`}>
+              <Link>services</Link>
+            </div>
+          </div>
+          <div className={styles.col2}>
+            <div className={`${styles.section} ${styles.housing}`}>
+              <Link>housing</Link>
+            </div>
+            <div className={`${styles.section} ${styles.forSale}`}>
+              <Link>for sale</Link>
+            </div>
+          </div>
+          <div className={styles.col3}>
+            <div className={`${styles.section} ${styles.jobs}`}>
+              <Link>jobs</Link>
+            </div>
           </div>
         </div>
       </div>
       {/* ============RIGHT BAR================ */}
       <div className={styles.rightBar}>Right bar</div>
-    </div>
-  )
-}
-
-function communityContent() {
-  return (
-    <div className={styles.sectionContent}>
-      <Link>activities</Link>
-      <Link>artists</Link>
-      <Link>childcare</Link>
-      <Link>classes</Link>
-      <Link>events</Link>
-      <Link>general</Link>
-      <Link>groups</Link>
-      <Link>local news</Link>
-      <Link>lost+found</Link>
-      <Link>missed connections</Link>
-      <Link>musicians</Link>
-      <Link>pets</Link>
-      <Link>politics</Link>
-      <Link>rants & raves</Link>
-      <Link>rideshare</Link>
-      <Link>volunteers</Link>
-      <Link>services</Link>
     </div>
   )
 }
