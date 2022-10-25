@@ -27,3 +27,7 @@
   color: purple;
   text-decoration: underline;
 }
+
+.post {
+  display: flex;
+}

@@ -9,7 +9,6 @@ export default function PostDetails() {
   const navigate = useNavigate()
   const { id } = useParams();
 
-  const ref = useRef(history);
 
   useEffect(() => {
     fetch(`/posts/${id}`)
