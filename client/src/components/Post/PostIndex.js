@@ -1,14 +1,12 @@
 import styles from './PostIndex.module.css';
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'
-import PostDetails from './PostDetails'
+import { useParams } from 'react-router-dom'
+import PostListings from './PostListings'
 
 
 export default function Post() {
 
   const { term } = useParams();
-
-  const navigate = useNavigate()
 
   const [searchResults, setSearchResults ] = useState([]);
 
@@ -20,10 +18,9 @@ export default function Post() {
     });
   }, [])
 
-  console.log(searchResults)
-  
-  return <div >
-    {searchResults.map(post => <PostDetails
+
+  return <div>
+    {searchResults.slice(0,25).map(post => <PostListings
       key={post.id}
       id={post.id}
       title={post.title}
