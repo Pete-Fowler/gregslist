@@ -18,7 +18,7 @@ export default function MyAccount({ user, newUser }) {
         r.json().then(err => setErrors(err.error));
       }
     })
-  }, [])
+  }, [user])
 
   function logout() {
     fetch('/destroy', {
@@ -58,6 +58,10 @@ export default function MyAccount({ user, newUser }) {
     navigate(`/posts/${id}`);
   }
 
+  function editPost(id) {
+    navigate(`/posts-edit/${id}`);
+  }
+
   return (
     <div className={styles.account}>
       <div className={styles.header}>
@@ -70,16 +74,16 @@ export default function MyAccount({ user, newUser }) {
       
     <div className={styles.posts}>
       <div className={styles.post}>
-        <div className={styles.manage}>manage</div>
-        <div className={styles.title}>post title</div>
-        <div className={styles.area}>area and category</div>
-        <div className={styles.date}>posted date</div>
+        <div className={`${styles.manage} ${styles.heading}`}>manage</div>
+        <div className={`${styles.title} ${styles.heading}`}>post title</div>
+        <div className={`${styles.area} ${styles.heading}`}>area and category</div>
+        <div className={`${styles.date} ${styles.heading}`}>posted date</div>
       </div>
       {posts.map(post => <div key={post.id} className={styles.post}>
         <div className={styles.manage}>
           <button onClick={() => showPost(post.id)}>display</button>
           <button onClick={() => deletePost(post.id)}>delete</button>
-          <button>edit</button>
+          <button onClick={() => editPost(post.id)}>edit</button>
         </div>
         <div className={styles.title}>{post.title}</div>
         <div className={styles.area}><b>{post.area}</b> {post.category}</div>
