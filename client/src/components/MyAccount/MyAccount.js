@@ -1,6 +1,7 @@
 import styles from './MyAccount.module.css';
 import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { format } from 'date-fns';
 
 export default function MyAccount({ user, newUser }) {
   const [ errors, setErrors ] = useState([]);
@@ -62,10 +63,11 @@ export default function MyAccount({ user, newUser }) {
         </div>
         <div className={styles.title}>{post.title}</div>
         <div className={styles.area}><b>{post.area}</b> {post.category}</div>
-        <div className={styles.date}>posted date</div>
+        <div className={styles.date}>{format(new Date(post.created_at), 'dd MMM yyyy k:mm')}</div>
       </div>)}
     </div>
       {errors.map(err => <span key={err}>{err}</span>)}
     </div>
   )
 }
+// 08 Oct 2022 14:21
