@@ -8,10 +8,7 @@ export default function PostDetails() {
 
   const { id } = useParams();
 
-<<<<<<< HEAD
-=======
   const navigate = useNavigate();
->>>>>>> main
 
   useEffect(() => {
     fetch(`/posts/${id}`)
