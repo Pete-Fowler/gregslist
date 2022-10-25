@@ -17,7 +17,7 @@ export default function PostDetails() {
     })
   }, [id])
 
-  console.log(postObject)
+  
   return (
     <div>
       <h1>{postObject.title}</h1>
