@@ -1,29 +1,25 @@
-import styles from './PostDetails.module.css';
+import styles from './PostListings.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
 
-export default function PostDetails({title,
-  description,
-  image,
-  category,
-  price,
-  area,
-  postal,
-  posterId,
-  cityId}) {
+export default function PostDetails() {
 
+  const [postObject, setPostObject] = useState({})
+
+  const navigate = useNavigate()
+  const { id } = useParams();
+
+  const ref = useRef(history);
+
+  useEffect(() => {
+    fetch(`/posts/${id}`)
+    .then(r=>r.json()).then((data)=>{
+      setPostObject(data)
+    })
+  }, [id])
+
+  console.log()
   return (
-    <div>
-        <h1>{title}</h1>
-        <p>{description}</p>
-        <p>{image}</p>
-        <p>{category}</p>
-        <p>{price}</p>
-        <p>{area}</p>
-        <p>{postal}</p>
-        <p>{posterId}</p>
-        <p>{cityId}</p>
-
-    </div>
+    <div></div>
   )
 }

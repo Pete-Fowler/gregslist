@@ -7,7 +7,7 @@ import CreatePost from '../CreatePost/CreatePost';
 import Header from '../Header/Header';
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import PostDetails from '../Post/PostDetails';
+import PostListings from '../Post/PostListings';
 import PostIndex from '../Post/PostIndex';
 
 function App() {
@@ -34,8 +34,8 @@ function App() {
         <Route element={<Header />} > 
           <Route path='login' element={<Login user={user} newUser={newUser}/>} />
           <Route path='account' element={<MyAccount user={user} newUser={newUser} />} />
-          <Route path='posts' element={<PostIndex user={user} />} >
-            <Route path=':id' element={<PostDetails user={user} />} />
+          <Route exact path='posts' element={<PostIndex user={user} />} >
+            <Route exact path=':id' element={<PostDetails user={user} />} />
           </Route> 
           <Route path='posts-create' element={<CreatePost user={user} />} />
         </Route>
