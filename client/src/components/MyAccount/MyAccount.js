@@ -54,6 +54,10 @@ export default function MyAccount({ user, newUser }) {
     })
   }
 
+  function showPost(id) {
+    navigate(`/posts/${id}`);
+  }
+
   return (
     <div className={styles.account}>
       <div className={styles.header}>
@@ -73,7 +77,7 @@ export default function MyAccount({ user, newUser }) {
       </div>
       {posts.map(post => <div key={post.id} className={styles.post}>
         <div className={styles.manage}>
-          <button>display</button>
+          <button onClick={() => showPost(post.id)}>display</button>
           <button onClick={() => deletePost(post.id)}>delete</button>
           <button>edit</button>
         </div>
