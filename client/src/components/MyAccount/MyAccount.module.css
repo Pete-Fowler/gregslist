@@ -1,3 +1,7 @@
+.account {
+  min-height: 94vh;
+}
+
 .header {
   width: 100vw;
   height: 42px;

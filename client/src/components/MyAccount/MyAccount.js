@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 
 export default function MyAccount({ user, newUser }) {
-  const [ errors, setErrors ] = useState([]);
+  const [ errors, setErrors ] = useState(null);
   const [ posts, setPosts ] = useState([]);
 
   const navigate = useNavigate();
@@ -38,6 +38,22 @@ export default function MyAccount({ user, newUser }) {
     })
   }
 
+  function deletePost(id) {
+    fetch(`/posts/${id}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(r => {
+      if(r.ok) {
+        setPosts(posts => posts.filter(post => post.id !== id));
+      } else {
+        r.json().then(err => setErrors(err));
+      }
+    })
+  }
+
   return (
     <div className={styles.account}>
       <div className={styles.header}>
@@ -57,17 +73,16 @@ export default function MyAccount({ user, newUser }) {
       </div>
       {posts.map(post => <div key={post.id} className={styles.post}>
         <div className={styles.manage}>
-          <Link>display</Link>
-          <Link>delete</Link>
-          <Link>edit</Link>
+          <button>display</button>
+          <button onClick={() => deletePost(post.id)}>delete</button>
+          <button>edit</button>
         </div>
         <div className={styles.title}>{post.title}</div>
         <div className={styles.area}><b>{post.area}</b> {post.category}</div>
         <div className={styles.date}>{format(new Date(post.created_at), 'dd MMM yyyy k:mm')}</div>
       </div>)}
     </div>
-      {errors.map(err => <span key={err}>{err}</span>)}
+      {errors ? errors.map(err => <span key={err}>{err}</span>) : null}
     </div>
   )
 }
-// 08 Oct 2022 14:21

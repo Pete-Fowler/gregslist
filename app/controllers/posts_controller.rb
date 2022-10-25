@@ -15,12 +15,17 @@ class PostsController < ApplicationController
 
   def create
     post = Post.create(post_params)
-
     if post.valid?
       render json: post, status: :created
     else
       render json: { errors: post.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def destroy 
+    post = Post.find(params[:id])
+    post.destroy
+    render json: {}, status: :accepted
   end
 
   private
