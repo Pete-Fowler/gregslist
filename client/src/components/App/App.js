@@ -8,6 +8,7 @@ import Header from '../Header/Header';
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PostListings from '../Post/PostListings';
+import PostDetails from '../Post/PostDetails';
 import PostIndex from '../Post/PostIndex';
 
 function App() {
