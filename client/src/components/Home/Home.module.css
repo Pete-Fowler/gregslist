@@ -3,8 +3,9 @@
   grid: 
     'left-bar main right-bar' 1fr 
     'footer footer footer' 75px
-    / 20%   62%     11%;
-  margin: 16px 142px 0 142px;
+    / 20%   67%     11%;
+    width: 980px;
+  margin: 16px auto 0 auto;
 }
 
 .leftBar, .rightBar {
@@ -13,8 +14,8 @@
   gap: 5px;
   flex-direction: column;
   align-items: center;
-  border-left: 1px solid lightgray;
-  border-right: 1px solid lightgray;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
   min-height: 810px;
 }
 
@@ -38,7 +39,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* LEFT BAR */
+/* =======LEFT BAR========== */
 .siteTitle {
   font-size: 2rem;
   font-family: 'Times New Roman', Times, serif;
@@ -49,10 +50,88 @@ a:hover {
   background-color: #ffffcc;
 }
 
-/* MAIN */
+/* ==========MAIN=========== */
 .main {
   grid-area: main;
-  width: 100%;
   padding: 0 20px;
 }
 
+.mainContentBox {
+  display: flex;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  background-color: #eeeeee;
+  border-block: 1px solid #ccc;
+}
+
+.header a {
+  font-family: 'Times New Roman', Times, serif;
+  color: #989898;
+  font-size: 1.4rem;
+}
+
+.header a:hover {
+  text-decoration: underline;
+}
+
+.col1 {
+  width: 200px;
+}
+
+.section {
+  text-align: center;
+  background-color: #eee;
+  height: 20px;
+  padding: 5px;
+  border-block: 1px solid #ccc;
+  margin-top: 20px;
+}
+
+.section a {
+  text-align: center;
+  color: #2c28ef;
+  padding: 2px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.section a:hover {
+  color: purple;
+  background-color: #fff;
+  text-decoration: none;
+}
+
+.community {
+  height: 200px;
+}
+
+.services {
+  height: 200px;
+}
+
+.col2 {
+  width: 233px;
+  margin: 0px 20px;
+}
+
+.housing {
+  height: 230px;
+}
+
+.forSale {
+  height: 400px;
+}
+
+.col3 {
+  width: 134px;
+}
+
+.jobs {
+  height: 90%;
+}
