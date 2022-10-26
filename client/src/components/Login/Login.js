@@ -17,9 +17,10 @@ export default function Login({ user, newUser }) {
   const navigate = useNavigate();
 
   function loginFormChange(e) {
-    setLoginData({...loginData, [e.target.name]: e.target.value});
+    setLoginData({...loginData, [e.target.name]: e.target.value});   
   }
 
+ 
   function createFormChange(e) {
     setCreateData({...createData, [e.target.name]: e.target.value})
   }
@@ -71,11 +72,11 @@ export default function Login({ user, newUser }) {
         <h1 className={styles.loginTitle}>Log in</h1>
         <div className={styles.field}>
           <label>Email / Handle</label>
-          <input type='email' name='username' value={loginData.username} onChange={loginFormChange}></input>
+          <input type='text' name='username' value={loginData.username} onChange={loginFormChange}></input>
         </div>
         <div className={styles.field} >
           <label>Password</label>
-          <input type='text' name='password'value={loginData.password} onChange={loginFormChange}></input>
+          <input type='password' name='password'value={loginData.password} onChange={loginFormChange}></input>
         </div>
         <button type='submit' className={styles.loginBtn}>Log in</button>
       </form>
@@ -91,11 +92,11 @@ export default function Login({ user, newUser }) {
         </div>
         <div className={styles.field}>
           <label>Password</label>
-          <input type='text' name='password' onChange={createFormChange}></input>
+          <input type='password' name='password' onChange={createFormChange}></input>
         </div>
         <div className={styles.field}>
           <label>Password Confirmation</label>
-          <input type='text' name='password_confirmation' onChange={createFormChange}></input>
+          <input type='password' name='password_confirmation' onChange={createFormChange}></input>
         </div>
         <button type='submit' className={styles.loginBtn}>Create account</button>
       </form>
