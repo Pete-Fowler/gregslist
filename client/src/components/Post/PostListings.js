@@ -18,7 +18,7 @@ export default function PostListings({
 
   return (
     <Link to={path} className={styles.postcardcontainer}>
-        <a href={image} alt="item" width="500" height="600" className={styles.image}/>
+        <img src={image} alt="item" width="500" height="600" className={styles.image}/>
         <span className={styles.price}>{price}</span>
         
         <div className={styles.metacontainer}>
