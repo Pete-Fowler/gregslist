@@ -1,12 +1,9 @@
 import styles from './PostIndex.module.css';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
 import PostListings from './PostListings'
 
 
 export default function Post() {
-
-  const { term } = useParams();
 
   const [searchResults, setSearchResults ] = useState([]);
 

@@ -72,6 +72,7 @@ export default function MyAccount({ user, newUser }) {
       <button className={styles.logoutBtn} onClick={logout}>[ Log out ]</button>
     </div>
       
+    <Link className={styles.newPost} to='/posts-create'>New Post</Link>
     <div className={styles.posts}>
       <div className={styles.post}>
         <div className={`${styles.manage} ${styles.heading}`}>manage</div>
