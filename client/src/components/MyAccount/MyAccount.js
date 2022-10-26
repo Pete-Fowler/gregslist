@@ -6,10 +6,12 @@ import { format } from 'date-fns';
 export default function MyAccount({ user, newUser }) {
   const [ errors, setErrors ] = useState([]);
   const [ posts, setPosts ] = useState([]);
+  const [ city, setCity ] = useState([]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    if(user !== null) {
     fetch(`/posts?my_id=${user.id}`)
     .then(r => {
       if(r.ok) {
@@ -17,7 +19,7 @@ export default function MyAccount({ user, newUser }) {
       } else {
         r.json().then(err => setErrors(err.error));
       }
-    })
+    })}
   }, [user])
 
   function logout() {
@@ -62,6 +64,25 @@ export default function MyAccount({ user, newUser }) {
     navigate(`/posts-edit/${id}`);
   }
 
+  function addCity(e) {
+    e.preventDefault();
+    fetch(`/cities`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(city)
+    })
+    .then(r => {
+      if(r.ok) {
+        alert('City added to database');
+        setCity('');
+      } else {
+        r.json().then(err => setErrors(err.errors))
+      }
+    })
+  }
+
   return (
     <div className={styles.account}>
       <div className={styles.header}>
@@ -80,7 +101,7 @@ export default function MyAccount({ user, newUser }) {
         <div className={`${styles.area} ${styles.heading}`}>area and category</div>
         <div className={`${styles.date} ${styles.heading}`}>posted date</div>
       </div>
-      {posts.map(post => <div key={post.id} className={styles.post}>
+      {posts ? posts.map(post => <div key={post.id} className={styles.post}>
         <div className={styles.manage}>
           <button onClick={() => showPost(post.id)}>display</button>
           <button onClick={() => deletePost(post.id)}>delete</button>
@@ -89,8 +110,14 @@ export default function MyAccount({ user, newUser }) {
         <div className={styles.title}>{post.title}</div>
         <div className={styles.area}><b>{post.area}</b> {post.category}</div>
         <div className={styles.date}>{format(new Date(post.created_at), 'dd MMM yyyy k:mm')}</div>
-      </div>)}
+      </div>)
+      : null}
     </div>
+      {user && user.username === 'admin' 
+      ? <form onSubmit={addCity}>
+          <input type='text' name='city' placeholder='Add new city to database' value={city} onChange={(e) => setCity(e.target.value)}/>
+        </form>
+      : null}
       {errors.map(err => <span key={err}>{err}</span>)}
     </div>
   )
