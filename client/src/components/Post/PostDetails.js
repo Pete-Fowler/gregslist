@@ -33,14 +33,12 @@ export default function PostDetails() {
       <div className={styles.metadata}>
         <span>post id: {post.id}</span>
         <span>posted: {post.created_at
-          ? <span className={styles.underlined}>{formatDistance(new Date(post.created_at), today)}
-          </span>
-          : null} ago
+          ? <span className={styles.underlined}>{formatDistance(new Date(post.created_at), today)} ago</span>
+          : null}
         </span>
         <span>updated: {post.updated_at
-          ? <span className={styles.underlined}>{formatDistance(new Date(post.created_at), today)}
-          </span>
-          : null} ago
+          ? <span className={styles.underlined}>{formatDistance(new Date(post.created_at), today)} ago</span>
+          : null}
         </span>
       </div>
     </div>
