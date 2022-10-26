@@ -55,6 +55,7 @@ export default function Home({ user }) {
             </div>
             <div className={`${styles.section} ${styles.services}`}>
               <Link className={styles.heading} to='/search/services'>services</Link>
+              {servicesContent()}
             </div>
           </div>
           <div className={styles.col2}>
@@ -114,4 +115,12 @@ function communityContent() {
   return <div className={styles.subcategoryBox}>
     {cats.map(cat => <Link className={styles.subcategory} to={`/search/${cat}`}>{cat}</Link>)}
   </div>
+}
+
+function servicesContent() {
+  const cats = ['automotive', 'beauty', 'cell/mobile', 'computer', 'creative', 'cycle', 'event', 'farm+garden', 'financial', 'health/well', 'household', 'labor/move', 'legal', 'lessons', 'marine', 'pet', 'real estate', 'skilled trade', 'sm biz ads', 'travel/vac']
+  return <div className={styles.subcategoryBox}>
+    {cats.map(cat => <Link className={styles.subcategory} to={`/search/${cat}`}>{cat}</Link>)}
+  </div>
+
 }

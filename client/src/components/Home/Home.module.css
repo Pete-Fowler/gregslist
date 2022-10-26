@@ -100,6 +100,7 @@ a:hover {
 }
 
 .heading {
+  font-family: sans-serif;
   background-color: #eee;
   width: 100%;
   text-align: center;
@@ -125,7 +126,7 @@ a:hover {
 }
 
 .services {
-  height: 200px;
+  height: 225px;
 }
 
 .col2 {
@@ -160,6 +161,7 @@ a:hover {
 
 .subcategory {
   font-size: .8rem;
+  font-weight: 100;
   font-weight: normal;
   border-bottom: 1px solid #ccc;
   width: 60px;
