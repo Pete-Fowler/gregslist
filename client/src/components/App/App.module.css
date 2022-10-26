@@ -1,3 +1,4 @@
 .app {
-  min-height: 94vh;
+  min-height: 98vh;
+  position: relative;
 }

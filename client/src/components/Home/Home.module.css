@@ -2,7 +2,6 @@
   display: grid;
   grid: 
     'left-bar main right-bar' 1fr 
-    'footer footer footer' 75px
     / 20%   67%     11%;
     width: 980px;
   margin: 16px auto 0 auto;
