@@ -12,7 +12,8 @@ export default function Home({ user }) {
     setSearchTerm(e.target.value);
   }
 
-  function handleSearch() {
+  function handleSearch(e) {
+    e.preventDefault();
     navigate(`/search/${searchTerm}`)
   }
 
