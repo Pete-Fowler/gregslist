@@ -39,6 +39,7 @@ function App() {
           <Route exact path='/posts/:id' element={<PostDetails user={user} />} />
           <Route path='posts-create' element={<CreatePost user={user} />} />
           <Route path='posts-edit/:id' element={<EditPost user={user} />} />
+          <Route path='search/:term' element={<PostIndex user={user} />} />
         </Route>
       </Routes>
       <Footer />

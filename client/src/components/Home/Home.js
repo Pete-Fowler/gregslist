@@ -1,8 +1,20 @@
 import styles from './Home.module.css';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function Home({ user }) {
 
+  const [ searchTerm, setSearchTerm ] = useState('');
+  
+  function handleChange(e) {
+    setSearchTerm(e.target.value);
+  }
+
+  function handleSearch() {
+    
+  }
+
+  // Render MyAccount or Login based on whether user is logged in
   const path = user ? '/account' : '/login';
 
   return (
@@ -12,7 +24,9 @@ export default function Home({ user }) {
         <Link className={styles.siteTitle}>gregslist</Link>
         <br></br>
         <Link to='/posts-create' className={styles.posting}>create a posting</Link>
-        <Link to={path}>my account</Link>  
+        <Link to={path}>my account</Link> 
+        <br></br>
+        <form onSubmit={handleSearch}><input className={styles.search} type='text' placeholder='search gregslist' value={searchTerm} onChange={handleChange}></input></form>
       </div>
       {/* ==========MAIN / CENTER============= */}
       <div className={styles.main}>

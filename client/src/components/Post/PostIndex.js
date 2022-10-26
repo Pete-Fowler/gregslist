@@ -6,7 +6,7 @@ import PostListings from './PostListings'
 
 export default function Post() {
 
-  const { term } = useParams();
+  let { term } = useParams();
 
   const [searchResults, setSearchResults ] = useState([]);
 

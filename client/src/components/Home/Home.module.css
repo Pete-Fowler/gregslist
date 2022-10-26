@@ -50,6 +50,12 @@ a:hover {
   background-color: #ffffcc;
 }
 
+.search {
+  width: 168px;
+  font-size: 1.15rem;
+  border-radius: 3px;
+}
+
 /* ==========MAIN=========== */
 .main {
   grid-area: main;
