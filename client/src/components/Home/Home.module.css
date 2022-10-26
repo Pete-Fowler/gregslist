@@ -90,16 +90,25 @@ a:hover {
 }
 
 .section {
-  text-align: center;
-  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
   height: 20px;
   padding: 5px;
-  border-block: 1px solid #ccc;
   margin-top: 20px;
 }
 
-.section a {
+.heading {
+  font-family: sans-serif;
+  background-color: #eee;
+  width: 100%;
   text-align: center;
+  border-block: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+
+.section a {
   color: #2c28ef;
   padding: 2px;
   font-weight: 700;
@@ -113,11 +122,11 @@ a:hover {
 }
 
 .community {
-  height: 200px;
+  height: 225px;
 }
 
 .services {
-  height: 200px;
+  height: 225px;
 }
 
 .col2 {
@@ -139,6 +148,23 @@ a:hover {
 
 .jobs {
   height: 90%;
+}
+
+.subcategoryBox {
+  display: flex;
+  flex-direction: column;
+  flex-wrap:  wrap;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+}
+
+.subcategory {
+  font-size: .8rem;
+  font-weight: 100;
+  font-weight: normal;
+  border-bottom: 1px solid #ccc;
+  width: 60px;
 }
 
 /* =======RIGHT BAR========== */
