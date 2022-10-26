@@ -31,8 +31,6 @@ export default function Home({ user }) {
     });
   }, [])
 
- 
-
   return (
     <div className={styles.home}>
       {/* ================LEFT BAR============ */}
@@ -52,23 +50,24 @@ export default function Home({ user }) {
         <div className={styles.mainContentBox}>
           <div className={styles.col1}>
             <div className={`${styles.section} ${styles.community}`}>
-              <Link to='/search/community'>community</Link>
+              <Link className={styles.heading} to='/search/community'>community</Link>
+              {communityContent()}
             </div>
             <div className={`${styles.section} ${styles.services}`}>
-              <Link to='/search/services'>services</Link>
+              <Link className={styles.heading} to='/search/services'>services</Link>
             </div>
           </div>
           <div className={styles.col2}>
             <div className={`${styles.section} ${styles.housing}`}>
-              <Link to='/search/housing'>housing</Link>
+              <Link className={styles.heading} to='/search/housing'>housing</Link>
             </div>
             <div className={`${styles.section} ${styles.forSale}`}>
-              <Link to='/search/for sale'>for sale</Link>
+              <Link className={styles.heading} to='/search/for sale'>for sale</Link>
             </div>
           </div>
           <div className={styles.col3}>
             <div className={`${styles.section} ${styles.jobs}`}>
-              <Link to='/search/jobs'>jobs</Link>
+              <Link className={styles.heading} to='/search/jobs'>jobs</Link>
             </div>
           </div>
         </div>
@@ -106,8 +105,13 @@ export default function Home({ user }) {
       <h5 className={styles.h5}>canada</h5>
       <h5 className={styles.h5}>cl worldwide</h5>
       </div>
-     
     </div>
   )
 }
 
+function communityContent() {
+  const cats = ['activities', 'artists', 'childcare', 'classes', 'events', 'general', 'groups', 'local news', 'lost+found', 'missed connections', 'musicians', 'pets', 'politics', 'rants & raves', 'rideshare', 'volunteers']
+  return <div className={styles.subcategoryBox}>
+    {cats.map(cat => <Link className={styles.subcategory} to={`/search/${cat}`}>{cat}</Link>)}
+  </div>
+}

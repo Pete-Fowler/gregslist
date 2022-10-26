@@ -10,7 +10,8 @@ class PostsController < ApplicationController
         post.title.downcase.include?(params[:q].downcase) || 
         post.category.downcase.include?(params[:q].downcase) || 
         post.description.downcase.include?(params[:q].downcase) ||
-        post.area.downcase.include?(params[:q].downcase)
+        post.area.downcase.include?(params[:q].downcase) || 
+        post.subcategory.include?(params[:q].downcase)
       end
     end
     render json: posts
