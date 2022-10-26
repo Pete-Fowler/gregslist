@@ -1,69 +1,65 @@
 .postcardcontainer {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   width: 300px;
-  height: auto;
   color: rgb(34,34,34);
-  border-bottom-color: rgb(34,34,34);
-  border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-top-color: rgb(34,34,34);
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-left-color: rgb(34,34,34);
-  border-left-style: solid;
-  border-left-width: 1px;
-  border-right-color: rgb(34,34,34);
-  border-right-style: solid;
-  border-right-width: 1px;
-  position: relative;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  box-shadow: 0 0 6px #ccc;
+}
 
+.postcardcontainer:hover {
+  color: #000;
 }
 
 .price {
-  width: auto;
-  height: auto;
   font-size: 12px;
-  background-color: rgb(255,255,255);
-  border-bottom-color: rgb(204,204,204);
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-right-color: rgb(204,204,204);
-  border-right-style: solid;
-  border-right-width: 1px;
-  text-size-adjust: auto;
   font-weight: 400;
+  background-color: #fff;
   padding-left: 7px;
   padding-right: 7px;
   padding-top: 2px;
   padding-bottom: 2px;
   position: absolute;
-  border-radius: 5px;
+  top: 0;
+  left: 0;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 5px;
+  margin: 0;
 }
 
 .image {
   width: 300px;
   height: 225px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .metacontainer {
-  display: flex;
-  flex-wrap:wrap;
-  width: fit-content;
-  height: fit-content;
-  text-align: left;
-  gap: 0px;
-  border-radius: 10px;
+  padding: 5px;
 }
 
-.h3 {
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 12px;
-  font-weight: 400px;
-  margin: 0px;
+.metacontainer span {
+  margin: 3px;
+}
+
+.star {
+  font-size: 1.4rem;
+  margin-inline: 3px;
+}
+
+.title {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.1rem;
+  color: #4a49ee;
+}
+
+.title:hover {
+  color: purple;
+  text-decoration: underline;
 }
 
 .date {
@@ -74,6 +70,11 @@
   width: auto;
   height: 12px;
   position: relative;
+}
+
+.date2 {
+  font-size: .7rem;
+  color: gray;
 }
 
 .price2 {
@@ -109,22 +110,9 @@
     font-size: 14px;
   }
 
-  .star {
-    display: flex;
-    flex-wrap: wrap
-  }
-
   .cat {
-    width: auto;
-    height: auto;
     font-size: 12px;
-    background-color: rgb(255,255,255);
-    border-bottom-color: rgb(204,204,204);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-right-color: rgb(204,204,204);
-    border-right-style: solid;
-    border-right-width: 1px;
+    background-color: #fff;
     text-size-adjust: auto;
     font-weight: 400;
     padding-left: 7px;
@@ -134,5 +122,9 @@
     top: 0;
     right: 0;
     position: absolute;
-    border-radius: 5px;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin: 0;
   }

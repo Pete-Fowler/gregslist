@@ -7,7 +7,6 @@ import CreatePost from '../CreatePost/CreatePost';
 import Header from '../Header/Header';
 import Search from '../Search/Search';
 import PostDetails from '../Post/PostDetails';
-import PostIndex from '../Post/PostIndex';
 import EditPost from '../EditPost/EditPost';
 
 import { useState, useEffect } from 'react';
@@ -41,7 +40,6 @@ function App() {
         <Route element={<Header user={user}/>} > 
           <Route path='login' element={<Login user={user} newUser={newUser}/>} />
           <Route path='account' element={<MyAccount user={user} newUser={newUser} />} />
-          <Route path='posts' element={<PostIndex user={user} />} />
           <Route path='posts/:id' element={<PostDetails user={user} />} />
           <Route path='posts-create' element={<CreatePost user={user} />} />
           <Route path='posts-edit/:id' element={<EditPost user={user} />} />
