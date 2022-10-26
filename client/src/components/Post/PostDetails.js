@@ -12,9 +12,13 @@ export default function PostDetails() {
 
   useEffect(() => {
     fetch(`/posts/${id}`)
-    .then(r=>r.json()).then((data)=>{
-      setPostObject(data)
-    })
+    .then(r => {
+      if(r.ok) {
+        r.json().then((data)=>setPostObject(data))
+      } else {
+        alert('Error: not found');
+      }
+    });
   }, [id])
 
   
