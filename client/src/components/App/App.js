@@ -7,7 +7,6 @@ import CreatePost from '../CreatePost/CreatePost';
 import Header from '../Header/Header';
 import Search from '../Search/Search';
 import PostDetails from '../Post/PostDetails';
-import PostIndex from '../Post/PostIndex';
 import EditPost from '../EditPost/EditPost';
 
 import { useState, useEffect } from 'react';
