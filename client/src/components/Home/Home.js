@@ -1,17 +1,19 @@
 import styles from './Home.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function Home({ user }) {
-
+  
   const [ searchTerm, setSearchTerm ] = useState('');
   
+  const navigate = useNavigate();
+
   function handleChange(e) {
     setSearchTerm(e.target.value);
   }
 
   function handleSearch() {
-    
+    navigate(`/search/${searchTerm}`)
   }
 
   // Render MyAccount or Login based on whether user is logged in
