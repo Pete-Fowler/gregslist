@@ -3,6 +3,7 @@ import PostListings from '../Post/PostListings';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
+
 export default function Search() {
   const [ results, setResults ] = useState([]);
   const [ errors, setErrors ] = useState([]);
@@ -11,6 +12,7 @@ export default function Search() {
   const [ searchTerm, setSearchTerm ] = useState('');
   
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     fetch(`/posts?q=${term}`)
@@ -29,8 +31,17 @@ export default function Search() {
 
   function handleSearch(e) {
     e.preventDefault();
-    navigate(`/search/${searchTerm}`)
-    return []
+    fetch(`/posts?q=${searchTerm}`)
+    .then(r => {
+      if(r.ok) {
+        r.json().then(data => setResults(data));
+      } else {
+        r.json().then(err => setErrors(err.errors));
+      }
+    })
+    .then(
+      navigate(`/search/${searchTerm}`)
+    )
   }
 
   return (
@@ -53,7 +64,10 @@ export default function Search() {
       updated={post.updated_at}
     />)}
 
-<form onSubmit={handleSearch}><input className={styles.search} type='text' placeholder='search gregslist' value={searchTerm} onChange={handleChange}></input></form>
+      <form onSubmit={handleSearch}>
+        <input className={styles.search} type='text' placeholder='search gregslist' value={searchTerm} onChange={handleChange}>
+          </input>
+      </form>
     </div>
   )
 }
