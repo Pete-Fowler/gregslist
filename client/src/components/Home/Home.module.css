@@ -135,11 +135,11 @@ a:hover {
 }
 
 .housing {
-  height: 230px;
+  height: 210px;
 }
 
 .forSale {
-  height: 400px;
+  height: 460px;
 }
 
 .col3 {
@@ -161,10 +161,16 @@ a:hover {
 
 .subcategory {
   font-size: .8rem;
-  font-weight: 100;
-  font-weight: normal;
   border-bottom: 1px solid #ccc;
-  width: 60px;
+  width: 40%;
+}
+
+a.subcategory {
+  font-weight: 300;
+}
+
+.housingLinks, .jobsLinks{
+  width: 100%;
 }
 
 /* =======RIGHT BAR========== */

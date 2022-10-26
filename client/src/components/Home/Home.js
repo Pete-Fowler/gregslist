@@ -31,6 +31,17 @@ export default function Home({ user }) {
     });
   }, [])
 
+  const communityCategories = ['activities', 'artists', 'childcare', 'classes', 'events', 'general', 'groups', 'local news', 'lost+found', 'missed connections', 'musicians', 'pets', 'politics', 'rants & raves', 'rideshare', 'volunteers'];
+
+  const serviceCategories = ['automotive', 'beauty', 'cell/mobile', 'computer', 'creative', 'cycle', 'event', 'farm+garden', 'financial', 'health/well', 'household', 'labor/move', 'legal', 'lessons', 'marine', 'pet', 'real estate', 'skilled trade', 'sm biz ads', 'travel/vac'];
+
+
+  const housingCategories = ['apts / housing', 'housing swap', 'housing wanted', 'office / commercial', 'parking / storage', 'real estate for sale', 'rooms / shared', 'rooms wanted', 'sublets / temporary', 'vacation rentals'];
+
+  const forSaleCategories = ['antiques', 'appliances', 'arts+crafts', 'atv/utv/sno', 'auto parts', 'aviation', 'baby+kid', 'barter', 'beauty+hlth', 'bike parts', 'bikes', 'boat parts', 'boats', 'books', 'business', 'cars+trucks', 'cds/dvd/vhs', 'cell phones', 'clothes+acc', 'collectibles', 'computer parts', 'computers', 'electronics', 'farm+garden', 'free', 'furniture', 'garage sale', 'general', 'heavy equip', 'household', 'jewelry', 'materials', 'motorcycle parts', 'motorcycles', 'music instr', 'photo+video', 'rvs+camp', 'sporting', 'tickets', 'tools', 'toys+games', 'trailers', 'video gaming', 'wanted', 'wheels+tires'];
+
+  const jobsCategories = ['accounting+finance', 'admin / office', 'arch / engineering', 'art / media / design', 'biotech / science', 'business / mgmt', 'customer service', 'education', 'etc / misc', 'food / bev / hosp', 'general labor', 'government', 'human resources', 'legal / paralegal', 'manufacturing', 'marketing / pr / ad', 'medical / health', 'nonprofit sector', 'real estate', 'retail / wholesale', 'sales / biz dev', 'salon / spa / fitness', 'security', 'skilled trade / craft', 'software / qa / dba', 'systems / network', 'technical support', 'transport', 'tv / film / video', 'web / info design', 'writing / editing']
+
   return (
     <div className={styles.home}>
       {/* ================LEFT BAR============ */}
@@ -51,24 +62,27 @@ export default function Home({ user }) {
           <div className={styles.col1}>
             <div className={`${styles.section} ${styles.community}`}>
               <Link className={styles.heading} to='/search/community'>community</Link>
-              {communityContent()}
+              {renderLinks(communityCategories)}
             </div>
             <div className={`${styles.section} ${styles.services}`}>
               <Link className={styles.heading} to='/search/services'>services</Link>
-              {servicesContent()}
+              {renderLinks(serviceCategories)}
             </div>
           </div>
           <div className={styles.col2}>
             <div className={`${styles.section} ${styles.housing}`}>
               <Link className={styles.heading} to='/search/housing'>housing</Link>
+              {renderLinks(housingCategories, styles.housingLinks)}
             </div>
             <div className={`${styles.section} ${styles.forSale}`}>
               <Link className={styles.heading} to='/search/for sale'>for sale</Link>
+              {renderLinks(forSaleCategories)}
             </div>
           </div>
           <div className={styles.col3}>
             <div className={`${styles.section} ${styles.jobs}`}>
               <Link className={styles.heading} to='/search/jobs'>jobs</Link>
+              {renderLinks(jobsCategories, styles.jobsLinks)}
             </div>
           </div>
         </div>
@@ -109,18 +123,10 @@ export default function Home({ user }) {
     </div>
   )
 }
-
-function communityContent() {
-  const cats = ['activities', 'artists', 'childcare', 'classes', 'events', 'general', 'groups', 'local news', 'lost+found', 'missed connections', 'musicians', 'pets', 'politics', 'rants & raves', 'rideshare', 'volunteers']
-  return <div className={styles.subcategoryBox}>
-    {cats.map(cat => <Link className={styles.subcategory} to={`/search/${cat}`}>{cat}</Link>)}
+  
+  function renderLinks(categories, classParam=styles.subcategory) {
+    return <div className={styles.subcategoryBox}>
+    {categories.map(category => <Link className={`${styles.subcategory} ${classParam}`} to={`/search/${category}`}>{category}</Link>)}
   </div>
-}
+  }
 
-function servicesContent() {
-  const cats = ['automotive', 'beauty', 'cell/mobile', 'computer', 'creative', 'cycle', 'event', 'farm+garden', 'financial', 'health/well', 'household', 'labor/move', 'legal', 'lessons', 'marine', 'pet', 'real estate', 'skilled trade', 'sm biz ads', 'travel/vac']
-  return <div className={styles.subcategoryBox}>
-    {cats.map(cat => <Link className={styles.subcategory} to={`/search/${cat}`}>{cat}</Link>)}
-  </div>
-
-}
