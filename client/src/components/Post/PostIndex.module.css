@@ -1,9 +1,0 @@
-.resultscontainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  width: 100%;
-  margin-left: 8rem;
-  margin-right: auto;
-  margin-top: 5rem;
-}
