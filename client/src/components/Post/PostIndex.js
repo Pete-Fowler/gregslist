@@ -16,7 +16,7 @@ export default function Post() {
   }, [])
 
 
-  return <div>
+  return <div className={styles.resultscontainer}>
     {searchResults.slice(0,25).map(post => <PostListings
       key={post.id}
       id={post.id}
@@ -29,6 +29,8 @@ export default function Post() {
       postal={post.postal_code}
       posterId={post.user_id}
       cityId={post.city_id}
+      created={post.created_at}
+      updated={post.updated_at}
     />)}
     </div>
 
