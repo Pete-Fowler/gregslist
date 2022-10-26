@@ -1,12 +1,16 @@
 import styles from './Search.module.css';
 import PostListings from '../Post/PostListings';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 export default function Search() {
   const [ results, setResults ] = useState([]);
   const [ errors, setErrors ] = useState([]);
   const { term } = useParams();
+
+  const [ searchTerm, setSearchTerm ] = useState('');
+  
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`/posts?q=${term}`)
@@ -19,7 +23,19 @@ export default function Search() {
     })
   }, [])
 
+  function handleChange(e) {
+    setSearchTerm(e.target.value);
+  }
+
+  function handleSearch(e) {
+    e.preventDefault();
+    navigate(`/search/${searchTerm}`)
+    return []
+  }
+
   return (
+
+    
     <div className={styles.resultsContainer}>
       {results.slice(0,25).map(post => <PostListings
       key={post.id}
@@ -33,7 +49,11 @@ export default function Search() {
       postal={post.postal_code}
       posterId={post.user_id}
       cityId={post.city_id}
+      created={post.created_at}
+      updated={post.updated_at}
     />)}
+
+<form onSubmit={handleSearch}><input className={styles.search} type='text' placeholder='search gregslist' value={searchTerm} onChange={handleChange}></input></form>
     </div>
   )
 }

@@ -7,3 +7,10 @@
   margin-right: auto;
   margin-top: 5rem;
 }
+
+.search {
+  position: absolute;
+  top: 50px;
+  width:35%;
+  left: 130px;
+}
