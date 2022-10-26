@@ -37,11 +37,23 @@
   text-decoration: underline;
 }
 
-/* .posts {
-  display: flex;
-  flex-direction: column;
-} */
+.newPost {
+  align-self: flex-end;
+  margin-right: 20px;
+  background: #e6e6e6;
+  color: black;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: .8rem;
+}
 
+.newPost:hover {
+  color: black;
+  background-color: #c0c0c0;
+}
+
+/* ==========POSTS============ */
 .post {
   display: flex;
   gap: 2px;
