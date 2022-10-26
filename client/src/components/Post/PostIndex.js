@@ -1,11 +1,16 @@
 import styles from './PostIndex.module.css';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 import PostListings from './PostListings'
+import Search from '../Search/Search'
 
 
 export default function Post() {
 
   const [searchResults, setSearchResults ] = useState([]);
+  const [ searchTerm, setSearchTerm ] = useState('');
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch("/posts")
@@ -15,8 +20,17 @@ export default function Post() {
     });
   }, [])
 
+  function handleSearch(e) {
+    e.preventDefault();
+    navigate(`/search/${searchTerm}`)
+  }
+
+  function handleChange(e) {
+    setSearchTerm(e.target.value);
+  }
 
   return <div className={styles.resultscontainer}>
+    
     {searchResults.slice(0,25).map(post => <PostListings
       key={post.id}
       id={post.id}
@@ -33,5 +47,6 @@ export default function Post() {
       updated={post.updated_at}
     />)}
     </div>
+  
 
 }
