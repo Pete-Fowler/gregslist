@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 export default function MyAccount({ user, newUser }) {
   const [ errors, setErrors ] = useState([]);
   const [ posts, setPosts ] = useState([]);
+  const [ city, setCity ] = useState([]);
 
   const navigate = useNavigate();
 
@@ -63,6 +64,10 @@ export default function MyAccount({ user, newUser }) {
     navigate(`/posts-edit/${id}`);
   }
 
+  function addCity() {
+    fetch(`/`)
+  }
+
   return (
     <div className={styles.account}>
       <div className={styles.header}>
@@ -92,6 +97,11 @@ export default function MyAccount({ user, newUser }) {
         <div className={styles.date}>{format(new Date(post.created_at), 'dd MMM yyyy k:mm')}</div>
       </div>)}
     </div>
+      {user.username === 'admin' 
+      ? <form onSubmit={addCity}>
+          <input type='text' name='city' placeholder='Add new city to database' />
+        </form>
+      : null}
       {errors.map(err => <span key={err}>{err}</span>)}
     </div>
   )
