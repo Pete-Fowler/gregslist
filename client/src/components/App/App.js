@@ -28,6 +28,7 @@ function App() {
   function newUser(userData) {
     setUser(userData);
   }
+
   
   return (
     <div className={styles.app}>

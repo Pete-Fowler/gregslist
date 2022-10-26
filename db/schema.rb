@@ -20,23 +20,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_182843) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "city_id"
-    t.string "title"
-    t.date "date"
-    t.integer "duration"
-    t.string "description"
-    t.string "image"
-    t.string "category"
-    t.string "subcategory"
-    t.string "area"
-    t.integer "postal_code"
-    t.integer "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "city_id"

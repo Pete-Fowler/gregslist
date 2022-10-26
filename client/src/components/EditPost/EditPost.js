@@ -14,8 +14,15 @@ export default function EditPost({user}) {
     fetch(`/posts/${id}`)
     .then(r=>r.json()).then((data)=>{
       setPostObject(data)
+      setTitle(data.title)
+      setPrice(data.price)
+      setCity(data.area)
+      setPostal(data.postal_code)
+      setDescription(data.description)
     })
   }, [id])
+
+
 
   function startPatch() {
     setPatch(1)
@@ -64,7 +71,6 @@ export default function EditPost({user}) {
     event.preventDefault()
 
     const editedPost = {
-
         "city_id": 1,
         "user_id": user.id,
         "title": title,
@@ -90,13 +96,12 @@ export default function EditPost({user}) {
   }
 
 
-  
 
   return (
     <div className={styles.post}>
       <form className={styles.form} onSubmit={handleSubmit} onChange={startPatch}>
       <label for="categories" className={styles.categorylabel}>choose a category:</label>
-      <select className={styles.categories} onChange={selectCat} value={patch > 0 ? undefined : postObject.category}>
+      <select className={styles.categories} onChange={selectCat} value={patch > 0 ? cat : postObject.category}>
         <option value="for sale">for sale</option>
         <option value="jobs">jobs</option>
         <option value="services">services</option>
@@ -106,28 +111,21 @@ export default function EditPost({user}) {
       </select>
         <div className={styles.groupcontainer}>
       <label for="postingtitle" className={styles.postlabel}>posting title
-      <input type='text' className={styles.postingtitle} onChange={handleTitle} value={patch > 0 ? undefined : postObject.title}/>
+      <input type='text' className={styles.postingtitle} onChange={handleTitle} value={patch > 0 ? title : postObject.title}/>
       </label>
       <label for="price" className={styles.pricelabel}>price
-      <input type="number" className={styles.price} title="Please enter a number" onChange={handlePrice} value={patch > 0 ? undefined : postObject.price}/>
+      <input type="number" className={styles.price} title="Please enter a number" onChange={handlePrice} value={patch > 0 ? price : postObject.price}/>
       </label>
       <label for="cityorneighborhood" className={styles.citylabel}>city or neighborhood
-      <input type='text' className={styles.city} onChange={handleCity} value={patch > 0 ? undefined : postObject.area}/>
+      <input type='text' className={styles.city} onChange={handleCity} value={patch > 0 ? city : postObject.area}/>
       </label>
       <label for="postalcode" className={styles.postallabel}>postal code
-      <input type='text' className={styles.postalcode} onChange={handlePostal} value={patch > 0 ? undefined : postObject.postal_code}/>
+      <input type='text' className={styles.postalcode} onChange={handlePostal} value={patch > 0 ? postal : postObject.postal_code}/>
       </label>
       </div>
       <div className={styles.descriptioncontainer}>
       <label htmlFor="description" className={styles.descriptionlabel}>description
-      <textarea className={styles.description} onChange={handleDescription} value={patch > 0 ? undefined : postObject.description}></textarea>
-      </label>
-      </div>
-      <div className={styles.contactcontainer}>
-      <label for="contactinfo" className={styles.contactlabel}>contact info
-      <label for="contactinfo" className={styles.emaillabel}>email
-      <input type ='text' className={styles.contactinfo} placeholder='Your email address' onChange={handleEmail} value={patch > 0 ? undefined : postObject.email}/>
-      </label>
+      <textarea className={styles.description} onChange={handleDescription} value={patch > 0 ? description : postObject.description}></textarea>
       </label>
       </div>
       <div className={styles.checkboxcontainer}>
