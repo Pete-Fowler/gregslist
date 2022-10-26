@@ -55,6 +55,18 @@ a:hover {
   border-radius: 3px;
 }
 
+.eventcal {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: smaller;
+}
+
+.table {
+  display: table;
+  width: 153.7px;
+  height: 101px;
+  font-size:smaller;
+}
 
 .links {
   font-size: smaller;
