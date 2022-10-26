@@ -5,6 +5,9 @@ class PostsController < ApplicationController
     if(params[:my_id])
       posts = User.find(params[:my_id]).posts
     end
+    if(params[:query])
+      posts = Post.all.title.includes?(params[:query])
+    end
     render json: posts
   end
 

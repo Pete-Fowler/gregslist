@@ -5,11 +5,13 @@ import Login from '../Login/Login';
 import MyAccount from '../MyAccount/MyAccount';
 import CreatePost from '../CreatePost/CreatePost';
 import Header from '../Header/Header';
-import { useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import Search from '../Search/Search';
 import PostDetails from '../Post/PostDetails';
 import PostIndex from '../Post/PostIndex';
 import EditPost from '../EditPost/EditPost';
+
+import { useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   const [ user, setUser ] = useState(null);
@@ -40,7 +42,7 @@ function App() {
           <Route path='/posts/:id' element={<PostDetails user={user} />} />
           <Route path='posts-create' element={<CreatePost user={user} />} />
           <Route path='posts-edit/:id' element={<EditPost user={user} />} />
-          <Route path='search/:term' element={<PostIndex user={user} />} />
+          <Route path='search/:term' element={<Search user={user} />} />
         </Route>
       </Routes>
       <Footer />
