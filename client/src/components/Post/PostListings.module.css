@@ -1,0 +1,57 @@
+.postcardcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  height: 290px;
+  color: rgb(34,34,34);
+  border-bottom-color: rgb(34,34,34);
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-top-color: rgb(34,34,34);
+  border-top-style: solid;
+  border-top-width: 3px;
+  border-left-color: rgb(34,34,34);
+  border-left-style: solid;
+  border-left-width: 3px;
+  border-right-color: rgb(34,34,34);
+  border-right-style: solid;
+  border-right-width: 3px;
+
+}
+
+.price {
+  width: 26px;
+  height:20px;
+  font-size: 12px;
+  background-color: rgb(255,255,255);
+  border-bottom-color: rgb(204,204,204);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-right-color: rgb(204,204,204);
+  border-right-style: solid;
+  border-right-width: 1px;
+  text-align: center;
+  font-weight: 400;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  position: absolute;
+}
+
+.image {
+  width: 300px;
+  height: 225px;
+}
+
+.metacontainer {
+  display: flex;
+  width: auto;
+  height: auto;
+  
+}
+
+.h3 {
+  font-size: 16px;
+  font-weight: 400px;
+}
