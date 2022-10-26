@@ -9,7 +9,7 @@ export default function Search() {
   const { term } = useParams();
 
   useEffect(() => {
-    fetch(`posts?q=${term}`)
+    fetch(`/posts?q=${term}`)
     .then(r => {
       if(r.ok) {
         r.json().then(data => setResults(data));
