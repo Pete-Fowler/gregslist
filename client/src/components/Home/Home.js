@@ -72,7 +72,7 @@ export default function Home({ user }) {
           <div className={styles.col2}>
             <div className={`${styles.section} ${styles.housing}`}>
               <Link className={styles.heading} to='/search/housing'>housing</Link>
-              {renderLinks(housingCategories)}
+              {renderLinks(housingCategories, styles.housingLinks)}
             </div>
             <div className={`${styles.section} ${styles.forSale}`}>
               <Link className={styles.heading} to='/search/for sale'>for sale</Link>
@@ -82,7 +82,7 @@ export default function Home({ user }) {
           <div className={styles.col3}>
             <div className={`${styles.section} ${styles.jobs}`}>
               <Link className={styles.heading} to='/search/jobs'>jobs</Link>
-              {renderLinks(jobsCategories)}
+              {renderLinks(jobsCategories, styles.jobsLinks)}
             </div>
           </div>
         </div>
@@ -124,9 +124,9 @@ export default function Home({ user }) {
   )
 }
   
-  function renderLinks(categories) {
+  function renderLinks(categories, classParam=styles.subcategory) {
     return <div className={styles.subcategoryBox}>
-    {categories.map(category => <Link className={styles.subcategory} to={`/search/${category}`}>{category}</Link>)}
+    {categories.map(category => <Link className={`${styles.subcategory} ${classParam}`} to={`/search/${category}`}>{category}</Link>)}
   </div>
   }
 
