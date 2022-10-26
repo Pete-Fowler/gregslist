@@ -1,9 +1,23 @@
 import styles from './Home.module.css';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import Cities from '../Cities/Cities';
 
 export default function Home({ user }) {
 
   const path = user ? '/account' : '/login';
+
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    fetch("/cities")
+    .then(res => res.json())
+    .then(data => {
+      setCities(data)
+    });
+  }, [])
+
+ 
 
   return (
     <div className={styles.home}>
@@ -44,10 +58,39 @@ export default function Home({ user }) {
         </div>
       </div>
       {/* ============RIGHT BAR================ */}
-      <div className={styles.rightBar}>Right bar
+      <div className={styles.rightBar}>
       <br></br>
-      
+      <div className={styles.langcontainer}>
+      <select>
+        <option value="?lang=da&amp;setlang=1">english</option>
+        <option value="?lang=da&amp;setlang=1">dansk</option>
+        <option value="?lang=de&amp;setlang=1">deutsch</option>
+        <option value="?lang=es&amp;cc=mx&amp;setlang=1">español</option>
+        <option value="?lang=fr&amp;setlang=1">français</option>
+        <option value="?lang=it&amp;setlang=1">italiano</option>
+        <option value="?lang=pt&amp;setlang=1">português</option>
+        <option value="?lang=fi&amp;setlang=1">suomi</option>
+        <option value="?lang=sv&amp;setlang=1">svenska</option>
+        <option value="?lang=vi&amp;setlang=1">tiếng việt</option>
+        <option value="?lang=tr&amp;setlang=1">türkçe</option>
+        <option value="?lang=ru&amp;setlang=1">русский</option>
+        <option value="?lang=zh&amp;setlang=1">中文</option>
+        <option value="?lang=ja&amp;setlang=1">日本語</option>
+        <option value="?lang=ko&amp;setlang=1">한국말</option>
+      </select>
       </div>
+      <h5 className={styles.h5}>nearby cl</h5>
+      {cities.map(city => <Cities
+      key={city.id}
+      id={city.id}
+      name={city.name}
+    />)}
+      <h5 className={styles.h5}>us cities</h5>
+      <h5 className={styles.h5}>us states</h5>
+      <h5 className={styles.h5}>canada</h5>
+      <h5 className={styles.h5}>cl worldwide</h5>
+      </div>
+     
     </div>
   )
 }

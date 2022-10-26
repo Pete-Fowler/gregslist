@@ -13,6 +13,7 @@ import EditPost from '../EditPost/EditPost';
 
 function App() {
   const [ user, setUser ] = useState(null);
+  
 
   useEffect(() => {
     fetch(`/me`)
@@ -23,15 +24,16 @@ function App() {
     })
   }, [])
 
+ 
+
   function newUser(userData) {
     setUser(userData);
   }
-
   
   return (
     <div className={styles.app}>
       <Routes>
-        <Route path='/' element={<Home user={user}/>} />
+        <Route path='/' element={<Home user={user} />} />
         <Route path='account' element={<MyAccount user={user} newUser={newUser} />} />
         <Route element={<Header />} > 
           <Route path='login' element={<Login user={user} newUser={newUser}/>} />
