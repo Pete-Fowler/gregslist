@@ -38,7 +38,7 @@ function App() {
         <Route path='/' element={<Home user={user} />} />
         <Route path='account' element={<MyAccount user={user} newUser={newUser} />} />
         
-        <Route element={<Header />} > 
+        <Route element={<Header user={user}/>} > 
           <Route path='login' element={<Login user={user} newUser={newUser}/>} />
           <Route path='account' element={<MyAccount user={user} newUser={newUser} />} />
           <Route path='posts' element={<PostIndex user={user} />} />
