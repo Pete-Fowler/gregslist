@@ -122,5 +122,11 @@ function servicesContent() {
   return <div className={styles.subcategoryBox}>
     {cats.map(cat => <Link className={styles.subcategory} to={`/search/${cat}`}>{cat}</Link>)}
   </div>
+}
 
+function content() {
+  const cats = ['apts / housing', 'housing swap', 'housing wanted', 'office / commercial', 'parking / storage', 'real estate for sale', 'rooms / shared', 'rooms wanted', 'sublets / temporary', 'vacation rentals']
+  return <div className={styles.subcategoryBox}>
+    {cats.map(cat => <Link className={styles.subcategory} to={`/search/${cat}`}>{cat}</Link>)}
+  </div>
 }
