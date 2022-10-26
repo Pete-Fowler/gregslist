@@ -17,9 +17,10 @@ export default function Login({ user, newUser }) {
   const navigate = useNavigate();
 
   function loginFormChange(e) {
-    setLoginData({...loginData, [e.target.name]: e.target.value});
+    setLoginData({...loginData, [e.target.name]: e.target.value});   
   }
 
+ 
   function createFormChange(e) {
     setCreateData({...createData, [e.target.name]: e.target.value})
   }
