@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 export default function PostDetails() {
 
-  const [postObject, setPostObject] = useState({})
+  const [ post, setPost ] = useState({})
 
   const { id } = useParams();
 
@@ -14,7 +14,7 @@ export default function PostDetails() {
     fetch(`/posts/${id}`)
     .then(r => {
       if(r.ok) {
-        r.json().then((data)=>setPostObject(data))
+        r.json().then((data)=>setPost(data))
       } else {
         alert('Error: not found');
       }
@@ -23,17 +23,17 @@ export default function PostDetails() {
 
   
   return (
-    <div>
-      <h1>{postObject.title}</h1>
-        <img src={postObject.image} alt="item" width="500" height="600"/>
-        <p>{postObject.category}</p>
-        <p>{postObject.price}</p>
-        <p>{postObject.area}</p>
-        <p>{postObject.postal_code}</p>
-        <p>{postObject.description}</p>
-        <p>{postObject.user_id}</p>
-        <p>{postObject.city_id}</p>
-        <button onClick={()=>{navigate(`/posts`)}}>return to all posts</button>
+    <div className={styles.postBox}>
+      <h3>{post.title} - {post.price} <span className={styles.area}>({post.area})</span></h3>
+      <img src={post.image} alt="item" width="400" height="400"/>
+      <p>{post.category}</p>
+      <p>{post.price}</p>
+      <p>{post.area}</p>
+      <p>{post.postal_code}</p>
+      <p>{post.description}</p>
+      <p>{post.user_id}</p>
+      <p>{post.city_id}</p>
+      <button onClick={()=>{navigate(`/posts`)}}>return to all posts</button>
     </div>
   )
 }
