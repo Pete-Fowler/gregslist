@@ -20,7 +20,7 @@ export default function Search() {
   }, [])
 
   return (
-    <div className={styles.main}>
+    <div className={styles.resultsContainer}>
       {results.slice(0,25).map(post => <PostListings
       key={post.id}
       id={post.id}
