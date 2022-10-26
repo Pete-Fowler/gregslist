@@ -1,6 +1,7 @@
 import styles from './PostListings.module.css';
 import { Link } from 'react-router-dom';
-import { startTransition } from 'react';
+import { formatWithOptions } from 'date-fns/fp';
+import { enUS } from 'date-fns/locale'
 
 
 export default function PostListings({
@@ -17,7 +18,9 @@ export default function PostListings({
 
   const path = `/posts/${id}`
 
-  console.log(created)
+  const date = created.substring(5, 10)
+
+
 
   return (
 
@@ -29,9 +32,9 @@ export default function PostListings({
 
         <div className={styles.metacontainer}>
           <span>
-          <span className={styles.star}>✰</span>
-          <time className={styles.date}>{created}</time>
-          <span className={styles.h3}>{title}</span>
+          <span>☆</span>
+          <span>{date}</span>
+          <h3 className={styles.h3}>{title}</h3>
           <span className={styles.price2}>${price}</span>
           <span className={styles.area}>({area})</span>
           </span>
