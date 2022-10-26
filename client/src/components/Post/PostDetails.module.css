@@ -1,0 +1,29 @@
+.postBox {
+  margin: 0 140px;
+}
+
+.area {
+  font-size: 1rem;
+}
+
+img {
+  object-fit: cover;
+}
+
+.indent {
+  margin-left: 20px;
+}
+
+span { 
+  font-size: .8rem;
+  margin: 10px 20px;
+}
+
+.underlined {
+  border-bottom: 1px dotted #ccc;
+  margin-inline: 2px;
+}
+
+.metadata {
+  margin-bottom: 10px;
+}

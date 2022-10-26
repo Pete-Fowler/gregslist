@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   padding-left: 20px;
-  border-bottom: gray;
+  border-bottom: 1px solid #ccc;
 }
 
 .homeBtn {
