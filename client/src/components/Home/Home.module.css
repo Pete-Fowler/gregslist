@@ -2,7 +2,6 @@
   display: grid;
   grid: 
     'left-bar main right-bar' 1fr 
-    'footer footer footer' 75px
     / 20%   67%     11%;
     width: 980px;
   margin: 16px auto 0 auto;
@@ -48,6 +47,12 @@ a:hover {
 .posting {
   font-size: 1.1rem;
   background-color: #ffffcc;
+}
+
+.search {
+  width: 168px;
+  font-size: 1.15rem;
+  border-radius: 3px;
 }
 
 /* ==========MAIN=========== */

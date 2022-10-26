@@ -1,7 +1,9 @@
 import styles from './PostListings.module.css';
 import { useNavigate } from 'react-router-dom'
 
-export default function PostListings({id, title,
+export default function PostListings({
+  id, 
+  title,
   description,
   image,
   category,
@@ -9,9 +11,10 @@ export default function PostListings({id, title,
   area,
   postal,
   posterId,
-  cityId}) {
+  cityId
+  }) {
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
   return (
     <div onClick={()=>{navigate(`${id}`)}}>

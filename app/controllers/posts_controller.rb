@@ -5,6 +5,13 @@ class PostsController < ApplicationController
     if(params[:my_id])
       posts = User.find(params[:my_id]).posts
     end
+    if(params[:q])
+      posts = Post.all.filter do |post|
+        post.title.downcase.include?(params[:q].downcase) || 
+        post.category.downcase.include?(params[:q].downcase) || 
+        post.description.downcase.include?(params[:q].downcase)
+      end
+    end
     render json: posts
   end
 
