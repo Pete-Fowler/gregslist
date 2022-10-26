@@ -55,6 +55,12 @@ a:hover {
   border-radius: 3px;
 }
 
+
+.links {
+  font-size: smaller;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
 /* ==========MAIN=========== */
 .main {
   grid-area: main;

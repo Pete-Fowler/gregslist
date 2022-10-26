@@ -52,6 +52,23 @@ export default function Home({ user }) {
         <Link to={path}>my account</Link> 
         <br></br>
         <form onSubmit={handleSearch}><input className={styles.search} type='text' placeholder='search gregslist' value={searchTerm} onChange={handleChange}></input></form>
+        <br></br>
+        <Link className={styles.links}>craigslist app</Link>
+        <Link className={styles.links}>help, faq, abuse, legal</Link>
+        <Link className={styles.links}>avoid scams & fraud</Link>
+        <Link className={styles.links}>personal safety tips</Link>
+        <Link className={styles.links}>terms of use</Link>
+        <Link className={styles.links}>privacy policy</Link>
+        <Link className={styles.links}>system status</Link>
+        <br></br>
+        <br></br>
+        <Link className={styles.links}>about gregslist</Link>
+        <Link className={styles.links}>craigslist is hiring</Link>
+        <Link className={styles.links}>gregslist open source</Link>
+        <Link className={styles.links}>gregslist blog</Link>
+        <Link className={styles.links}>best-of-gregslist</Link>
+        <Link className={styles.links}>"gregslist joe"</Link>
+        <Link className={styles.links}>greg list philanthropies</Link>
       </div>
       {/* ==========MAIN / CENTER============= */}
       <div className={styles.main}>
