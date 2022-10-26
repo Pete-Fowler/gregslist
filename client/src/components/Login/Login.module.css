@@ -44,6 +44,7 @@ input {
 
 .loginBtn {
   border-radius: 3px;
+  color: black;
   background: linear-gradient(#eee, #DCDCDC);
   border: 1px solid #ccc;
   float: right;
