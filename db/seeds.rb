@@ -2,6 +2,10 @@ require 'faker'
 
 puts "🌱 Seeding DB ..."
 
+# password = BCrypt::Password.create("gregslist4711")
+
+User.create!(username: 'admin', password: 'gregslist4711', password_confirmation: 'gregslist4711')
+
 cities = [
   "Aguilar", "Akron", "Alamosa", "Alma", "Antonito", "Arriba", "Arvada", "Aspen", "Ault", "Aurora", "Avon", "Basalt", "Bayfield", "Bennett", "Berthoud", "Bethune", "
 Black Hawk", "Blanca", "Blue River", "Bonanza", "Boone", "Boulder", "Bow Mar", "Branson", "Breckenridge", "Brighton", "Brookside", "Broomfield", "Brush", "Buena Vista", "

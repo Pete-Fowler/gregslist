@@ -10,6 +10,7 @@ export default function MyAccount({ user, newUser }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if(user !== null) {
     fetch(`/posts?my_id=${user.id}`)
     .then(r => {
       if(r.ok) {
@@ -17,7 +18,7 @@ export default function MyAccount({ user, newUser }) {
       } else {
         r.json().then(err => setErrors(err.error));
       }
-    })
+    })}
   }, [user])
 
   function logout() {
