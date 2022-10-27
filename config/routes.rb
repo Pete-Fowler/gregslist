@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :posts
   resources :cities, only: [:index, :create]
-  resources :users, only: [:index, :show, :create]
+  resources :users, only: [:index, :show, :create, :update]
 
   post '/login', to:'sessions#create'
   delete '/destroy', to: 'sessions#destroy'

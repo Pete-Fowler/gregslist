@@ -1,17 +1,17 @@
 class UsersController < ApplicationController
-    before_action :authorize
-    skip_before_action :authorize, only: :create
+  before_action :authorize
+  skip_before_action :authorize, only: :create
 
   def index
     render json: User.all
   end
 
-    # GET /me
+  # GET /me
   def show
     render json: @current_user
   end
 
-    # POST /users - SIGNUP
+  # POST /users - SIGNUP
   def create
     user = User.create!(user_params)
     if user.valid?
@@ -22,11 +22,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    user = User.find(params[:id])
+    user.update!(user_params)
+    render json: user
+  end
 
   private
 
   def user_params
-    params.permit(:username, :password, :password_confirmation)
+    params.permit(:username, :password, :password_confirmation, :saved, :hidden)
   end
 
 end
