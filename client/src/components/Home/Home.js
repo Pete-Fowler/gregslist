@@ -1,11 +1,13 @@
 import styles from './Home.module.css';
 import { useEffect, useState } from 'react'
 import Cities from '../Cities/Cities';
+import SearchCategories from '../SearchCategories/SearchCategories'
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function Home({ user }) {
+export default function Home({ user, setFilterCategory, setFilterSubCategory, filterCategory, filterSubCategory  }) {
   
   const [ searchTerm, setSearchTerm ] = useState('');
+  
   
   const navigate = useNavigate();
 
@@ -34,7 +36,7 @@ export default function Home({ user }) {
   const communityCategories = ["activities", "artists", "childcare", "classes", "events", "general", "groups", "local news", "lost&found", "missed connections", "musicians", "pets", "politics",
   "rants & raves", "rideshare", "volunteers"];
 
-  const serviceCategories = ["automotive", "beauty", "cell&mobile", "computer", "creative", "cycle", "farm&garden", "financial", "health&well", "household", "labor&move", "legal", "lessons",
+  const serviceCategories = ["automotive", "beauty", "cell&mobile", "computer", "creative", "bicycle", "farm&garden", "financial", "health&well", "household", "labor&move", "legal", "lessons",
   "marine", "pet", "real estate", "skilled trade", "sm biz ads", "travel&vac", "write&ed&tran"];
 
 
@@ -51,8 +53,50 @@ export default function Home({ user }) {
   "nonprofit sector", "real estate", "retail & wholesale", "sales & biz dev", "salon & spa & fitness", "security", "skilled trade & craft", "software & qa & dba",
   "systems & network", "technical support", "transport", "tv & film & video", "web & info design", "writing & editing"]
 
+  function renderLinks(categories, classParam=styles.subcategory) {
+    
+    function handleSubcategory({category}) {
+      setFilterSubCategory(`${category}`)
+      console.log(filterCategory)
+      } 
+    return <div className={styles.subcategoryBox}>
+    {categories.map(category => <Link onClick={() => handleSubcategory({category})} className={`${styles.subcategory} ${classParam}`} to={`/search-categories/${category}`} >{category}</Link>)}
+  </div>
+    
+  } 
+
+  function handleJobs() {
+    setFilterCategory("Jobs")
+    console.log(filterCategory)
+    } 
+
+  function handleServices() {
+    setFilterCategory("Services")
+    console.log(filterCategory)
+    } 
+
+  function handleCommunity() {
+    setFilterCategory("Community")
+    console.log(filterCategory)  
+  } 
+
+  function handleSale() {
+    setFilterCategory("For Sale")
+    console.log(filterCategory)
+    } 
+
+  
+
+  function handleHousing() {
+    setFilterCategory("Housing")
+    console.log(filterCategory)
+  } 
+
   return (
     <div className={styles.home}>
+    <div>
+    <SearchCategories user={user} filterCategory={filterCategory} filterSubCategory={filterSubCategory}/>
+    </div>
       {/* ================LEFT BAR============ */}
       <div className={styles.leftBar}>
         <Link className={styles.siteTitle}>gregslist</Link>
@@ -137,28 +181,28 @@ export default function Home({ user }) {
         </div>
         <div className={styles.mainContentBox}>
           <div className={styles.col1}>
-            <div className={`${styles.section} ${styles.community}`}>
-              <Link className={styles.heading} to='/search/community'>community</Link>
+            <div className={`${styles.section} ${styles.community}`} onClick={handleCommunity}>
+              <Link className={styles.heading} to='/search-categories/community' onClick={handleCommunity}>community</Link>
               {renderLinks(communityCategories)}
             </div>
-            <div className={`${styles.section} ${styles.services}`}>
-              <Link className={styles.heading} to='/search/services'>services</Link>
+            <div className={`${styles.section} ${styles.services}`} onClick={handleServices}>
+              <Link className={styles.heading} to='/search-categories/services' onClick={handleServices}>services</Link>
               {renderLinks(serviceCategories)}
             </div>
           </div>
           <div className={styles.col2}>
-            <div className={`${styles.section} ${styles.housing}`}>
-              <Link className={styles.heading} to='/search/housing'>housing</Link>
+            <div className={`${styles.section} ${styles.housing}`} onClick={handleHousing}>
+              <Link className={styles.heading} to='/search-categories/housing' onClick={handleHousing}>housing</Link>
               {renderLinks(housingCategories, styles.housingLinks)}
             </div>
-            <div className={`${styles.section} ${styles.forSale}`}>
-              <Link className={styles.heading} to='/search/for sale'>for sale</Link>
+            <div className={`${styles.section} ${styles.forSale}`} onClick={handleSale}>
+              <Link className={styles.heading} to='/search-categories/for sale' onClick={handleSale}>for sale</Link>
               {renderLinks(forSaleCategories)}
             </div>
           </div>
           <div className={styles.col3}>
-            <div className={`${styles.section} ${styles.jobs}`}>
-              <Link className={styles.heading} to='/search/jobs'>jobs</Link>
+            <div className={`${styles.section} ${styles.jobs}`} onClick={handleJobs}>
+              <Link className={styles.heading} to='/search-categories/jobs' onClick={handleJobs}>jobs</Link>
               {renderLinks(jobsCategories, styles.jobsLinks)}
             </div>
           </div>
@@ -198,12 +242,9 @@ export default function Home({ user }) {
       <h5 className={styles.h5}>cl worldwide</h5>
       </div>
     </div>
+    
   )
 }
   
-  function renderLinks(categories, classParam=styles.subcategory) {
-    return <div className={styles.subcategoryBox}>
-    {categories.map(category => <Link className={`${styles.subcategory} ${classParam}`} to={`/search/${category}`}>{category}</Link>)}
-  </div>
-  }
+  
 
