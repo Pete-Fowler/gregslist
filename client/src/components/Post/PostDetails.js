@@ -35,16 +35,12 @@ export default function PostDetails() {
     </span>
   }
 
-  function print() {
-
-  }
-  
   return (
     <div className={styles.postBox}>
       <div className={styles.nav}>
 
       </div>
-      <div className={styles.postControl}>
+      <div className={styles.postControls}>
         <br></br>
         <button className={styles.replyBtn} onClick={mailTo}>Reply</button>
         <div>favorite</div>
@@ -52,7 +48,7 @@ export default function PostDetails() {
         <div>flag</div>
         <div>share</div>
         {postedAt()}
-        <div onClick={print}>print</div>
+        <div className={styles.print} onClick={() => window.print()}>print</div>
       </div>
       <h3>{post.title} - ${post.price} <span className={styles.area}>({post.area})</span></h3>
       <img src={post.image} alt="item" width="400" height="400"/>
