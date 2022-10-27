@@ -45,8 +45,11 @@ export default function Search() {
   }
 
   return (
-
-    
+  <div className={styles.container}>
+    <form onSubmit={handleSearch}>
+        <input className={styles.search} type='text' placeholder='search gregslist' value={searchTerm} onChange={handleChange}>
+          </input>
+    </form>
     <div className={styles.resultsContainer}>
       {results.slice(0,25).map(post => <PostListings
       key={post.id}
@@ -63,11 +66,8 @@ export default function Search() {
       created={post.created_at}
       updated={post.updated_at}
     />)}
-
-      <form onSubmit={handleSearch}>
-        <input className={styles.search} type='text' placeholder='search gregslist' value={searchTerm} onChange={handleChange}>
-          </input>
-      </form>
+      {errors.map(err => <div key={err}>{err}</div>)}
     </div>
+  </div>
   )
 }
