@@ -39,7 +39,7 @@
 }
 
 .metacontainer {
-  padding: 5px;
+  padding: 0px 10px 10px 10px;
 }
 
 .metacontainer span {
@@ -82,26 +82,11 @@
     height: 17.6px;
     font-size: 12px;
     background-color: rgb(255,255,255);
-    border-bottom-color: rgb(204,204,204);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-right-color: rgb(204,204,204);
-    border-right-style: solid;
-    border-right-width: 1px;
-    border-top-color: rgb(204,204,204);
-    border-top-style: solid;
-    border-top-width: 1px;
-    border-left-color: rgb(204,204,204);
-    border-left-style: solid;
-    border-left-width: 1px;
-    text-size-adjust: auto;
+    border: 1px solid rgb(204, 204, 204);
     font-weight: 400;
-    padding-left: 7px;
-    padding-right: 7px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding: 2px 4px;
+    border-radius: 3px;
     margin: 4px;
-    position: relative;
   }
 
   .area {

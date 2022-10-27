@@ -126,6 +126,7 @@ a:hover {
 
 .mainContentBox {
   display: flex;
+  justify-content: center;
 }
 
 .header {
@@ -140,7 +141,7 @@ a:hover {
 
 .header a {
   font-family: 'Times New Roman', Times, serif;
-  color: #989898;
+  color: #787878;
   font-size: 1.4rem;
 }
 
