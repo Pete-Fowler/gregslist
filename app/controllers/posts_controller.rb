@@ -9,6 +9,11 @@ class PostsController < ApplicationController
         post.subcategory.downcase.include?(params[:q].downcase)
       end
     end
+    if(params[:starred]) 
+      posts = Post.all.filter do |post| 
+        params[:starred].include?(post.id)
+      end
+    end
     render json: posts
   end
 

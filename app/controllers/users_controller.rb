@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       user.save
     end
     if(params[:unstar])
-      user.starred = user.starred.delete(params[:unstar])
+      user.starred.delete(params[:unstar])
       user.save
     end
     render json: user, status: :ok
