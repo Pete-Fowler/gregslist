@@ -41,9 +41,18 @@ export default function PostDetails() {
       <div className={styles.postControls}>
         <br></br>
         <button onClick={mailTo} className={styles.replyBtn}>Reply</button>
-        <div>favorite</div>
-        <div>hide</div>
-        <div>flag</div>
+        <div className={styles.iconBox}>
+          <div className={`${styles.star} ${styles.icon}`}>☆</div> 
+          <div>favorite</div>
+        </div>
+        <div className={styles.iconBox}>
+          <div className={styles.icon}>🗑</div> 
+          <div>hide</div>
+        </div>
+        <div className={styles.iconBox}>
+          <div className={`${styles.icon} ${styles.flag}`}>🏳️</div> 
+          <div className={styles.flagText}>flag</div>
+          </div>
         <div>share</div>
         {postedAt()}
         <div className={styles.print} onClick={() => window.print()}>print</div>

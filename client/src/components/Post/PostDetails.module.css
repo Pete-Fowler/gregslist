@@ -22,6 +22,37 @@
     margin-right: 2rem;
 }
 
+.iconBox {
+  font-size: .85rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.icon {
+  color: gray;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.flag {
+  font-size: 1rem;
+}
+
+.flagText{
+  position: relative;
+  top: 4px;
+}
+
+.icon:hover {
+  color: red;
+}
+
+.star:hover {
+  color: gold;
+}
+
 .print {
   color: #1817ee;
   text-decoration: underline;
