@@ -1,3 +1,3 @@
 class PostUsernameSerializer < ActiveModel::Serializer
-  attributes :username
+  attributes :username, :starred, :hidden
 end

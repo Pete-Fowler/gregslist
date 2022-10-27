@@ -24,14 +24,19 @@ class UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user.update!(user_params)
+    if(params[:star])
+      user.starred << params[:star]
+    end
+    if(params[:unstar])
+      user.starred = user.starred.delete(params[:unstar])
+    end
     render json: user, status: :ok
   end
 
   private
 
   def user_params
-    params.permit(:username, :password, :password_confirmation, :starred, :hidden)
+    params.permit(:username, :password, :password_confirmation, :star, :unstar)
   end
 
 end

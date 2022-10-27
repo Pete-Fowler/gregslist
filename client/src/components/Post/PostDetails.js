@@ -45,7 +45,7 @@ export default function PostDetails({ user }) {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({starred: [...post.starred, post.id]})
+        body: JSON.stringify({star: post.id})
       })
       .then(r => {
         if(r.ok) {

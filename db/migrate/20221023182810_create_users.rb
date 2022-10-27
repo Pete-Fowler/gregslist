@@ -4,8 +4,8 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :username
       t.string :password_digest
       t.string :default_city
-      t.string :starred, array: true, default: []
-      t.string :hidden, array: true, default: []
+      t.integer :starred, array: true, default: []
+      t.integer :hidden, array: true, default: []
 
       t.timestamps
     end
