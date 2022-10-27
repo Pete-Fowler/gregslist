@@ -130,7 +130,7 @@ housing_subcategories = [
 end
 
 services_subcategories = [
-"automotive", "beauty", "cell&mobile", "computer", "creative", "cycle", "farm&garden", "financial", "health&well", "household", "labor&move", "legal", "lessons",
+"automotive", "beauty", "cell&mobile", "computer", "creative", "bicycle", "farm&garden", "financial", "health&well", "household", "labor&move", "legal", "lessons",
 "marine", "pet", "real estate", "skilled trade", "sm biz ads", "travel&vac", "write&ed&tran"
 ]
 
