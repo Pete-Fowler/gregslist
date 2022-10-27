@@ -40,7 +40,7 @@ function App() {
         <Route element={<Header user={user}/>} > 
           <Route path='login' element={<Login user={user} newUser={newUser}/>} />
           <Route path='account' element={<MyAccount user={user} newUser={newUser} />} />
-          <Route path='posts/:id' element={<PostDetails user={user} />} />
+          <Route path='posts/:id' element={<PostDetails user={user} newUser={newUser} />} />
           <Route path='posts-create' element={<CreatePost user={user} />} />
           <Route path='posts-edit/:id' element={<EditPost user={user} />} />
           <Route path='search/:term' element={<Search user={user} />} />

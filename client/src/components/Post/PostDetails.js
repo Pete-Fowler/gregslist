@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
 import { formatDistance } from 'date-fns';
 
-export default function PostDetails({ user }) {
+export default function PostDetails({ user, newUser }) {
   const [ starred, setStarred ] = useState(false);
   const [ post, setPost ] = useState({})
 
@@ -49,7 +49,11 @@ export default function PostDetails({ user }) {
       })
       .then(r => {
         if(r.ok) {
-          r.json().then(data => console.log(data));
+          r.json().then(data => {
+            console.log(data)
+           
+            // navigate('/');
+          });
         } else {
           r.json().then(err => console.log(err));
         }
@@ -59,7 +63,7 @@ export default function PostDetails({ user }) {
     }
   }
 
-console.log(post)
+console.log(user)
 
   return (
     <div className={styles.postBox}>

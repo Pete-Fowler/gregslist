@@ -26,9 +26,11 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     if(params[:star])
       user.starred << params[:star]
+      user.save
     end
     if(params[:unstar])
       user.starred = user.starred.delete(params[:unstar])
+      user.save
     end
     render json: user, status: :ok
   end
