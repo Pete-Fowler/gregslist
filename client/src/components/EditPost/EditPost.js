@@ -19,6 +19,7 @@ export default function EditPost({user}) {
       setCity(data.area)
       setPostal(data.postal_code)
       setDescription(data.description)
+      setImage(data.image)
     })
   }, [id])
 
@@ -38,6 +39,8 @@ export default function EditPost({user}) {
   const [postal, setPostal] = useState("")
   const [description, setDescription] = useState("")
   const [email, setEmail] = useState("")
+  const [addImage, setAddImage] = useState(false)
+  const [image, setImage] = useState("")
 
   function selectCat(event) {
     setCat(event.target.value)
@@ -63,8 +66,14 @@ export default function EditPost({user}) {
     setDescription(event.target.value)
   }
 
-  function handleEmail(event) {
-    setEmail(event.target.value)
+  function handleImage(event) {
+
+    setImage(event.target.value)
+  }
+
+  function renderAddImageInput() {
+      setPatch(1)
+      setAddImage(!addImage)
   }
 
   function handleSubmit(event) {
@@ -74,6 +83,7 @@ export default function EditPost({user}) {
         "city_id": 1,
         "user_id": user.id,
         "title": title,
+        "image": image,
         "description": description,
         "category": cat,
         "area": city,
@@ -129,13 +139,19 @@ export default function EditPost({user}) {
       </label>
       </div>
       <div className={styles.checkboxcontainer}>
-      <label for="checkbox">
       <input type="checkbox" className={styles.checkbox}/>
+      <span className={styles.checkboxText}>
       ok for others to contact you about other services, products or commercial interests
-      </label>
+      </span>
       </div>
-      <button className={styles.button} type="submit">Post Edit</button>
+      <button className={styles.button} type="submit">Continue</button>
       </form>
+      <div className={styles.imagecontainer}>
+      {addImage ? <label for="imageInput" className={styles.imagelabel}>add image
+      <input type="text" className={styles.imageInput} onChange={handleImage} value={patch > 0 ? image : postObject.image}/>
+      </label> : 
+      <button onClick={renderAddImageInput} className={styles.imageButton}>Add Image</button>}
+      </div>
     </div>
   )
 
