@@ -203,7 +203,7 @@ export default function Home({ user }) {
   
   function renderLinks(categories, classParam=styles.subcategory) {
     return <div className={styles.subcategoryBox}>
-    {categories.map(category => <Link className={`${styles.subcategory} ${classParam}`} to={`/search/${category}`}>{category}</Link>)}
+    {categories.map(category => <Link key={category} className={`${styles.subcategory} ${classParam}`} to={`/search/${category}`}>{category}</Link>)}
   </div>
   }
 

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
 import { formatDistance } from 'date-fns';
 
-export default function PostDetails({ user, newUser }) {
+export default function PostDetails({ user }) {
   const [ starred, setStarred ] = useState(false);
   const [ post, setPost ] = useState({})
 
@@ -22,7 +22,7 @@ export default function PostDetails({ user, newUser }) {
         alert('Error: not found');
       }
     });
-  }, [id])
+  }, [])
 
   function mailTo() {
     window.open(`mailto:${post ? post.user.username : ''}`);
@@ -36,34 +36,44 @@ export default function PostDetails({ user, newUser }) {
   }
 
   function handleStarClick(e) {
-    setStarred(true);
+    setStarred(starred => !starred);
     e.target.classList.add('starred');
    
-    if(user) {
-      fetch(`/users/${user.id}`, {
-        method: 'PATCH',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({star: post.id})
-      })
-      .then(r => {
-        if(r.ok) {
-          r.json().then(data => {
-            console.log(data)
-           
-            // navigate('/');
-          });
-        } else {
-          r.json().then(err => console.log(err));
-        }
-      })
-    } else {
-      navigate('/login');
+    const body = starred ? {unstar: post.id} : {star: post.id};
+
+    if(!starred){
+      if(user) {
+        fetch(`/users/${user.id}`, {
+          method: 'PATCH',
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(body)
+        })
+        .then(r => {
+          if(r.ok) {
+            r.json().then(data => {
+              console.log(data)
+            
+              // navigate('/');
+            });
+          } else {
+            r.json().then(err => console.log(err));
+          }
+        })
+      } else {
+        navigate('/login');
+      }
     }
   }
 
-console.log(user)
+  useEffect(() => {
+      if(user && user.starred.includes(post.id)) {
+      setStarred(true);
+    }
+  }, [post])
+
+console.log(user && user.starred.includes(post.id))
 
   return (
     <div className={styles.postBox}>
@@ -74,7 +84,7 @@ console.log(user)
         <br></br>
         <button onClick={mailTo} className={styles.replyBtn}>Reply</button>
         <div className={styles.iconBox}>
-          <div className={`${styles.star} ${styles.icon}`} onClick={handleStarClick}>☆</div> 
+          <div className={`${styles.star} ${starred ? styles.active : ''} ${styles.icon}`} onClick={handleStarClick}>☆</div> 
           <div>favorite</div>
         </div>
         <div className={styles.iconBox}>

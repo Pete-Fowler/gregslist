@@ -53,6 +53,10 @@
   color: gold;
 }
 
+.star.active {
+  color: gold;
+}
+
 .print {
   color: #1817ee;
   text-decoration: underline;
