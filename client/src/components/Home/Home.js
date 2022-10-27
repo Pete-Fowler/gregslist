@@ -109,7 +109,7 @@ export default function Home({ user }) {
           </tbody>
         </table>
         <br></br>
-        <Link className={styles.links}>craigslist app</Link>
+        <Link className={styles.links}>gregslist app</Link>
         <Link className={styles.links}>help, faq, abuse, legal</Link>
         <Link className={styles.links}>avoid scams & fraud</Link>
         <Link className={styles.links}>personal safety tips</Link>
@@ -118,12 +118,12 @@ export default function Home({ user }) {
         <Link className={styles.links}>system status</Link>
         <br></br>
         <Link className={styles.links}>about gregslist</Link>
-        <Link className={styles.links}>craigslist is hiring</Link>
+        <Link className={styles.links}>gregslist is hiring</Link>
         <Link className={styles.links}>gregslist open source</Link>
         <Link className={styles.links}>gregslist blog</Link>
         <Link className={styles.links}>best-of-gregslist</Link>
         <Link className={styles.links}>"gregslist joe"</Link>
-        <Link className={styles.links}>greg list philanthropies</Link>
+        <Link className={styles.links}>gregslist philanthropies</Link>
       </div>
       {/* ==========MAIN / CENTER============= */}
       <div className={styles.main}>
