@@ -50,6 +50,16 @@
   font-weight: 700;
 }
 
+.imagelabel {
+  position: absolute;
+  color: #008800;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  max-width: 620px;
+  width: 100%
+}
+
 /* containers */
 
 .form {
@@ -83,8 +93,38 @@
   flex-direction: row;
 }
 
+.imagecontainer {
+  position: relative;
+  top: -155px;
+  left: 505px;
+}
+
 /* text inputs, boxes and elements */
 
+
+
+.imageButton {
+  padding: 6px;
+  background-color: rgb(241, 237, 237);
+  border-left-color: rgb(34,34,34);
+  border-left-style: solid;
+  border-left-width: 2px;
+  border-right-color: rgb(34,34,34);
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-top-color: rgb(34,34,34);
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-bottom-color: rgb(34,34,34);
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  text-align: center;
+  color: rgb(34,34,34);
+  border-radius: 10px;
+  position: absolute;
+  top: 13px;
+  left: 50px;
+}
 .categories {
   margin-bottom: 10px;
 }
@@ -132,11 +172,23 @@
 
 .checkbox {
   display: flex;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin-top: 15px;
 }
 
+.checkboxcontainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: right;
+}
+
+.checkboxText {
+  margin: 0px;
+  margin-top: 15px;
+  padding-left: 5px;
+}
 .button {
   width: 87px;
   height: 30px;

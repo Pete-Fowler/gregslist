@@ -48,7 +48,7 @@ export default function CreatePost({ user }) {
   function handleImage(event) {
     setImage(event.target.value)
   }
-  
+
   function renderAddImageInput() {
       setAddImage(!addImage)
   }
@@ -124,15 +124,18 @@ export default function CreatePost({ user }) {
       </label>
       </div>
       <div className={styles.checkboxcontainer}>
-      <label for="checkbox">
       <input type="checkbox" className={styles.checkbox}/>
+      <span className={styles.checkboxText}>
       ok for others to contact you about other services, products or commercial interests
-      </label>
+      </span>
       </div>
       <button className={styles.button} type="submit">Continue</button>
       </form>
       <div className={styles.imagecontainer}>
-      {addImage ? <input type="text" placeholder="Image URL" className={styles.imageInput} onChange={handleImage}/> : <button onClick={renderAddImageInput} className={styles.imageButton}>Add Image</button>}
+      {addImage ? <label for="imageInput" className={styles.imagelabel}>add image
+      <input type="text" placeholder="Add Image URL" className={styles.imageInput} onChange={handleImage}/>
+      </label> : 
+      <button onClick={renderAddImageInput} className={styles.imageButton}>Add Image</button>}
       </div>
     </div>
   )
