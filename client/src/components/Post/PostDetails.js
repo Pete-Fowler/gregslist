@@ -73,7 +73,7 @@ export default function PostDetails({ user }) {
     }
   }, [post])
 
-console.log(user && user.starred.includes(post.id))
+console.log(user && user.starred.includes(post.id), user)
 
   return (
     <div className={styles.postBox}>
