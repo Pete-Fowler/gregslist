@@ -49,11 +49,14 @@ export default function PostDetails() {
           <div className={styles.icon}>🗑</div> 
           <div>hide</div>
         </div>
-        <div className={styles.iconBox}>
+        {/* <div className={styles.iconBox}>
           <div className={`${styles.icon} ${styles.flag}`}>🏳️</div> 
           <div className={styles.flagText}>flag</div>
-          </div>
-        <div>share</div>
+        </div>
+        <div className={styles.iconBox}>
+          <div className={`${styles.icon} ${styles.flag}`}>🔗</div>
+          <div className={styles.flagText}>share</div>
+        </div> */}
         {postedAt()}
         <div className={styles.print} onClick={() => window.print()}>print</div>
       </div>
