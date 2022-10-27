@@ -53,58 +53,54 @@ export default function Home({ user }) {
         <br></br>
         <form onSubmit={handleSearch}><input className={styles.search} type='text' placeholder='search gregslist' value={searchTerm} onChange={handleChange}></input></form>
         <br></br>
-        <h4 className={styles.eventcal}>event calendar</h4>
+        <h4 className={styles.eventcal}><a href="localhost:4000">event calendar</a></h4>
         <table className={styles.table}>
           <tbody>
-            <tr>
-              <th>M</th>
-              <th>T</th>
-              <th>W</th>
-              <th>T</th>
-              <th>F</th>
-              <th>S</th>
-              <th>S</th>
+            <tr className={styles.tableRowDays}>
+              <th className={styles.tableHead}>M</th>
+              <th className={styles.tableHead}>T</th>
+              <th className={styles.tableHead}>W</th>
+              <th className={styles.tableHead}>T</th>
+              <th className={styles.tableHead}>F</th>
+              <th className={styles.tableHead}>S</th>
+              <th className={styles.tableHead}>S</th>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-              <td>6</td>
-              <td>7</td>
+            <tr className={styles.tableRow}>
+              <td className={styles.tableDate}>24</td>
+              <td className={styles.tableDate}>25</td>
+              <td className={styles.tableDate}>26</td>
+              <td className={styles.tableDate}>27</td>
+              <td className={styles.tableDateCurrent}><a href="localhost:4000">28</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">29</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">30</a></td>
             </tr>
-            <tr>
-            <td>8</td>
-              <td>9</td>
-              <td>10</td>
-              <td>11</td>
-              <td>12</td>
-              <td>13</td>
-              <td>14</td>
+            <tr className={styles.tableRow}>
+              <td className={styles.tableDate}><a href="localhost:4000">31</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">1</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">2</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">3</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">4</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">5</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">6</a></td>
+              
             </tr>
-            <tr>
-            <td>15</td>
-              <td>16</td>
-              <td>17</td>
-              <td>18</td>
-              <td>19</td>
-              <td>20</td>
-              <td>21</td>
+            <tr className={styles.tableRow}>
+              <td className={styles.tableDate}><a href="localhost:4000">7</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">8</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">9</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">10</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">11</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">12</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">13</a></td>
             </tr>
-            <tr>
-            <td>22</td>
-              <td>23</td>
-              <td>24</td>
-              <td>25</td>
-              <td>26</td>
-              <td>27</td>
-              <td>28</td>
-            </tr>
-            <tr>
-            <td>29</td>
-              <td>30</td>
-              <td>31</td>
+            <tr className={styles.tableRow}>
+              <td className={styles.tableDate}><a href="localhost:4000">14</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">15</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">16</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">17</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">18</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">19</a></td>
+              <td className={styles.tableDate}><a href="localhost:4000">20</a></td>
             </tr>
           </tbody>
         </table>
