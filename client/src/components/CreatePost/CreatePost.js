@@ -14,6 +14,8 @@ export default function CreatePost({ user }) {
   const [postal, setPostal] = useState("")
   const [description, setDescription] = useState("")
   const [email, setEmail] = useState("")
+  const [addImage, setAddImage] = useState(false)
+  const [image, setImage] = useState("")
 
   function selectCat(event) {
     setCat(event.target.value)
@@ -43,6 +45,14 @@ export default function CreatePost({ user }) {
     setEmail(event.target.value)
   }
 
+  function handleImage(event) {
+    setImage(event.target.value)
+  }
+
+  function renderAddImageInput() {
+      setAddImage(!addImage)
+  }
+
   function handleSubmit(event) {
     event.preventDefault()
 
@@ -54,6 +64,7 @@ export default function CreatePost({ user }) {
         "description": description,
         "category": cat,
         "area": city,
+        "image": image,
         "subcategory": subcat,
         "postal_code": postal,
         "price": price
@@ -113,13 +124,19 @@ export default function CreatePost({ user }) {
       </label>
       </div>
       <div className={styles.checkboxcontainer}>
-      <label for="checkbox">
       <input type="checkbox" className={styles.checkbox}/>
+      <span className={styles.checkboxText}>
       ok for others to contact you about other services, products or commercial interests
-      </label>
+      </span>
       </div>
       <button className={styles.button} type="submit">Continue</button>
       </form>
+      <div className={styles.imagecontainer}>
+      {addImage ? <label for="imageInput" className={styles.imagelabel}>add image
+      <input type="text" placeholder="Add Image URL" className={styles.imageInput} onChange={handleImage}/>
+      </label> : 
+      <button onClick={renderAddImageInput} className={styles.imageButton}>Add Image</button>}
+      </div>
     </div>
   )
 }
