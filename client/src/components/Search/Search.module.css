@@ -1,16 +1,23 @@
+
+
 .resultsContainer {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   width: 100%;
-  margin-left: 8rem;
-  margin-right: auto;
-  margin-top: 5rem;
+  margin-top: 25px;
+  margin-bottom: 35px;
+}
+
+form {
+  margin-top: 25px;
+  margin-left: 160px;
 }
 
 .search {
-  position: absolute;
-  top: 50px;
-  width:35%;
-  left: 130px;
+  font-size: 1.15rem;
+  min-width: 200px;
+  width: 45%;
+  border-radius: 5px;
 }
