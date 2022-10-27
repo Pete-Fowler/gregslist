@@ -31,8 +31,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_182837) do
     t.string "area"
     t.integer "postal_code"
     t.integer "price"
-    t.boolean "hide"
-    t.boolean "star"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,6 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_182837) do
     t.string "username"
     t.string "password_digest"
     t.string "default_city"
+    t.string "saved"
+    t.string "hidden"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -44,8 +44,6 @@ event_categories = [
       area: City.all.pluck(:name).sample,
       postal_code: rand(80001..81658),
       price: rand(10..10000),
-      star: false,
-      hide: false
     )
   
 end
@@ -71,8 +69,6 @@ for_sale_subcategories = [
       area: City.all.pluck(:name).sample,
       postal_code: rand(80001..81658),
       price: rand(10..10000),
-      star: false,
-      hide: false
     )
   
 end
@@ -98,8 +94,6 @@ jobs_subcategories = [
       area: City.all.pluck(:name).sample,
       postal_code: rand(80001..81658),
       price: rand(10000..100000),
-      star: false,
-      hide: false
     )
   
 end
@@ -123,8 +117,6 @@ housing_subcategories = [
       area: City.all.pluck(:name).sample,
       postal_code: rand(80001..81658),
       price: rand(500..100000),
-      star: false,
-      hide: false
     )
   
 end
@@ -148,8 +140,6 @@ services_subcategories = [
       area: City.all.pluck(:name).sample,
       postal_code: rand(80001..81658),
       price: rand(10..1000),
-      star: false,
-      hide: false
     )
 
 end
@@ -171,8 +161,6 @@ community_subcategories = [
       area: City.all.pluck(:name).sample,
       postal_code: rand(80001..81658),
       price: rand(1..500),
-      star: false,
-      hide: false
     )
   
 end
