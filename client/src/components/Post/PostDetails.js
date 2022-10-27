@@ -1,6 +1,6 @@
 import styles from './PostDetails.module.css';
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { formatDistance } from 'date-fns';
 
 export default function PostDetails() {
@@ -8,8 +8,6 @@ export default function PostDetails() {
   const [ post, setPost ] = useState({})
 
   const { id } = useParams();
-
-  const navigate = useNavigate();
 
   const today = new Date();
 
@@ -25,7 +23,7 @@ export default function PostDetails() {
   }, [id])
 
   function mailTo() {
-    window.location.href = `mailto:${post.username}`
+    window.open(`mailto:${post ? post.user.username : ''}`);
   }
 
   function postedAt() {
@@ -42,7 +40,7 @@ export default function PostDetails() {
       </div>
       <div className={styles.postControls}>
         <br></br>
-        <button className={styles.replyBtn} onClick={mailTo}>Reply</button>
+        <button onClick={mailTo} className={styles.replyBtn}>Reply</button>
         <div>favorite</div>
         <div>hide</div>
         <div>flag</div>
