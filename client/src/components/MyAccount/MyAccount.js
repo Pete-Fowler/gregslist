@@ -34,7 +34,7 @@ export default function MyAccount({ user, newUser }) {
       }
     })}
   }, [user])
-
+console.log(starred);
   function logout() {
     fetch('/destroy', {
       method: 'DELETE',
