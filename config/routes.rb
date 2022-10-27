@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :posts
   resources :cities, only: [:index, :create]
-  resources :users, only: [:index, :show, :create]
+  resources :users, only: [:index, :show, :create, :update]
 
   get '/posts-categories', to: 'posts#index_categories'
 

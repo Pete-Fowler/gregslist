@@ -9,11 +9,8 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.string  :category
       t.string  :subcategory
       t.string  :area
-      t.integer  :postal_code
+      t.integer :postal_code
       t.integer :price
-      t.boolean :hide
-      t.boolean :star
-
       t.timestamps
     end
   end
