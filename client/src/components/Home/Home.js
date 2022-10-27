@@ -53,7 +53,7 @@ export default function Home({ user }) {
         <br></br>
         <form onSubmit={handleSearch}><input className={styles.search} type='text' placeholder='search gregslist' value={searchTerm} onChange={handleChange}></input></form>
         <br></br>
-        <h4 className={styles.eventcal}>event calendar</h4>
+        <h4 className={styles.eventcal}><a href="localhost:4000">event calendar</a></h4>
         <table className={styles.table}>
           <tbody>
             <tr className={styles.tableRowDays}>
@@ -69,8 +69,8 @@ export default function Home({ user }) {
               <td className={styles.tableDate}>24</td>
               <td className={styles.tableDate}>25</td>
               <td className={styles.tableDate}>26</td>
-              <td className={styles.tableDate}><a href="localhost:4000">27</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">28</a></td>
+              <td className={styles.tableDate}>27</td>
+              <td className={styles.tableDateCurrent}><a href="localhost:4000">28</a></td>
               <td className={styles.tableDate}><a href="localhost:4000">29</a></td>
               <td className={styles.tableDate}><a href="localhost:4000">30</a></td>
             </tr>
