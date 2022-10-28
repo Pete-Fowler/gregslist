@@ -147,13 +147,14 @@ export default function MyAccount({ user, newUser }) {
       </div>)
       : null}
     </div>
-
+    <br/>
       {user && user.username === 'admin' 
       ? <form onSubmit={addCity}>
           <input type='text' name='city' placeholder='Add new city to database' value={city} onChange={(e) => setCity(e.target.value)}/>
         </form>
       : null}
       {errors.map(err => <span key={err}>{err}</span>)}
+      <br/>
     </div>
   )
 }
