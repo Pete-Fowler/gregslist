@@ -79,7 +79,7 @@ function handleHideClick() {
   if(user) {
     setHidden(hidden => !hidden);
     const method = hidden ? 'DELETE' : 'POST';
-    const hiddenId = hidden ? `/${user.hiddens.filter(el => el.post_id === post.id)[0].id}` : ''; // need hidden ID
+    const hiddenId = hidden ? `${user.hiddens.filter(el => el.post_id === post.id)[0].id}` : ''; // need hidden ID
     const body = hidden ? '' : JSON.stringify({user_id: user.id, post_id: post.id});
 
     fetch(`/hiddens/${hiddenId}`, {
@@ -93,7 +93,6 @@ function handleHideClick() {
       if(r.ok) {
         r.json().then(data => {
           console.log(data);
-          navigate('/');
         });
       } else {
         r.json().then(err => {
@@ -106,6 +105,8 @@ function handleHideClick() {
     navigate('/login');
   }
 }
+if(user)
+  console.log(user, user.hiddens.filter(el => el.post_id === post.id)[0].id);
 
   return (
     <div className={styles.postBox}>
