@@ -25,6 +25,7 @@ class PostsController < ApplicationController
       end
     end
     if(params[:starred]) 
+      arr = params[:starred].split(',')
       posts = Post.where(id: arr)
     end
     render json: posts
