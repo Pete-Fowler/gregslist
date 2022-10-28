@@ -118,6 +118,10 @@ a:hover {
   margin-top: 3px;
   margin-bottom: 3px;
 }
+
+.searchCats {
+  display: none;
+}
 /* ==========MAIN=========== */
 .main {
   grid-area: main;

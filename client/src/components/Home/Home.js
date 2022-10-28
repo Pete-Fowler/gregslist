@@ -94,7 +94,7 @@ export default function Home({ user, setFilterCategory, setFilterSubCategory, fi
 
   return (
     <div className={styles.home}>
-    <div>
+    <div className={styles.searchCats}>
     <SearchCategories user={user} filterCategory={filterCategory} filterSubCategory={filterSubCategory}/>
     </div>
       {/* ================LEFT BAR============ */}
