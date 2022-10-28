@@ -30,6 +30,7 @@ export default function PostDetails({ user }) {
     window.open(`mailto:${post ? post.user.username : ''}`);
   }
 
+  // Returns timestamp JSX
   function postedAt() {
     return <span>posted: {post.created_at
       ? <span className={styles.underlined}>{formatDistance(new Date(post.created_at), today)} ago</span>
@@ -64,35 +65,41 @@ export default function PostDetails({ user }) {
     }
   }
 
-  // Set starred posts
+  // Set starred & hidden posts states
   useEffect(() => {
-      if(user && user.starred.includes(post.id)) {
+    if(user && user.starred.includes(post.id)) {
       setStarred(true);
+    }
+    if(user && user.hiddens.some(el => el.post_id === post.id)) {
+      setHidden(true);
     }
   }, [post])
 
-  setHidden(hidden => !hidden);
-
 function handleHideClick() {  
   if(user) {
-    const method = hidden ? 'DELETE' : 'CREATE';
-    const hiddenId = hidden ? `/${post.id}` : '';
-    const body = hidden ? '' : {user_id: user.id, post_id: post.id};
+    setHidden(hidden => !hidden);
+    const method = hidden ? 'DELETE' : 'POST';
+    const hiddenId = hidden ? `/${user.hiddens.filter(el => el.post_id === post.id)[0].id}` : ''; // need hidden ID
+    const body = hidden ? '' : JSON.stringify({user_id: user.id, post_id: post.id});
 
     fetch(`/hiddens/${hiddenId}`, {
       method: method,
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(body)
+      body: body
     })
     .then(r => {
       if(r.ok) {
         r.json().then(data => {
-          console.log(data)
+          console.log(data);
+          navigate('/');
         });
       } else {
-        r.json().then(err => console.log(err));
+        r.json().then(err => {
+          setHidden(hidden => !hidden);
+          alert(err.error);
+        });
       }
     })
   } else {
@@ -113,7 +120,7 @@ function handleHideClick() {
           <div>favorite</div>
         </div>
         <div className={styles.iconBox}>
-          <div className={styles.icon} onClick={handleHideClick}>🗑</div> 
+          <div className={`${styles.icon} ${hidden ? styles.active : ''}`} onClick={handleHideClick}>🗑</div> 
           <div>hide</div>
         </div>
         {/* <div className={styles.iconBox}>
