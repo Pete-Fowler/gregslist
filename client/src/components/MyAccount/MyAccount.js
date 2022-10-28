@@ -35,6 +35,7 @@ export default function MyAccount({ user, newUser }) {
     })}
   }, [user])
 
+  if(starred) console.log(starred);
   function logout() {
     fetch('/destroy', {
       method: 'DELETE',
@@ -137,7 +138,7 @@ export default function MyAccount({ user, newUser }) {
         <div className={`${styles.area} ${styles.heading}`}>area and category</div>
         <div className={`${styles.date} ${styles.heading}`}>posted date</div>
       </div>
-      {starred ? starred.map(post => <div key={post.id} className={styles.starred}>
+      {starred.length > 0 ? starred.map(post => <div key={post.id} className={styles.starred}>
         <div className={styles.manage}>
           <button onClick={() => showPost(post.id)}>display</button>
         </div>
@@ -147,13 +148,14 @@ export default function MyAccount({ user, newUser }) {
       </div>)
       : null}
     </div>
-
+    <br/>
       {user && user.username === 'admin' 
       ? <form onSubmit={addCity}>
           <input type='text' name='city' placeholder='Add new city to database' value={city} onChange={(e) => setCity(e.target.value)}/>
         </form>
       : null}
       {errors.map(err => <span key={err}>{err}</span>)}
+      <br/>
     </div>
   )
 }

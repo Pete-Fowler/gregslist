@@ -22,11 +22,11 @@ class PostsController < ApplicationController
         post.title.downcase.include?(params[:q].downcase) || 
         post.description.downcase.include?(params[:q].downcase) ||
         post.area.downcase.include?(params[:q].downcase)
-        
       end
     end
     if(params[:starred]) 
-      posts = Post.where(id: params[:starred])
+      arr = params[:starred].split(',')
+      posts = Post.where(id: arr)
     end
     render json: posts
   end
