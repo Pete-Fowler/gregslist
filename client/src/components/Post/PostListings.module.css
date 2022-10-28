@@ -49,6 +49,16 @@
 .star {
   font-size: 1.4rem;
   margin-inline: 3px;
+  position: relative;
+  z-index: 10;
+}
+
+.star:hover {
+  color: gold;
+}
+
+.star.active {
+  color:gold;
 }
 
 .title {
