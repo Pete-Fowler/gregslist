@@ -18,7 +18,9 @@ export default function Search({ user }) {
     fetch(`/posts?q=${term}`)
     .then(r => {
       if(r.ok) {
-        r.json().then(data => setResults(data));
+        r.json().then(data => {
+          setResults(data.filter(post => user.hiddens.filter(el => el.post_id === post.id)[0].id)) // wrong
+        });
       } else {
         r.json().then(err => setErrors(err.errors));
       }

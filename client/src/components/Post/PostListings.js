@@ -60,8 +60,6 @@ export default function PostListings({
     }
   }, [])
 
-console.log(user && user.starred, user)
-
   return (
     <Link to={path} className={styles.postcardcontainer}>
         <img src={image} alt="item" width="500" height="600" className={styles.image}/>

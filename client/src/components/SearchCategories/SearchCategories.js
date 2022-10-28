@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 
-export default function SearchCategories({ filterCategory, filterSubCategory }) {
+export default function SearchCategories({ filterCategory, filterSubCategory, user }) {
   const [ results, setResults ] = useState([]);
   const [ errors, setErrors ] = useState([]);
   const { term } = useParams();
@@ -18,7 +18,9 @@ export default function SearchCategories({ filterCategory, filterSubCategory }) 
     fetch(`/posts-categories?q=${term}`)
     .then(r => {
       if(r.ok) {
-        r.json().then(data => setResults(data));
+        r.json().then(data => {
+          setResults(data.filter(post => user.hiddens.filter(el => el.post_id === post.id)[0].id)) // wrong
+        });
       } else {
         r.json().then(err => setErrors(err.errors));
       }
