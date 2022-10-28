@@ -34,7 +34,7 @@ export default function MyAccount({ user, newUser }) {
       }
     })}
   }, [user])
-console.log(starred);
+
   function logout() {
     fetch('/destroy', {
       method: 'DELETE',
@@ -131,17 +131,15 @@ console.log(starred);
     <br></br>
     Starred Posts
     <div className={styles.posts}>
-      <div className={styles.post}>
+      <div className={styles.starred}>
         <div className={`${styles.manage} ${styles.heading}`}>manage</div>
         <div className={`${styles.title} ${styles.heading}`}>post title</div>
         <div className={`${styles.area} ${styles.heading}`}>area and category</div>
         <div className={`${styles.date} ${styles.heading}`}>posted date</div>
       </div>
-      {starred ? starred.map(post => <div key={post.id} className={styles.post}>
+      {starred ? starred.map(post => <div key={post.id} className={styles.starred}>
         <div className={styles.manage}>
           <button onClick={() => showPost(post.id)}>display</button>
-          <button onClick={() => deletePost(post.id)}>delete</button>
-          <button onClick={() => editPost(post.id)}>edit</button>
         </div>
         <div className={styles.title}>{post.title}</div>
         <div className={styles.area}><b>{post.area}</b> {post.category}</div>
