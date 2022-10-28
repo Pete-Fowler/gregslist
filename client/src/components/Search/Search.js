@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 
-export default function Search() {
+export default function Search({ user }) {
   const [ results, setResults ] = useState([]);
   const [ errors, setErrors ] = useState([]);
   const { term } = useParams();
@@ -65,6 +65,7 @@ export default function Search() {
       cityId={post.city_id}
       created={post.created_at}
       updated={post.updated_at}
+      user={user}
     />)}
       {errors.map(err => <div key={err}>{err}</div>)}
     </div>

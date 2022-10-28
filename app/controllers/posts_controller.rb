@@ -25,6 +25,9 @@ class PostsController < ApplicationController
         
       end
     end
+    if(params[:starred]) 
+      posts = Post.where(id: params[:starred])
+    end
     render json: posts
   end
 
