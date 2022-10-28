@@ -67,13 +67,15 @@ export default function PostDetails({ user }) {
 
   // Set starred & hidden posts states
   useEffect(() => {
-    if(user && user.starred.includes(post.id)) {
+    if(user) {
+      if(user.starred.includes(post.id)) {
       setStarred(true);
+      }
+      if(user.hiddens.some(el => el.post_id === post.id)) {
+        setHidden(true);
+      }
     }
-    if(user && user.hiddens.some(el => el.post_id === post.id)) {
-      setHidden(true);
-    }
-  }, [post])
+  }, [post, user])
 
 function handleHideClick() {  
   if(user) {
@@ -93,6 +95,7 @@ function handleHideClick() {
       if(r.ok) {
         r.json().then(data => {
           console.log(data);
+          navigate('/');
         });
       } else {
         r.json().then(err => {
@@ -105,8 +108,9 @@ function handleHideClick() {
     navigate('/login');
   }
 }
-if(user)
-  console.log(user, user.hiddens.filter(el => el.post_id === post.id)[0].id);
+
+// if(user)
+  // console.log(user, user.hiddens.filter(el => el.post_id === post.id)[0].id);
 
   return (
     <div className={styles.postBox}>
