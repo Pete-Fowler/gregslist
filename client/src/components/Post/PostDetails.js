@@ -6,6 +6,7 @@ import { formatDistance } from 'date-fns';
 export default function PostDetails({ user }) {
   const [ starred, setStarred ] = useState(false);
   const [ post, setPost ] = useState({})
+  const [ hidden, setHidden ] = useState(false)
 
   const { id } = useParams();
 
@@ -13,6 +14,7 @@ export default function PostDetails({ user }) {
   
   const today = new Date();
 
+  // Fetch posts
   useEffect(() => {
     fetch(`/posts/${id}`)
     .then(r => {
@@ -35,7 +37,7 @@ export default function PostDetails({ user }) {
     </span>
   }
 
-  function handleStarClick(e) {
+  function handleStarClick() {
     setStarred(starred => !starred);
    
     const body = starred ? {unstar: post.id} : {star: post.id};
@@ -62,13 +64,41 @@ export default function PostDetails({ user }) {
     }
   }
 
+  // Set starred posts
   useEffect(() => {
       if(user && user.starred.includes(post.id)) {
       setStarred(true);
     }
   }, [post])
 
-console.log(user && user.starred.includes(post.id), user)
+  setHidden(hidden => !hidden);
+
+function handleHideClick() {  
+  if(user) {
+    const method = hidden ? 'DELETE' : 'CREATE';
+    const hiddenId = hidden ? `/${post.id}` : '';
+    const body = hidden ? '' : {user_id: user.id, post_id: post.id};
+
+    fetch(`/hiddens/${hiddenId}`, {
+      method: method,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+    .then(r => {
+      if(r.ok) {
+        r.json().then(data => {
+          console.log(data)
+        });
+      } else {
+        r.json().then(err => console.log(err));
+      }
+    })
+  } else {
+    navigate('/login');
+  }
+}
 
   return (
     <div className={styles.postBox}>
@@ -83,7 +113,7 @@ console.log(user && user.starred.includes(post.id), user)
           <div>favorite</div>
         </div>
         <div className={styles.iconBox}>
-          <div className={styles.icon}>🗑</div> 
+          <div className={styles.icon} onClick={handleHideClick}>🗑</div> 
           <div>hide</div>
         </div>
         {/* <div className={styles.iconBox}>
