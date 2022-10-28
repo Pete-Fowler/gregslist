@@ -37,33 +37,28 @@ export default function PostDetails({ user }) {
 
   function handleStarClick(e) {
     setStarred(starred => !starred);
-    e.target.classList.add('starred');
    
     const body = starred ? {unstar: post.id} : {star: post.id};
 
-    if(!starred){
-      if(user) {
-        fetch(`/users/${user.id}`, {
-          method: 'PATCH',
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(body)
-        })
-        .then(r => {
-          if(r.ok) {
-            r.json().then(data => {
-              console.log(data)
-            
-              // navigate('/');
-            });
-          } else {
-            r.json().then(err => console.log(err));
-          }
-        })
-      } else {
-        navigate('/login');
-      }
+    if(user) {
+      fetch(`/users/${user.id}`, {
+        method: 'PATCH',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+      })
+      .then(r => {
+        if(r.ok) {
+          r.json().then(data => {
+            console.log(data)
+          });
+        } else {
+          r.json().then(err => console.log(err));
+        }
+      })
+    } else {
+      navigate('/login');
     }
   }
 

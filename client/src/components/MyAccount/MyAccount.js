@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 export default function MyAccount({ user, newUser }) {
   const [ errors, setErrors ] = useState([]);
   const [ posts, setPosts ] = useState([]);
+  const [ starred, setStarred ] = useState([]);
   const [ city, setCity ] = useState([]);
 
   const navigate = useNavigate();
@@ -22,6 +23,19 @@ export default function MyAccount({ user, newUser }) {
     })}
   }, [user])
 
+  useEffect(() => {
+    if(user !== null) {
+    fetch(`/posts?starred=${user.starred}`)
+    .then(r => {
+      if(r.ok) {
+        r.json().then(data => setStarred(data));
+      } else {
+        r.json().then(err => setErrors(err.error));
+      }
+    })}
+  }, [user])
+
+  if(starred) console.log(starred);
   function logout() {
     fetch('/destroy', {
       method: 'DELETE',
@@ -94,6 +108,8 @@ export default function MyAccount({ user, newUser }) {
     </div>
       
     <Link className={styles.newPost} to='/posts-create'>New Post</Link>
+    <br/>
+    Active Posts
     <div className={styles.posts}>
       <div className={styles.post}>
         <div className={`${styles.manage} ${styles.heading}`}>manage</div>
@@ -113,12 +129,33 @@ export default function MyAccount({ user, newUser }) {
       </div>)
       : null}
     </div>
+    <br></br>
+    Starred Posts
+    <div className={styles.posts}>
+      <div className={styles.starred}>
+        <div className={`${styles.manage} ${styles.heading}`}>manage</div>
+        <div className={`${styles.title} ${styles.heading}`}>post title</div>
+        <div className={`${styles.area} ${styles.heading}`}>area and category</div>
+        <div className={`${styles.date} ${styles.heading}`}>posted date</div>
+      </div>
+      {starred.length > 0 ? starred.map(post => <div key={post.id} className={styles.starred}>
+        <div className={styles.manage}>
+          <button onClick={() => showPost(post.id)}>display</button>
+        </div>
+        <div className={styles.title}>{post.title}</div>
+        <div className={styles.area}><b>{post.area}</b> {post.category}</div>
+        <div className={styles.date}>{format(new Date(post.created_at), 'dd MMM yyyy k:mm')}</div>
+      </div>)
+      : null}
+    </div>
+    <br/>
       {user && user.username === 'admin' 
       ? <form onSubmit={addCity}>
           <input type='text' name='city' placeholder='Add new city to database' value={city} onChange={(e) => setCity(e.target.value)}/>
         </form>
       : null}
       {errors.map(err => <span key={err}>{err}</span>)}
+      <br/>
     </div>
   )
 }
