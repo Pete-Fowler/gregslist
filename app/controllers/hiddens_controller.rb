@@ -1,0 +1,2 @@
+class HiddensController < ApplicationController
+end
