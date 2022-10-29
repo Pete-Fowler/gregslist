@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: gregslist_production
-  username: gregslist
-  password: <%= ENV["GREGSLIST_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
