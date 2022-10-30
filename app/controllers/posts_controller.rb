@@ -5,8 +5,7 @@ class PostsController < ApplicationController
   def index_categories
     if(params[:q])
       posts = Post.all.filter do |post|
-        post.category.downcase.include?(params[:q].downcase) || 
-        post.subcategory.downcase.include?(params[:q].downcase)
+       
       end
     end
     render json: posts
@@ -21,7 +20,9 @@ class PostsController < ApplicationController
       posts = Post.all.filter do |post|
         post.title.downcase.include?(params[:q].downcase) || 
         post.description.downcase.include?(params[:q].downcase) ||
-        post.area.downcase.include?(params[:q].downcase)
+        post.area.downcase.include?(params[:q].downcase) || 
+        post.category.downcase.include?(params[:q].downcase) || 
+        post.subcategory.downcase.include?(params[:q].downcase)
       end
     end
     if(params[:starred]) 

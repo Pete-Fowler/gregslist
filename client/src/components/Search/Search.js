@@ -7,6 +7,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 export default function Search({ user }) {
   const [ results, setResults ] = useState([]);
   const [ errors, setErrors ] = useState([]);
+  const [ categorySearch, setCategorySearch ] = useState('');
   const { term } = useParams();
 
   const [ searchTerm, setSearchTerm ] = useState('');
@@ -15,6 +16,8 @@ export default function Search({ user }) {
   
 
   useEffect(() => {
+    
+    
     fetch(`/posts?q=${term}`)
     .then(r => {
       if(r.ok) {
