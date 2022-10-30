@@ -24,14 +24,8 @@ export default function SearchCategories({ filterCategory, filterSubCategory }) 
       }
     })
   }, [term])
-  
-  console.log(results.subcategory)
-  console.log(filterSubCategory)
-  console.log(filterCategory)
 
   const filteredResults = results.filter(result => result.subcategory.includes(filterSubCategory) && result.category.includes(filterCategory))
-
-  console.log(filteredResults)
 
   function handleChange(e) {
     setSearchTerm(e.target.value);
