@@ -20,7 +20,8 @@ export default function Home({ user }) {
   }
 
   // Render MyAccount or Login based on whether user is logged in
-  const path = user ? '/account' : '/login';
+  const accountLinkPath = user ? '/account' : '/login';
+  const postPath = user ? '/posts-create' : '/login';
 
   const [cities, setCities] = useState([]);
 
@@ -58,8 +59,8 @@ export default function Home({ user }) {
       <div className={styles.leftBar}>
         <Link className={styles.siteTitle}>gregslist</Link>
         <br></br>
-        <Link to='/posts-create' className={styles.posting}>create a posting</Link>
-        <Link to={path}>my account</Link> 
+        <Link to={postPath} className={styles.posting}>create a posting</Link>
+        <Link to={accountLinkPath}>my account</Link> 
         <br></br>
         <form onSubmit={handleSearch}><input className={styles.search} type='text' placeholder='search gregslist' value={searchTerm} onChange={handleChange}></input></form>
         <br></br>
