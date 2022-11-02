@@ -8,12 +8,14 @@ This was done in a team of two with a time limit of about 4 days. I was responsi
 ### Back end
 - About half of the user authentication and authorization
 - Most of the posts and sessions controllers and related routes and models
+- Starred posts functionality
 ### Front end
 - Most of the home page component
+- Header and footer
 - All of the components and functionality related to user authentication and authorization
 - The search component
+- Starred posts functionality
 
-# Lessons learned / improvements
 # Lessons learned / improvements
 In retrospect, I would not choose to clone a site that relies on user generated data for a student project where there are not real users or real data, especially a site like Craigslist where there is no API to seed the database from. I would have also liked more time to make a number of improvements, including adding more of the site's functionality such as hiding posts, and making the search more effective between categories and subcategories, adding nav breadcrumbs, and front end password validation. 
 

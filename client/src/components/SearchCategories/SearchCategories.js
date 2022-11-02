@@ -1,10 +1,10 @@
-import styles from './Search.module.css';
+import styles from './SearchCategories.module.css';
 import PostListings from '../Post/PostListings';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 
-export default function Search({ user }) {
+export default function SearchCategories({ filterCategory, filterSubCategory, user }) {
   const [ results, setResults ] = useState([]);
   const [ errors, setErrors ] = useState([]);
   const { term } = useParams();
@@ -15,19 +15,25 @@ export default function Search({ user }) {
   
 
   useEffect(() => {
-    
-    // Code to hide posts when setting data, needs editing
-    // user.hiddens.filter(el => el.post_id === post.id)[0].id
-
-    fetch(`/posts?q=${term}`)
+    fetch(`/posts-categories?q=${term}`)
     .then(r => {
       if(r.ok) {
-        r.json().then(data => setResults(data));
+        r.json().then(data => {
+          setResults(data.filter(post => user.hiddens.filter(el => el.post_id === post.id)[0].id)) // wrong
+        });
       } else {
         r.json().then(err => setErrors(err.errors));
       }
     })
-  }, [])
+  }, [term])
+  
+  console.log(results.subcategory)
+  console.log(filterSubCategory)
+  console.log(filterCategory)
+
+  const filteredResults = results.filter(result => result.subcategory.includes(filterSubCategory) && result.category.includes(filterCategory))
+
+  console.log(filteredResults)
 
   function handleChange(e) {
     setSearchTerm(e.target.value);
@@ -55,7 +61,7 @@ export default function Search({ user }) {
           </input>
     </form>
     <div className={styles.resultsContainer}>
-      {results.slice(0,25).map(post => <PostListings
+      {filteredResults.slice(0,25).map(post => <PostListings
       key={post.id}
       id={post.id}
       title={post.title}
@@ -69,7 +75,6 @@ export default function Search({ user }) {
       cityId={post.city_id}
       created={post.created_at}
       updated={post.updated_at}
-      user={user}
     />)}
       {errors.map(err => <div key={err}>{err}</div>)}
     </div>

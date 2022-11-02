@@ -49,6 +49,10 @@
   color: red;
 }
 
+.active {
+  color: red;
+}
+
 .star:hover {
   color: gold;
 }

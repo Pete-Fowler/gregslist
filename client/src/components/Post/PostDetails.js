@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
 import { formatDistance } from 'date-fns';
 
-export default function PostDetails({ user }) {
+export default function PostDetails({ user, newUser }) {
   const [ starred, setStarred ] = useState(false);
   const [ post, setPost ] = useState({})
+  const [ hidden, setHidden ] = useState(false)
 
   const { id } = useParams();
 
@@ -13,6 +14,7 @@ export default function PostDetails({ user }) {
   
   const today = new Date();
 
+  // Fetch posts
   useEffect(() => {
     fetch(`/posts/${id}`)
     .then(r => {
@@ -28,6 +30,7 @@ export default function PostDetails({ user }) {
     window.open(`mailto:${post ? post.user.username : ''}`);
   }
 
+  // Returns timestamp JSX
   function postedAt() {
     return <span>posted: {post.created_at
       ? <span className={styles.underlined}>{formatDistance(new Date(post.created_at), today)} ago</span>
@@ -35,7 +38,7 @@ export default function PostDetails({ user }) {
     </span>
   }
 
-  function handleStarClick(e) {
+  function handleStarClick() {
     setStarred(starred => !starred);
    
     const body = starred ? {unstar: post.id} : {star: post.id};
@@ -50,9 +53,7 @@ export default function PostDetails({ user }) {
       })
       .then(r => {
         if(r.ok) {
-          r.json().then(data => {
-            console.log(data)
-          });
+          r.json().then(data => newUser(data));
         } else {
           r.json().then(err => console.log(err));
         }
@@ -62,13 +63,49 @@ export default function PostDetails({ user }) {
     }
   }
 
+  // Set starred & hidden posts states
   useEffect(() => {
-      if(user && user.starred.includes(post.id)) {
+    if(user) {
+      if(user.starred.includes(post.id)) {
       setStarred(true);
+      }
+      if(user.hiddens.some(el => el.post_id === post.id)) {
+        setHidden(true);
+      }
     }
-  }, [post])
+  }, [post, user])
 
-console.log(user && user.starred.includes(post.id), user)
+function handleHideClick() {  
+  if(user) {
+    setHidden(hidden => !hidden);
+    const method = hidden ? 'DELETE' : 'POST';
+    const hiddenId = hidden ? `${user.hiddens.filter(el => el.post_id === post.id)[0].id}` : ''; // need hidden ID
+    const body = hidden ? '' : JSON.stringify({user_id: user.id, post_id: post.id});
+
+    fetch(`/hiddens/${hiddenId}`, {
+      method: method,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: body
+    })
+    .then(r => {
+      if(r.ok) {
+        r.json().then(data => {
+          console.log(data);
+          navigate('/');
+        });
+      } else {
+        r.json().then(err => {
+          setHidden(hidden => !hidden);
+          alert(err.error);
+        });
+      }
+    })
+  } else {
+    navigate('/login');
+  }
+}
 
   return (
     <div className={styles.postBox}>
@@ -82,10 +119,10 @@ console.log(user && user.starred.includes(post.id), user)
           <div className={`${styles.star} ${starred ? styles.active : ''} ${styles.icon}`} onClick={handleStarClick}>☆</div> 
           <div>favorite</div>
         </div>
-        <div className={styles.iconBox}>
-          <div className={styles.icon}>🗑</div> 
+        {/* <div className={styles.iconBox}>
+          <div className={`${styles.icon} ${hidden ? styles.active : ''}`} onClick={handleHideClick}>🗑</div> 
           <div>hide</div>
-        </div>
+        </div> */}
         {/* <div className={styles.iconBox}>
           <div className={`${styles.icon} ${styles.flag}`}>🏳️</div> 
           <div className={styles.flagText}>flag</div>
