@@ -15,6 +15,8 @@ export default function Search({ user }) {
   
 
   useEffect(() => {
+    
+    
     fetch(`/posts?q=${term}`)
     .then(r => {
       if(r.ok) {

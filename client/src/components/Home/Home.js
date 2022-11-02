@@ -1,10 +1,9 @@
 import styles from './Home.module.css';
 import { useEffect, useState } from 'react'
 import Cities from '../Cities/Cities';
-import SearchCategories from '../SearchCategories/SearchCategories'
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function Home({ user, setFilterCategory, setFilterSubCategory, filterCategory, filterSubCategory  }) {
+export default function Home({ user }) {
   
   const [ searchTerm, setSearchTerm ] = useState('');
   
@@ -21,7 +20,8 @@ export default function Home({ user, setFilterCategory, setFilterSubCategory, fi
   }
 
   // Render MyAccount or Login based on whether user is logged in
-  const path = user ? '/account' : '/login';
+  const accountLinkPath = user ? '/account' : '/login';
+  const postPath = user ? '/posts-create' : '/login';
 
   const [cities, setCities] = useState([]);
 
@@ -53,60 +53,18 @@ export default function Home({ user, setFilterCategory, setFilterSubCategory, fi
   "nonprofit sector", "real estate", "retail & wholesale", "sales & biz dev", "salon & spa & fitness", "security", "skilled trade & craft", "software & qa & dba",
   "systems & network", "technical support", "transport", "tv & film & video", "web & info design", "writing & editing"]
 
-  function renderLinks(categories, classParam=styles.subcategory) {
-    
-    function handleSubcategory({category}) {
-      setFilterSubCategory(`${category}`)
-      console.log(filterCategory)
-      } 
-    return <div className={styles.subcategoryBox}>
-    {categories.map(category => <Link onClick={() => handleSubcategory({category})} className={`${styles.subcategory} ${classParam}`} to={`/search-categories/${category}`} >{category}</Link>)}
-  </div>
-    
-  } 
-
-  function handleJobs() {
-    setFilterCategory("Jobs")
-    console.log(filterCategory)
-    } 
-
-  function handleServices() {
-    setFilterCategory("Services")
-    console.log(filterCategory)
-    } 
-
-  function handleCommunity() {
-    setFilterCategory("Community")
-    console.log(filterCategory)  
-  } 
-
-  function handleSale() {
-    setFilterCategory("For Sale")
-    console.log(filterCategory)
-    } 
-
-  
-
-  function handleHousing() {
-    setFilterCategory("Housing")
-    console.log(filterCategory)
-  } 
-
   return (
     <div className={styles.home}>
-    <div>
-    <SearchCategories user={user} filterCategory={filterCategory} filterSubCategory={filterSubCategory}/>
-    </div>
       {/* ================LEFT BAR============ */}
       <div className={styles.leftBar}>
         <Link className={styles.siteTitle}>gregslist</Link>
         <br></br>
-        <Link to='/posts-create' className={styles.posting}>create a posting</Link>
-        <Link to={path}>my account</Link> 
+        <Link to={postPath} className={styles.posting}>create a posting</Link>
+        <Link to={accountLinkPath}>my account</Link> 
         <br></br>
         <form onSubmit={handleSearch}><input className={styles.search} type='text' placeholder='search gregslist' value={searchTerm} onChange={handleChange}></input></form>
         <br></br>
-        <h4 className={styles.eventcal}><a href="localhost:4000">event calendar</a></h4>
+        <h4 className={styles.eventcal}><a href="#">event calendar</a></h4>
         <table className={styles.table}>
           <tbody>
             <tr className={styles.tableRowDays}>
@@ -123,37 +81,37 @@ export default function Home({ user, setFilterCategory, setFilterSubCategory, fi
               <td className={styles.tableDate}>25</td>
               <td className={styles.tableDate}>26</td>
               <td className={styles.tableDate}>27</td>
-              <td className={styles.tableDateCurrent}><a href="localhost:4000">28</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">29</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">30</a></td>
+              <td className={styles.tableDateCurrent}><a href="">28</a></td>
+              <td className={styles.tableDate}><a href="">29</a></td>
+              <td className={styles.tableDate}><a href="">30</a></td>
             </tr>
             <tr className={styles.tableRow}>
-              <td className={styles.tableDate}><a href="localhost:4000">31</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">1</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">2</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">3</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">4</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">5</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">6</a></td>
+              <td className={styles.tableDate}><a href="">31</a></td>
+              <td className={styles.tableDate}><a href="">1</a></td>
+              <td className={styles.tableDate}><a href="">2</a></td>
+              <td className={styles.tableDate}><a href="">3</a></td>
+              <td className={styles.tableDate}><a href="">4</a></td>
+              <td className={styles.tableDate}><a href="">5</a></td>
+              <td className={styles.tableDate}><a href="">6</a></td>
               
             </tr>
             <tr className={styles.tableRow}>
-              <td className={styles.tableDate}><a href="localhost:4000">7</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">8</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">9</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">10</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">11</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">12</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">13</a></td>
+              <td className={styles.tableDate}><a href="">7</a></td>
+              <td className={styles.tableDate}><a href="">8</a></td>
+              <td className={styles.tableDate}><a href="">9</a></td>
+              <td className={styles.tableDate}><a href="">10</a></td>
+              <td className={styles.tableDate}><a href="">11</a></td>
+              <td className={styles.tableDate}><a href="">12</a></td>
+              <td className={styles.tableDate}><a href="">13</a></td>
             </tr>
             <tr className={styles.tableRow}>
-              <td className={styles.tableDate}><a href="localhost:4000">14</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">15</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">16</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">17</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">18</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">19</a></td>
-              <td className={styles.tableDate}><a href="localhost:4000">20</a></td>
+              <td className={styles.tableDate}><a href="">14</a></td>
+              <td className={styles.tableDate}><a href="">15</a></td>
+              <td className={styles.tableDate}><a href="">16</a></td>
+              <td className={styles.tableDate}><a href="">17</a></td>
+              <td className={styles.tableDate}><a href="">18</a></td>
+              <td className={styles.tableDate}><a href="">19</a></td>
+              <td className={styles.tableDate}><a href="">20</a></td>
             </tr>
           </tbody>
         </table>
@@ -181,28 +139,28 @@ export default function Home({ user, setFilterCategory, setFilterSubCategory, fi
         </div>
         <div className={styles.mainContentBox}>
           <div className={styles.col1}>
-            <div className={`${styles.section} ${styles.community}`} onClick={handleCommunity}>
-              <Link className={styles.heading} to='/search-categories/community' onClick={handleCommunity}>community</Link>
+            <div className={`${styles.section} ${styles.community}`} >
+              <Link className={styles.heading} to='/search/community'>community</Link>
               {renderLinks(communityCategories)}
             </div>
-            <div className={`${styles.section} ${styles.services}`} onClick={handleServices}>
-              <Link className={styles.heading} to='/search-categories/services' onClick={handleServices}>services</Link>
+            <div className={`${styles.section} ${styles.services}`}>
+              <Link className={styles.heading} to='/search/services'>services</Link>
               {renderLinks(serviceCategories)}
             </div>
           </div>
           <div className={styles.col2}>
-            <div className={`${styles.section} ${styles.housing}`} onClick={handleHousing}>
-              <Link className={styles.heading} to='/search-categories/housing' onClick={handleHousing}>housing</Link>
+            <div className={`${styles.section} ${styles.housing}`}>
+              <Link className={styles.heading} to='/search/housing'>housing</Link>
               {renderLinks(housingCategories, styles.housingLinks)}
             </div>
-            <div className={`${styles.section} ${styles.forSale}`} onClick={handleSale}>
-              <Link className={styles.heading} to='/search-categories/for sale' onClick={handleSale}>for sale</Link>
+            <div className={`${styles.section} ${styles.forSale}`}>
+              <Link className={styles.heading} to='/search/for sale'>for sale</Link>
               {renderLinks(forSaleCategories)}
             </div>
           </div>
           <div className={styles.col3}>
-            <div className={`${styles.section} ${styles.jobs}`} onClick={handleJobs}>
-              <Link className={styles.heading} to='/search-categories/jobs' onClick={handleJobs}>jobs</Link>
+            <div className={`${styles.section} ${styles.jobs}`}>
+              <Link className={styles.heading} to='/search/jobs'>jobs</Link>
               {renderLinks(jobsCategories, styles.jobsLinks)}
             </div>
           </div>
