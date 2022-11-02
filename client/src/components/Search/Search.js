@@ -16,13 +16,13 @@ export default function Search({ user }) {
 
   useEffect(() => {
     
-    
+    // Code to hide posts when setting data, needs editing
+    // user.hiddens.filter(el => el.post_id === post.id)[0].id
+
     fetch(`/posts?q=${term}`)
     .then(r => {
       if(r.ok) {
-        r.json().then(data => {
-          setResults(data.filter(post => user.hiddens.filter(el => el.post_id === post.id)[0].id)) // wrong
-        });
+        r.json().then(data => setResults(data));
       } else {
         r.json().then(err => setErrors(err.errors));
       }

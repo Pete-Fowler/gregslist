@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
 import { formatDistance } from 'date-fns';
 
-export default function PostDetails({ user }) {
+export default function PostDetails({ user, newUser }) {
   const [ starred, setStarred ] = useState(false);
   const [ post, setPost ] = useState({})
   const [ hidden, setHidden ] = useState(false)
@@ -53,9 +53,7 @@ export default function PostDetails({ user }) {
       })
       .then(r => {
         if(r.ok) {
-          r.json().then(data => {
-            console.log(data)
-          });
+          r.json().then(data => newUser(data));
         } else {
           r.json().then(err => console.log(err));
         }
@@ -109,9 +107,6 @@ function handleHideClick() {
   }
 }
 
-// if(user)
-  // console.log(user, user.hiddens.filter(el => el.post_id === post.id)[0].id);
-
   return (
     <div className={styles.postBox}>
       <div className={styles.nav}>
@@ -124,10 +119,10 @@ function handleHideClick() {
           <div className={`${styles.star} ${starred ? styles.active : ''} ${styles.icon}`} onClick={handleStarClick}>☆</div> 
           <div>favorite</div>
         </div>
-        <div className={styles.iconBox}>
+        {/* <div className={styles.iconBox}>
           <div className={`${styles.icon} ${hidden ? styles.active : ''}`} onClick={handleHideClick}>🗑</div> 
           <div>hide</div>
-        </div>
+        </div> */}
         {/* <div className={styles.iconBox}>
           <div className={`${styles.icon} ${styles.flag}`}>🏳️</div> 
           <div className={styles.flagText}>flag</div>
