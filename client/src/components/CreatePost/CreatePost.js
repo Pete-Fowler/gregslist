@@ -54,7 +54,7 @@ export default function CreatePost({ user }) {
   }
 
   function handleSubmit(event) {
-    event.preventDefault()
+    event.preventDefault();
 
     const newPost = {
 

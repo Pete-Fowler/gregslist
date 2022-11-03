@@ -16,9 +16,14 @@ export default function MyAccount({ user, newUser }) {
     fetch(`/posts?my_id=${user.id}`)
     .then(r => {
       if(r.ok) {
-        r.json().then(data => setPosts(data));
+        r.json().then(data => {
+          setPosts(data);
+        });
       } else {
-        r.json().then(err => setErrors(err.error));
+        r.json().then(err => {
+          console.log(err);
+          setErrors(err.error);
+        });
       }
     })}
   }, [user])
@@ -35,7 +40,7 @@ export default function MyAccount({ user, newUser }) {
     })}
   }, [user])
 
-  if(starred) console.log(starred);
+  if(posts) console.log(posts);
   function logout() {
     fetch('/destroy', {
       method: 'DELETE',
