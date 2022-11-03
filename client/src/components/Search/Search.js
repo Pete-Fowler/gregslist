@@ -42,10 +42,7 @@ export default function Search({ user }) {
       } else {
         r.json().then(err => setErrors(err.errors));
       }
-    })
-    .then(
-      navigate(`/search/${searchTerm}`)
-    )
+    });
   }
 
   return (

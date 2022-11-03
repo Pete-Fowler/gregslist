@@ -14,9 +14,9 @@ class PostsController < ApplicationController
   def index
     posts = Post.all
     if(params[:my_id])
+      puts "hello"
       posts = User.find(params[:my_id]).posts
-    end
-    if(params[:q])
+    elsif(params[:q])
       posts = Post.all.filter do |post|
         post.title.downcase.include?(params[:q].downcase) || 
         post.description.downcase.include?(params[:q].downcase) ||
@@ -24,8 +24,7 @@ class PostsController < ApplicationController
         post.category.downcase.include?(params[:q].downcase) || 
         post.subcategory.downcase.include?(params[:q].downcase)
       end
-    end
-    if(params[:starred]) 
+    elsif(params[:starred]) 
       arr = params[:starred].split(',')
       posts = Post.where(id: arr)
     end
