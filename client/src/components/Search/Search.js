@@ -38,7 +38,10 @@ export default function Search({ user }) {
     fetch(`/posts?q=${searchTerm}`)
     .then(r => {
       if(r.ok) {
-        r.json().then(data => setResults(data));
+        r.json().then(data => {
+          setResults(data);
+          navigate(`/search/${searchTerm}`);
+        });
       } else {
         r.json().then(err => setErrors(err.errors));
       }
