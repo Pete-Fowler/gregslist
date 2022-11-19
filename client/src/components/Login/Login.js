@@ -1,47 +1,46 @@
-import styles from './Login.module.css';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import styles from "./Login.module.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login({ user, newUser }) {
-  const [ createData, setCreateData] = useState({
-    username: '',
-    password: '',
-    password_confirmation: ''
+  const [createData, setCreateData] = useState({
+    username: "",
+    password: "",
+    password_confirmation: "",
   });
-  const [ loginData, setLoginData ] = useState({
-    username: '',
-    password: ''
-  })
-  const [ errors, setErrors ] = useState([]);
+  const [loginData, setLoginData] = useState({
+    username: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
 
   function loginFormChange(e) {
-    setLoginData({...loginData, [e.target.name]: e.target.value});   
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   }
 
- 
   function createFormChange(e) {
-    setCreateData({...createData, [e.target.name]: e.target.value})
+    setCreateData({ ...createData, [e.target.name]: e.target.value });
   }
 
   function handleCreate(e) {
     e.preventDefault();
 
-    fetch('/signup', {
-      method: 'POST',
+    fetch("/signup", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(createData)
-    })
-    .then(res => {
-      if(res.ok) {
-        res.json().then(data => newUser(data));
-        navigate('/account');
+      body: JSON.stringify(createData),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((data) => newUser(data));
+        navigate("/account");
       } else {
-        res.json().then(err => {
-          setErrors(err.errors)});
+        res.json().then((err) => {
+          setErrors(err.errors);
+        });
       }
     });
   }
@@ -49,21 +48,20 @@ export default function Login({ user, newUser }) {
   function handleLogin(e) {
     e.preventDefault();
 
-    fetch('/login', {
-      method: 'POST',
+    fetch("/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(loginData)
-    })
-    .then(r => {
-      if(r.ok) {
-        r.json().then(user => newUser(user));
-        navigate('/account');
+      body: JSON.stringify(loginData),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((user) => newUser(user));
+        navigate("/account");
       } else {
-        r.json().then(err => setErrors([err.error]));
+        r.json().then((err) => setErrors([err.error]));
       }
-    })
+    });
   }
 
   return (
@@ -72,34 +70,64 @@ export default function Login({ user, newUser }) {
         <h1 className={styles.loginTitle}>Log in</h1>
         <div className={styles.field}>
           <label>Email / Handle</label>
-          <input type='text' name='username' value={loginData.username} onChange={loginFormChange}></input>
+          <input
+            type="text"
+            name="username"
+            value={loginData.username}
+            onChange={loginFormChange}
+          ></input>
         </div>
-        <div className={styles.field} >
+        <div className={styles.field}>
           <label>Password</label>
-          <input type='password' name='password'value={loginData.password} onChange={loginFormChange}></input>
+          <input
+            type="password"
+            name="password"
+            value={loginData.password}
+            onChange={loginFormChange}
+          ></input>
         </div>
-        <button type='submit' className={styles.loginBtn}>Log in</button>
+        <button type="submit" className={styles.loginBtn}>
+          Log in
+        </button>
       </form>
-      <p><i>or</i></p>
+      <p>
+        <i>or</i>
+      </p>
       {errors.map((err) => (
-          <span key={err} className={styles.error}>{err}</span>
-        ))}
+        <span key={err} className={styles.error}>
+          {err}
+        </span>
+      ))}
       <form className={styles.create} onSubmit={handleCreate}>
         <h1 className={styles.createTitle}>Create an account</h1>
         <div className={styles.field}>
           <label>Email</label>
-          <input type='email' name='username' onChange={createFormChange}></input>
+          <input
+            type="email"
+            name="username"
+            onChange={createFormChange}
+          ></input>
         </div>
         <div className={styles.field}>
           <label>Password</label>
-          <input type='password' name='password' onChange={createFormChange}></input>
+          <input
+            type="password"
+            name="password"
+            onChange={createFormChange}
+          ></input>
         </div>
         <div className={styles.field}>
           <label>Password Confirmation</label>
-          <input type='password' name='password_confirmation' onChange={createFormChange}></input>
+          <input
+            type="password"
+            name="password_confirmation"
+            onChange={createFormChange}
+          ></input>
         </div>
-        <button type='submit' className={styles.loginBtn}>Create account</button>
+        <button type="submit" className={styles.loginBtn}>
+          Create account
+        </button>
       </form>
     </div>
-  )
+  );
 }
