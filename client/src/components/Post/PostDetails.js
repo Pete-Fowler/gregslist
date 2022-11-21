@@ -2,15 +2,17 @@ import styles from "./PostDetails.module.css";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { formatDistance } from "date-fns";
+import useStar from "../../Hooks/useStar.js";
 
 export default function PostDetails({ user, newUser }) {
-  // const [starred, setStarred] = useState(false);
   const [post, setPost] = useState({});
   const [hidden, setHidden] = useState(false);
 
   const { id } = useParams();
 
   const navigate = useNavigate();
+
+  const { starred, checkIfStarred, handleStarClick } = useStar();
 
   const today = new Date();
 
@@ -43,38 +45,10 @@ export default function PostDetails({ user, newUser }) {
     );
   }
 
-  function handleStarClick() {
-    setStarred((starred) => !starred);
-
-    const body = starred ? { unstar: post.id } : { star: post.id };
-
-    if (user) {
-      fetch(`/users/${user.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      }).then((r) => {
-        if (r.ok) {
-          r.json().then((data) => newUser(data));
-        } else {
-          r.json().then((err) => console.log(err));
-        }
-      });
-    } else {
-      navigate("/login");
-    }
-  }
-
   // Set starred & hidden posts states
-  // useEffect(() => {
-  //   if (user) {
-  //     if (user.starred.includes(post.id)) {
-  //       setStarred(true);
-  //     }
-  //   }
-  // }, [post, user]);
+  useEffect(() => {
+    checkIfStarred(user, post);
+  }, [post, user]);
 
   function handleHideClick() {
     if (user) {
@@ -124,7 +98,7 @@ export default function PostDetails({ user, newUser }) {
             className={`${styles.star} ${starred ? styles.active : ""} ${
               styles.icon
             }`}
-            onClick={handleStarClick}
+            onClick={() => handleStarClick(user, post, newUser)}
           >
             ☆
           </div>
