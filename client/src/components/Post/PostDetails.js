@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { formatDistance } from "date-fns";
 
 export default function PostDetails({ user, newUser }) {
-  const [starred, setStarred] = useState(false);
+  // const [starred, setStarred] = useState(false);
   const [post, setPost] = useState({});
   const [hidden, setHidden] = useState(false);
 
@@ -14,13 +14,13 @@ export default function PostDetails({ user, newUser }) {
 
   const today = new Date();
 
-  // Fetch posts
+  // Fetch post
   useEffect(() => {
     fetch(`/posts/${id}`).then((r) => {
       if (r.ok) {
         r.json().then((data) => setPost(data));
       } else {
-        alert("Error: not found");
+        r.json().then((err) => console.log(err));
       }
     });
   }, []);
@@ -68,16 +68,13 @@ export default function PostDetails({ user, newUser }) {
   }
 
   // Set starred & hidden posts states
-  useEffect(() => {
-    if (user) {
-      if (user.starred.includes(post.id)) {
-        setStarred(true);
-      }
-      if (user.hiddens.some((el) => el.post_id === post.id)) {
-        setHidden(true);
-      }
-    }
-  }, [post, user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     if (user.starred.includes(post.id)) {
+  //       setStarred(true);
+  //     }
+  //   }
+  // }, [post, user]);
 
   function handleHideClick() {
     if (user) {
