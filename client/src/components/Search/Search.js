@@ -3,7 +3,7 @@ import PostListings from "../Post/PostListings";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-export default function Search({ user }) {
+export default function Search({ user, newUser }) {
   const [results, setResults] = useState([]);
   const [errors, setErrors] = useState([]);
   const { term } = useParams();
@@ -71,6 +71,8 @@ export default function Search({ user }) {
             created={post.created_at}
             updated={post.updated_at}
             user={user}
+            post={post}
+            newUser={newUser}
           />
         ))}
         {errors.map((err) => (
