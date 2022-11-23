@@ -72,6 +72,7 @@ export default function Search({ user, newUser }) {
             updated={post.updated_at}
             user={user}
             post={post}
+            newUser={newUser}
           />
         ))}
         {errors.map((err) => (

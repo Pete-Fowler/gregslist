@@ -27,7 +27,10 @@ export default function useStar() {
         body: JSON.stringify(body),
       }).then((r) => {
         if (r.ok) {
-          r.json().then((data) => newUser(data));
+          r.json().then((data) => {
+            newUser(data);
+            setStarred((starred) => !starred);
+          });
         } else {
           r.json().then((err) => console.log(err));
         }

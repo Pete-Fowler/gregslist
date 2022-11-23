@@ -1,6 +1,6 @@
 import styles from "./PostListings.module.css";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import useStar from "../../Hooks/useStar";
 
@@ -46,7 +46,10 @@ export default function PostListings({
       <div className={styles.metacontainer}>
         <span
           className={`${styles.star} ${starred ? styles.active : ""}`}
-          onClick={() => handleStarClick(user, post, newUser)}
+          onClick={(e) => {
+            e.preventDefault();
+            handleStarClick(user, post, newUser);
+          }}
         >
           ☆
         </span>
