@@ -14,8 +14,6 @@ export default function useStar() {
   }
 
   function handleStarClick(user, post, newUser) {
-    setStarred((starred) => !starred);
-
     const body = starred ? { unstar: post.id } : { star: post.id };
 
     if (user) {
