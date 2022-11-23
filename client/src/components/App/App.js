@@ -51,7 +51,10 @@ function App() {
           />
           <Route path="posts-create" element={<CreatePost user={user} />} />
           <Route path="posts-edit/:id" element={<EditPost user={user} />} />
-          <Route path="search/:term" element={<Search user={user} />} />
+          <Route
+            path="search/:term"
+            element={<Search user={user} newUser={newUser} />}
+          />
         </Route>
       </Routes>
       <Footer />
