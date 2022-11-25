@@ -48,15 +48,15 @@ export default function PostDetails({ user, newUser }) {
   // Set starred & hidden posts states
   useEffect(() => {
     checkIfStarred(user, post);
+    if(user.hiddens)
   }, [post, user]);
 
   function handleHideClick() {
     if (user) {
-      setHidden((hidden) => !hidden);
       const method = hidden ? "DELETE" : "POST";
       const hiddenId = hidden
-        ? `${user.hiddens.filter((el) => el.post_id === post.id)[0].id}`
-        : ""; // need hidden ID
+        ? `${user.hiddens.filter((obj) => obj.post_id === post.id)}`
+        : "";
       const body = hidden
         ? ""
         : JSON.stringify({ user_id: user.id, post_id: post.id });
@@ -71,11 +71,22 @@ export default function PostDetails({ user, newUser }) {
         if (r.ok) {
           r.json().then((data) => {
             console.log(data);
+            method === "POST"
+              ? newUser((user) => ({
+                  ...user,
+                  hiddens: [...user.hiddens, data],
+                }))
+              : newUser((user) => ({
+                  ...user,
+                  hiddens: [
+                    ...user.hiddens.filter((obj) => obj.post_id !== post.id),
+                  ],
+                }));
+            setHidden((hidden) => !hidden);
             navigate("/");
           });
         } else {
           r.json().then((err) => {
-            setHidden((hidden) => !hidden);
             alert(err.error);
           });
         }
@@ -84,6 +95,7 @@ export default function PostDetails({ user, newUser }) {
       navigate("/login");
     }
   }
+  console.log(user);
 
   return (
     <div className={styles.postBox}>
@@ -105,7 +117,12 @@ export default function PostDetails({ user, newUser }) {
           <div>favorite</div>
         </div>
         <div className={styles.iconBox}>
-          <div className={`${styles.icon} ${hidden ? styles.active : ''}`} onClick={handleHideClick}>🗑</div> 
+          <div
+            className={`${styles.icon} ${hidden ? styles.active : ""}`}
+            onClick={handleHideClick}
+          >
+            🗑
+          </div>
           <div>hide</div>
         </div>
         {/* <div className={styles.iconBox}>
