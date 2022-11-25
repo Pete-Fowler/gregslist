@@ -47,7 +47,6 @@ export default function useHidden() {
                   ],
                 }));
             setHidden((hidden) => !hidden);
-            navigate("/");
           });
         } else {
           r.json().then((err) => {

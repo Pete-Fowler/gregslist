@@ -35,6 +35,10 @@ export default function PostListings({
     checkIfHidden(user, post);
   }, [user, post, checkIfStarred, checkIfHidden]);
 
+  if (hidden) {
+    return "";
+  }
+
   return (
     <Link to={path} className={styles.postcardcontainer}>
       <img
