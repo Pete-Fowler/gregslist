@@ -3,16 +3,15 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { formatDistance } from "date-fns";
 import useStar from "../../Hooks/useStar.js";
+import useHidden from "../../Hooks/useHidden.js";
 
 export default function PostDetails({ user, newUser }) {
   const [post, setPost] = useState({});
-  const [hidden, setHidden] = useState(false);
 
   const { id } = useParams();
 
-  const navigate = useNavigate();
-
   const { starred, checkIfStarred, handleStarClick } = useStar();
+  const { hidden, checkIfHidden, handleHideClick } = useHidden();
 
   const today = new Date();
 
@@ -25,7 +24,7 @@ export default function PostDetails({ user, newUser }) {
         r.json().then((err) => console.log(err));
       }
     });
-  }, []);
+  }, [id]);
 
   function mailTo() {
     window.open(`mailto:${post ? post.user.username : ""}`);
@@ -48,58 +47,8 @@ export default function PostDetails({ user, newUser }) {
   // Set starred & hidden posts states
   useEffect(() => {
     checkIfStarred(user, post);
-    if (user) {
-      if (user.hiddens.some((obj) => obj.post_id === post.id)) {
-        setHidden(true);
-      }
-    }
-  }, [post, user, checkIfStarred]);
-
-  function handleHideClick() {
-    if (user) {
-      const method = hidden ? "DELETE" : "POST";
-      const hiddenId = hidden
-        ? `${user.hiddens.find((obj) => obj.post_id === post.id).id}`
-        : "";
-      console.log(hiddenId);
-      const body = hidden
-        ? ""
-        : JSON.stringify({ user_id: user.id, post_id: post.id });
-
-      fetch(`/hiddens/${hiddenId}`, {
-        method: method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: body,
-      }).then((r) => {
-        if (r.ok) {
-          r.json().then((data) => {
-            console.log(data);
-            method === "POST"
-              ? newUser((user) => ({
-                  ...user,
-                  hiddens: [...user.hiddens, data],
-                }))
-              : newUser((user) => ({
-                  ...user,
-                  hiddens: [
-                    ...user.hiddens.filter((obj) => obj.post_id !== post.id),
-                  ],
-                }));
-            setHidden((hidden) => !hidden);
-            navigate("/");
-          });
-        } else {
-          r.json().then((err) => {
-            alert(err.error);
-          });
-        }
-      });
-    } else {
-      navigate("/login");
-    }
-  }
+    checkIfHidden(user, post);
+  }, [post, user, checkIfStarred, checkIfHidden]);
 
   return (
     <div className={styles.postBox}>
@@ -123,7 +72,7 @@ export default function PostDetails({ user, newUser }) {
         <div className={styles.iconBox}>
           <div
             className={`${styles.icon} ${hidden ? styles.active : ""}`}
-            onClick={handleHideClick}
+            onClick={() => handleHideClick(user, post, newUser)}
           >
             🗑
           </div>
