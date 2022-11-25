@@ -26,9 +26,8 @@ class PostsController < ApplicationController
     elsif(params[:starred]) 
       arr = params[:starred].split(',')
       posts = Post.where(id: arr)
-    end
-    elsif(params[:hiddens] && params[:my_id])
-      user = User.find(params[:my_id])
+    elsif(params[:hiddens])
+      user = User.find(params[:hiddens])
       posts = []
       user.hiddens.each do |hidden| 
         posts << Post.find(hidden.post_id)
@@ -69,7 +68,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.permit(:id, :my_id, :city_id, :user_id, :title, :description, :image, :category, :subcategory, :area, :postal_code, :price)
+    params.permit(:id, :my_id, :city_id, :user_id, :title, :description, :image, :category, :subcategory, :area, :postal_code, :price, :hiddens)
   end
 
 end

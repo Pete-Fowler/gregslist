@@ -8,6 +8,7 @@ export default function MyAccount({ user, newUser }) {
   const [posts, setPosts] = useState([]);
   const [starred, setStarred] = useState([]);
   const [city, setCity] = useState([]);
+  const [hiddens, setHiddens] = useState([]);
 
   const navigate = useNavigate();
 
@@ -42,9 +43,18 @@ export default function MyAccount({ user, newUser }) {
     }
   }, [user]);
 
+  // Fetch hidden posts
   useEffect(() => {
-    
-  }, [user])
+    if (user) {
+      fetch(`/posts?hiddens=${user.id}`).then((r) => {
+        if (r.ok) {
+          r.json().then((data) => setHiddens(data));
+        } else {
+          r.json().then((err) => console.log(err));
+        }
+      });
+    }
+  }, [user]);
 
   function logout() {
     fetch("/destroy", {
@@ -177,6 +187,33 @@ export default function MyAccount({ user, newUser }) {
           : null}
       </div>
       <br />
+      Hidden Posts
+      <div className={styles.posts}>
+        <div className={styles.starred}>
+          <div className={`${styles.manage} ${styles.heading}`}>manage</div>
+          <div className={`${styles.title} ${styles.heading}`}>post title</div>
+          <div className={`${styles.area} ${styles.heading}`}>
+            area and category
+          </div>
+          <div className={`${styles.date} ${styles.heading}`}>posted date</div>
+        </div>
+        {hiddens.length > 0
+          ? hiddens.map((post) => (
+              <div key={post.id} className={styles.starred}>
+                <div className={styles.manage}>
+                  <button onClick={() => showPost(post.id)}>display</button>
+                </div>
+                <div className={styles.title}>{post.title}</div>
+                <div className={styles.area}>
+                  <b>{post.area}</b> {post.category}
+                </div>
+                <div className={styles.date}>
+                  {format(new Date(post.created_at), "dd MMM yyyy k:mm")}
+                </div>
+              </div>
+            ))
+          : null}
+      </div>
       {user && user.username === "admin" ? (
         <form onSubmit={addCity}>
           <input
