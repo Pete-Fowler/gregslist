@@ -14,7 +14,6 @@ class PostsController < ApplicationController
   def index
     posts = Post.all
     if(params[:my_id])
-      puts "hello"
       posts = User.find(params[:my_id]).posts
     elsif(params[:q])
       posts = Post.all.filter do |post|
@@ -27,6 +26,13 @@ class PostsController < ApplicationController
     elsif(params[:starred]) 
       arr = params[:starred].split(',')
       posts = Post.where(id: arr)
+    end
+    elsif(params[:hiddens] && params[:my_id])
+      user = User.find(params[:my_id])
+      posts = []
+      user.hiddens.each do |hidden| 
+        posts << Post.find(hidden.post_id)
+      end
     end
     render json: posts
   end

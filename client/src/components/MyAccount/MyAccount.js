@@ -11,6 +11,7 @@ export default function MyAccount({ user, newUser }) {
 
   const navigate = useNavigate();
 
+  // Fetch posts
   useEffect(() => {
     if (user !== null) {
       fetch(`/posts?my_id=${user.id}`).then((r) => {
@@ -28,6 +29,7 @@ export default function MyAccount({ user, newUser }) {
     }
   }, [user]);
 
+  // Fetch starred posts
   useEffect(() => {
     if (user !== null) {
       fetch(`/posts?starred=${user.starred}`).then((r) => {
@@ -39,6 +41,10 @@ export default function MyAccount({ user, newUser }) {
       });
     }
   }, [user]);
+
+  useEffect(() => {
+    
+  }, [user])
 
   function logout() {
     fetch("/destroy", {
