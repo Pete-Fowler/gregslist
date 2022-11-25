@@ -48,15 +48,20 @@ export default function PostDetails({ user, newUser }) {
   // Set starred & hidden posts states
   useEffect(() => {
     checkIfStarred(user, post);
-    if(user.hiddens)
-  }, [post, user]);
+    if (user) {
+      if (user.hiddens.some((obj) => obj.post_id === post.id)) {
+        setHidden(true);
+      }
+    }
+  }, [post, user, checkIfStarred]);
 
   function handleHideClick() {
     if (user) {
       const method = hidden ? "DELETE" : "POST";
       const hiddenId = hidden
-        ? `${user.hiddens.filter((obj) => obj.post_id === post.id)}`
+        ? `${user.hiddens.find((obj) => obj.post_id === post.id).id}`
         : "";
+      console.log(hiddenId);
       const body = hidden
         ? ""
         : JSON.stringify({ user_id: user.id, post_id: post.id });

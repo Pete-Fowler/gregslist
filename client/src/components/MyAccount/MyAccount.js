@@ -40,7 +40,6 @@ export default function MyAccount({ user, newUser }) {
     }
   }, [user]);
 
-  if (posts) console.log(posts);
   function logout() {
     fetch("/destroy", {
       method: "DELETE",
