@@ -100,7 +100,6 @@ export default function PostDetails({ user, newUser }) {
       navigate("/login");
     }
   }
-  console.log(user);
 
   return (
     <div className={styles.postBox}>
