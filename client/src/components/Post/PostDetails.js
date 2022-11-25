@@ -129,15 +129,6 @@ export default function PostDetails({ user, newUser }) {
           </div>
           <div>hide</div>
         </div>
-        <div className={styles.iconBox}>
-          <div
-            className={`${styles.icon} ${styles.flag}`}
-            onClick={() => alert("This post has been flagged")}
-          >
-            🏳️
-          </div>
-          <div className={styles.flagText}>flag</div>
-        </div>
         {postedAt()}
         <div className={styles.print} onClick={() => window.print()}>
           print
