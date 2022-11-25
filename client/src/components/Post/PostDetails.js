@@ -104,10 +104,10 @@ export default function PostDetails({ user, newUser }) {
           </div>
           <div>favorite</div>
         </div>
-        {/* <div className={styles.iconBox}>
+        <div className={styles.iconBox}>
           <div className={`${styles.icon} ${hidden ? styles.active : ''}`} onClick={handleHideClick}>🗑</div> 
           <div>hide</div>
-        </div> */}
+        </div>
         {/* <div className={styles.iconBox}>
           <div className={`${styles.icon} ${styles.flag}`}>🏳️</div> 
           <div className={styles.flagText}>flag</div>
