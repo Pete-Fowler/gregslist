@@ -2,15 +2,19 @@ import styles from "./MyAccount.module.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
+import useStar from "../../Hooks/useStar";
+import useHidden from "../../Hooks/useHidden";
 
 export default function MyAccount({ user, newUser }) {
   const [errors, setErrors] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [starred, setStarred] = useState([]);
+  const [starredPosts, setStarredPosts] = useState([]);
   const [city, setCity] = useState([]);
   const [hiddens, setHiddens] = useState([]);
 
   const navigate = useNavigate();
+
+  const { starred, checkIfStarred, handleStarClick } = useStar();
 
   // Fetch posts
   useEffect(() => {
@@ -35,7 +39,7 @@ export default function MyAccount({ user, newUser }) {
     if (user !== null) {
       fetch(`/posts?starred=${user.starred}`).then((r) => {
         if (r.ok) {
-          r.json().then((data) => setStarred(data));
+          r.json().then((data) => setStarredPosts(data));
         } else {
           r.json().then((err) => setErrors(err.error));
         }
@@ -139,24 +143,22 @@ export default function MyAccount({ user, newUser }) {
           </div>
           <div className={`${styles.date} ${styles.heading}`}>posted date</div>
         </div>
-        {posts
-          ? posts.map((post) => (
-              <div key={post.id} className={styles.post}>
-                <div className={styles.manage}>
-                  <button onClick={() => showPost(post.id)}>display</button>
-                  <button onClick={() => deletePost(post.id)}>delete</button>
-                  <button onClick={() => editPost(post.id)}>edit</button>
-                </div>
-                <div className={styles.title}>{post.title}</div>
-                <div className={styles.area}>
-                  <b>{post.area}</b> {post.category}
-                </div>
-                <div className={styles.date}>
-                  {format(new Date(post.created_at), "dd MMM yyyy k:mm")}
-                </div>
-              </div>
-            ))
-          : null}
+        {posts.map((post) => (
+          <div key={post.id} className={styles.post}>
+            <div className={styles.manage}>
+              <button onClick={() => showPost(post.id)}>display</button>
+              <button onClick={() => deletePost(post.id)}>delete</button>
+              <button onClick={() => editPost(post.id)}>edit</button>
+            </div>
+            <div className={styles.title}>{post.title}</div>
+            <div className={styles.area}>
+              <b>{post.area}</b> {post.category}
+            </div>
+            <div className={styles.date}>
+              {format(new Date(post.created_at), "dd MMM yyyy k:mm")}
+            </div>
+          </div>
+        ))}
       </div>
       <br></br>
       Starred Posts
@@ -169,22 +171,21 @@ export default function MyAccount({ user, newUser }) {
           </div>
           <div className={`${styles.date} ${styles.heading}`}>posted date</div>
         </div>
-        {starred.length > 0
-          ? starred.map((post) => (
-              <div key={post.id} className={styles.starred}>
-                <div className={styles.manage}>
-                  <button onClick={() => showPost(post.id)}>display</button>
-                </div>
-                <div className={styles.title}>{post.title}</div>
-                <div className={styles.area}>
-                  <b>{post.area}</b> {post.category}
-                </div>
-                <div className={styles.date}>
-                  {format(new Date(post.created_at), "dd MMM yyyy k:mm")}
-                </div>
-              </div>
-            ))
-          : null}
+        {starred.map((post) => (
+          <div key={post.id} className={styles.starred}>
+            <div className={styles.manage}>
+              <button onClick={() => showPost(post.id)}>display</button>
+              <button>un-star</button>
+            </div>
+            <div className={styles.title}>{post.title}</div>
+            <div className={styles.area}>
+              <b>{post.area}</b> {post.category}
+            </div>
+            <div className={styles.date}>
+              {format(new Date(post.created_at), "dd MMM yyyy k:mm")}
+            </div>
+          </div>
+        ))}
       </div>
       <br />
       Hidden Posts
@@ -197,22 +198,20 @@ export default function MyAccount({ user, newUser }) {
           </div>
           <div className={`${styles.date} ${styles.heading}`}>posted date</div>
         </div>
-        {hiddens.length > 0
-          ? hiddens.map((post) => (
-              <div key={post.id} className={styles.starred}>
-                <div className={styles.manage}>
-                  <button onClick={() => showPost(post.id)}>display</button>
-                </div>
-                <div className={styles.title}>{post.title}</div>
-                <div className={styles.area}>
-                  <b>{post.area}</b> {post.category}
-                </div>
-                <div className={styles.date}>
-                  {format(new Date(post.created_at), "dd MMM yyyy k:mm")}
-                </div>
-              </div>
-            ))
-          : null}
+        {hiddens.map((post) => (
+          <div key={post.id} className={styles.starred}>
+            <div className={styles.manage}>
+              <button onClick={() => showPost(post.id)}>display</button>
+            </div>
+            <div className={styles.title}>{post.title}</div>
+            <div className={styles.area}>
+              <b>{post.area}</b> {post.category}
+            </div>
+            <div className={styles.date}>
+              {format(new Date(post.created_at), "dd MMM yyyy k:mm")}
+            </div>
+          </div>
+        ))}
       </div>
       {user && user.username === "admin" ? (
         <form onSubmit={addCity}>
