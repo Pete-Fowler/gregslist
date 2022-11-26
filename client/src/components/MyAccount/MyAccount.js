@@ -1,4 +1,6 @@
 import styles from "./MyAccount.module.css";
+import StarredListing from "./StarredListing";
+import HiddenListing from "./HiddenListing";
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
@@ -8,9 +10,11 @@ export default function MyAccount({ user, newUser }) {
   const [posts, setPosts] = useState([]);
   const [starred, setStarred] = useState([]);
   const [city, setCity] = useState([]);
+  const [hiddens, setHiddens] = useState([]);
 
   const navigate = useNavigate();
 
+  // Fetch posts
   useEffect(() => {
     if (user !== null) {
       fetch(`/posts?my_id=${user.id}`).then((r) => {
@@ -28,6 +32,7 @@ export default function MyAccount({ user, newUser }) {
     }
   }, [user]);
 
+  // Fetch starred posts
   useEffect(() => {
     if (user !== null) {
       fetch(`/posts?starred=${user.starred}`).then((r) => {
@@ -40,7 +45,19 @@ export default function MyAccount({ user, newUser }) {
     }
   }, [user]);
 
-  if (posts) console.log(posts);
+  // Fetch hidden posts
+  useEffect(() => {
+    if (user) {
+      fetch(`/posts?hiddens=${user.id}`).then((r) => {
+        if (r.ok) {
+          r.json().then((data) => setHiddens(data));
+        } else {
+          r.json().then((err) => console.log(err));
+        }
+      });
+    }
+  }, [user]);
+
   function logout() {
     fetch("/destroy", {
       method: "DELETE",
@@ -124,24 +141,22 @@ export default function MyAccount({ user, newUser }) {
           </div>
           <div className={`${styles.date} ${styles.heading}`}>posted date</div>
         </div>
-        {posts
-          ? posts.map((post) => (
-              <div key={post.id} className={styles.post}>
-                <div className={styles.manage}>
-                  <button onClick={() => showPost(post.id)}>display</button>
-                  <button onClick={() => deletePost(post.id)}>delete</button>
-                  <button onClick={() => editPost(post.id)}>edit</button>
-                </div>
-                <div className={styles.title}>{post.title}</div>
-                <div className={styles.area}>
-                  <b>{post.area}</b> {post.category}
-                </div>
-                <div className={styles.date}>
-                  {format(new Date(post.created_at), "dd MMM yyyy k:mm")}
-                </div>
-              </div>
-            ))
-          : null}
+        {posts.map((post) => (
+          <div key={post.id} className={styles.post}>
+            <div className={styles.manage}>
+              <button onClick={() => showPost(post.id)}>display</button>
+              <button onClick={() => deletePost(post.id)}>delete</button>
+              <button onClick={() => editPost(post.id)}>edit</button>
+            </div>
+            <div className={styles.title}>{post.title}</div>
+            <div className={styles.area}>
+              <b>{post.area}</b> {post.category}
+            </div>
+            <div className={styles.date}>
+              {format(new Date(post.created_at), "dd MMM yyyy k:mm")}
+            </div>
+          </div>
+        ))}
       </div>
       <br></br>
       Starred Posts
@@ -154,24 +169,37 @@ export default function MyAccount({ user, newUser }) {
           </div>
           <div className={`${styles.date} ${styles.heading}`}>posted date</div>
         </div>
-        {starred.length > 0
-          ? starred.map((post) => (
-              <div key={post.id} className={styles.starred}>
-                <div className={styles.manage}>
-                  <button onClick={() => showPost(post.id)}>display</button>
-                </div>
-                <div className={styles.title}>{post.title}</div>
-                <div className={styles.area}>
-                  <b>{post.area}</b> {post.category}
-                </div>
-                <div className={styles.date}>
-                  {format(new Date(post.created_at), "dd MMM yyyy k:mm")}
-                </div>
-              </div>
-            ))
-          : null}
+        {starred.map((post) => (
+          <StarredListing
+            key={post.id}
+            post={post}
+            showPost={showPost}
+            user={user}
+            newUser={newUser}
+          />
+        ))}
       </div>
       <br />
+      Hidden Posts
+      <div className={styles.posts}>
+        <div className={styles.starred}>
+          <div className={`${styles.manage} ${styles.heading}`}>manage</div>
+          <div className={`${styles.title} ${styles.heading}`}>post title</div>
+          <div className={`${styles.area} ${styles.heading}`}>
+            area and category
+          </div>
+          <div className={`${styles.date} ${styles.heading}`}>posted date</div>
+        </div>
+        {hiddens.map((post) => (
+          <HiddenListing
+            key={post.id}
+            user={user}
+            newUser={newUser}
+            post={post}
+            showPost={showPost}
+          />
+        ))}
+      </div>
       {user && user.username === "admin" ? (
         <form onSubmit={addCity}>
           <input
