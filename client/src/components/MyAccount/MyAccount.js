@@ -1,9 +1,9 @@
 import styles from "./MyAccount.module.css";
 import StarredListing from "./StarredListing";
+import HiddenListing from "./HiddenListing";
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
-import useHidden from "../../Hooks/useHidden";
 
 export default function MyAccount({ user, newUser }) {
   const [errors, setErrors] = useState([]);
@@ -191,18 +191,13 @@ export default function MyAccount({ user, newUser }) {
           <div className={`${styles.date} ${styles.heading}`}>posted date</div>
         </div>
         {hiddens.map((post) => (
-          <div key={post.id} className={styles.starred}>
-            <div className={styles.manage}>
-              <button onClick={() => showPost(post.id)}>display</button>
-            </div>
-            <div className={styles.title}>{post.title}</div>
-            <div className={styles.area}>
-              <b>{post.area}</b> {post.category}
-            </div>
-            <div className={styles.date}>
-              {format(new Date(post.created_at), "dd MMM yyyy k:mm")}
-            </div>
-          </div>
+          <HiddenListing
+            key={post.id}
+            user={user}
+            newUser={newUser}
+            post={post}
+            showPost={showPost}
+          />
         ))}
       </div>
       {user && user.username === "admin" ? (

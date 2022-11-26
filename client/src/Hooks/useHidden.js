@@ -20,7 +20,7 @@ export default function useHidden() {
       const hiddenId = hidden
         ? `${user.hiddens.find((obj) => obj.post_id === post.id).id}`
         : "";
-      console.log(hiddenId);
+
       const body = hidden
         ? ""
         : JSON.stringify({ user_id: user.id, post_id: post.id });
@@ -34,7 +34,6 @@ export default function useHidden() {
       }).then((r) => {
         if (r.ok) {
           r.json().then((data) => {
-            console.log(data);
             method === "POST"
               ? newUser((user) => ({
                   ...user,
