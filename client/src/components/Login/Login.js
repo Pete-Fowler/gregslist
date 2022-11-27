@@ -161,7 +161,7 @@ export default function Login({ user, newUser }) {
             name="username"
             onChange={createFormChange}
           ></input>
-          <div>{frontendErrors.username}</div>
+          <div className={styles.error}>{frontendErrors.username}</div>
         </div>
         <div className={styles.field}>
           <label>Password</label>
@@ -170,7 +170,7 @@ export default function Login({ user, newUser }) {
             name="password"
             onChange={createFormChange}
           ></input>
-          <div>{frontendErrors.password}</div>
+          <div className={styles.error}>{frontendErrors.password}</div>
         </div>
         <div className={styles.field}>
           <label>Password Confirmation</label>
@@ -179,7 +179,9 @@ export default function Login({ user, newUser }) {
             name="password_confirmation"
             onChange={createFormChange}
           ></input>
-          <div>{frontendErrors.password_confirmation}</div>
+          <div className={styles.error}>
+            {frontendErrors.password_confirmation}
+          </div>
         </div>
         <button type="submit" className={styles.loginBtn}>
           Create account
