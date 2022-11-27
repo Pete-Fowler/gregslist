@@ -13,6 +13,7 @@ export default function Login({ user, newUser }) {
     password: "",
   });
   const [errors, setErrors] = useState([]);
+  const [frontendErrors, setFrontendErrors] = useState([]);
 
   const navigate = useNavigate();
 
@@ -22,6 +23,59 @@ export default function Login({ user, newUser }) {
 
   function createFormChange(e) {
     setCreateData({ ...createData, [e.target.name]: e.target.value });
+    validate(e);
+  }
+
+  function validate(e) {
+    const { name, value } = e.target;
+
+    setFrontendErrors((frontendErrors) => ({ ...frontendErrors, [name]: "" }));
+    setErrors([]);
+
+    switch (name) {
+      case "username":
+        if (value.length > 0 && (value.length < 9 || value.length > 30)) {
+          setFrontendErrors((err) => ({
+            ...err,
+            [name]: "Must be between 9 and 30 characters",
+          }));
+        }
+        break;
+      case "password":
+        if (value.length > 0 && (value.length <= 6 || value.length > 16)) {
+          setFrontendErrors((frontendErrors) => ({
+            ...frontendErrors,
+            [name]: "Password must be between 6 and 16 characters",
+          }));
+        } else {
+          if (
+            value.length > 0 &&
+            createData.password_confirmation &&
+            value !== createData.password_confirmation
+          ) {
+            setFrontendErrors((err) => ({
+              ...err,
+              [name]: "Passwords must match",
+            }));
+          }
+        }
+        break;
+      case "password_confirmation":
+        if (
+          value.length > 0 &&
+          createData.password.length >= 6 &&
+          createData.password.length <= 16 &&
+          createData.password !== value
+        ) {
+          setFrontendErrors((frontendErrors) => ({
+            ...frontendErrors,
+            [name]: "Passwords must match",
+          }));
+        }
+        break;
+      default:
+        return;
+    }
   }
 
   function handleCreate(e) {
@@ -107,6 +161,7 @@ export default function Login({ user, newUser }) {
             name="username"
             onChange={createFormChange}
           ></input>
+          <div>{frontendErrors.username}</div>
         </div>
         <div className={styles.field}>
           <label>Password</label>
@@ -115,6 +170,7 @@ export default function Login({ user, newUser }) {
             name="password"
             onChange={createFormChange}
           ></input>
+          <div>{frontendErrors.password}</div>
         </div>
         <div className={styles.field}>
           <label>Password Confirmation</label>
@@ -123,6 +179,7 @@ export default function Login({ user, newUser }) {
             name="password_confirmation"
             onChange={createFormChange}
           ></input>
+          <div>{frontendErrors.password_confirmation}</div>
         </div>
         <button type="submit" className={styles.loginBtn}>
           Create account
